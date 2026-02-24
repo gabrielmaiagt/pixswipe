@@ -1,0 +1,60 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper: get user data from Firestore
+    function userData() {
+      return firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isActive() {
+      return request.auth != null && userData().entitlementStatus == 'active';
+    }
+
+    function isAdmin() {
+      return request.auth != null && userData().role == 'admin';
+    }
+
+    // Creative assets — read if active subscriber, write if admin
+    match /creatives/{allPaths=**} {
+      allow read: if isActive();
+      allow write: if isAdmin();
+    }
+
+    // Offer thumbnails — read if active, write if admin
+    match /offers/{allPaths=**} {
+      allow read: if isActive();
+      allow write: if isAdmin();
+    }
+
+    // Module covers — read if active, write if admin
+    match /modules/{allPaths=**} {
+      allow read: if isActive();
+      allow write: if isAdmin();
+    }
+
+    // Lesson thumbnails — read if active, write if admin
+    match /lessons/{allPaths=**} {
+      allow read: if isActive();
+      allow write: if isAdmin();
+    }
+
+    // User avatars — owner can write, anyone auth can read
+    match /avatars/{uid}/{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Admin assets — admin only
+    match /assets/{allPaths=**} {
+      allow read: if isActive();
+      allow write: if isAdmin();
+    }
+
+    // Public assets (landing page, logos) — anyone can read
+    match /public/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

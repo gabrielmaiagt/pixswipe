@@ -1,0 +1,127 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // === Helpers ===
+    function isAuth() { return request.auth != null; }
+    function userData() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function isActive() { return userData().entitlementStatus == 'active'; }
+    function hasPlanAccess(allowedPlans) { return isActive() && userData().plan in allowedPlans; }
+    function isAdmin() { return isAuth() && userData().role == 'admin'; }
+    function isOwner(uid) { return isAuth() && request.auth.uid == uid; }
+
+    // === Users ===
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid);
+      allow update: if isOwner(uid) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // === Subscriptions ===
+    match /subscriptions/{subId} {
+      allow read: if isAuth() && (resource.data.uid == request.auth.uid || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    // === Offers ===
+    match /offers/{offerId} {
+      allow read: if isAuth() && (isAdmin() || hasPlanAccess(resource.data.availableOnPlans));
+      allow write: if isAdmin();
+
+      match /creatives/{creativeId} {
+        allow read: if isAuth() && (isAdmin() || hasPlanAccess(
+          get(/databases/$(database)/documents/offers/$(offerId)).data.availableOnPlans
+        ));
+        allow write: if isAdmin();
+      }
+
+      match /funnelSteps/{stepId} {
+        allow read: if isAuth() && (isAdmin() || hasPlanAccess(
+          get(/databases/$(database)/documents/offers/$(offerId)).data.availableOnPlans
+        ));
+        allow write: if isAdmin();
+      }
+
+      match /comments/{commentId} {
+        allow read: if isAuth() && isActive();
+        allow create: if isAuth() && isActive();
+        allow update: if isAuth() && (request.auth.uid == resource.data.userId || isAdmin());
+        allow delete: if isAuth() && (request.auth.uid == resource.data.userId || isAdmin());
+      }
+    }
+
+    // === Modules ===
+    match /modules/{moduleId} {
+      allow read: if isAuth() && isActive();
+      allow write: if isAdmin();
+    }
+
+    // === Lessons ===
+    match /lessons/{lessonId} {
+      allow read: if isAuth() && (isAdmin() || hasPlanAccess(resource.data.availableOnPlans));
+      allow write: if isAdmin();
+
+      match /comments/{commentId} {
+        allow read: if isAuth() && isActive();
+        allow create: if isAuth() && isActive();
+        allow update: if isAuth() && (request.auth.uid == resource.data.userId || isAdmin());
+        allow delete: if isAuth() && (request.auth.uid == resource.data.userId || isAdmin());
+      }
+    }
+
+    // === Saves ===
+    match /saves/{uid}/{document=**} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // === Progress ===
+    match /progress/{uid}/{document=**} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // === Notifications (subcollection of users) ===
+    match /users/{uid}/notifications/{notifId} {
+      allow read: if isOwner(uid);
+      allow update: if isOwner(uid); // mark as read
+      allow create: if isAdmin();
+      allow delete: if isOwner(uid) || isAdmin();
+    }
+
+    // === Affiliates ===
+    match /affiliates/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // === Affiliate Sales ===
+    match /affiliateSales/{saleId} {
+      allow read: if isAuth() && (resource.data.affiliateUid == request.auth.uid || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    // === Payments ===
+    match /payments/{paymentId} {
+      allow read: if isAuth() && (resource.data.uid == request.auth.uid || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    // === Webhook Logs (admin only) ===
+    match /webhookLogs/{logId} {
+      allow read, write: if isAdmin();
+    }
+
+    // === Audit Logs (admin only) ===
+    match /auditLogs/{id} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+    }
+
+    // === Support Tickets ===
+    match /supportTickets/{ticketId} {
+      allow create: if isAuth();
+      allow read: if isAuth() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow update: if isAdmin();
+    }
+  }
+}

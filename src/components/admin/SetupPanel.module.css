@@ -1,0 +1,117 @@
+.setupPanel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.setupHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    color: var(--brand-primary);
+}
+
+.setupHeader h2 {
+    font-size: var(--font-lg);
+    font-weight: 700;
+}
+
+.setupContent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.setupStep {
+    display: flex;
+    gap: 16px;
+}
+
+.stepIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.stepInfo h3 {
+    font-size: var(--font-md);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.stepInfo p {
+    font-size: var(--font-sm);
+    color: var(--text-tertiary);
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.setupBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--brand-primary);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.setupBtn:hover:not(:disabled) {
+    background: var(--brand-secondary);
+    transform: translateY(-1px);
+}
+
+.setupBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+}
+
+.links {
+    display: flex;
+    gap: 16px;
+}
+
+.links a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--font-xs);
+    color: var(--brand-primary);
+    text-decoration: underline;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 640px) {
+    .setupContent {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,77 @@
+.installBanner {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 1000;
+    max-width: 400px;
+    width: calc(100% - 32px);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+.installInfo {
+    flex: 1;
+}
+
+.installInfo h4 {
+    font-size: var(--font-sm);
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.installInfo p {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+}
+
+.installActions {
+    display: flex;
+    gap: 8px;
+}
+
+.installBtn {
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: var(--font-xs);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.installPrimary {
+    background: var(--brand-primary);
+    color: #000;
+}
+
+.installPrimary:hover {
+    opacity: 0.9;
+}
+
+.installDismiss {
+    background: transparent;
+    color: var(--text-tertiary);
+}
+
+.installDismiss:hover {
+    color: var(--text-primary);
+}

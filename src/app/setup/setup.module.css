@@ -1,0 +1,47 @@
+.setupPage {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.setupContainer {
+    width: 100%;
+    max-width: 800px;
+}
+
+.setupHeader {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.setupHeader h1 {
+    font-size: var(--font-3xl);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.setupHeader p {
+    color: var(--text-tertiary);
+    font-size: var(--font-md);
+}
+
+.setupFooter {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+    transition: color var(--transition-fast);
+}
+
+.backLink:hover {
+    color: var(--brand-primary);
+}

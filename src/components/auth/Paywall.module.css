@@ -1,0 +1,53 @@
+.paywallOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.paywallCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-xl);
+    max-width: 400px;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    box-shadow: var(--shadow-xl);
+}
+
+.paywallIcon {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 107, 107, 0.1);
+    color: #ff6b6b;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+}
+
+.paywallCard h2 {
+    font-size: var(--font-xl);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.paywallCard p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    font-size: var(--font-sm);
+}
+
+.paywallActions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

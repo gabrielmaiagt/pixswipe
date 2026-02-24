@@ -1,0 +1,133 @@
+.dashboardHeader {
+    margin-bottom: 32px;
+}
+
+.dashboardHeader h1 {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.statCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.statIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statInfo h3 {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+}
+
+.statInfo p {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.welcomeBanner {
+    background: linear-gradient(135deg, #1e1e2e 0%, #0a0a0f 100%);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcomeBanner::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: var(--brand-primary);
+    filter: blur(120px);
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.welcomeContent h2 {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.welcomeContent p {
+    color: var(--text-secondary);
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.dashboardActions {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.actionCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all var(--transition-fast);
+}
+
+.actionCard:hover {
+    border-color: var(--brand-primary);
+    transform: translateY(-2px);
+}
+
+.actionIcon {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-primary);
+}
+
+.actionInfo h3 {
+    font-size: var(--font-lg);
+    font-weight: 700;
+}
+
+.actionInfo p {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .welcomeBanner {
+        padding: 24px;
+    }
+}

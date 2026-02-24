@@ -1,0 +1,117 @@
+.onboardingOverlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.onboardingCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-xl);
+    max-width: 480px;
+    width: 100%;
+    padding: 40px;
+    box-shadow: var(--shadow-xl);
+    text-align: center;
+}
+
+.onboardingHeader {
+    margin-bottom: 32px;
+}
+
+.onboardingHeader h2 {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.onboardingHeader p {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+}
+
+.stepIndicator {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+.stepDot {
+    width: 32px;
+    height: 4px;
+    border-radius: 99px;
+    background: var(--bg-tertiary);
+    transition: all var(--transition-normal);
+}
+
+.stepDotActive {
+    background: var(--brand-primary);
+    width: 48px;
+}
+
+.optionsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.optionCard {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.optionCard:hover {
+    border-color: var(--brand-primary);
+    background: rgba(0, 212, 170, 0.05);
+}
+
+.optionCardSelected {
+    border-color: var(--brand-primary);
+    background: rgba(0, 212, 170, 0.1) !important;
+}
+
+.optionIcon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    color: var(--brand-primary);
+}
+
+.optionInfo h4 {
+    font-size: var(--font-sm);
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.optionInfo p {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+}
+
+.onboardingActions {
+    display: flex;
+    gap: 12px;
+}
+
+.onboardingActions button {
+    flex: 1;
+}

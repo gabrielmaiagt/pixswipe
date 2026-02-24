@@ -1,0 +1,133 @@
+.bellWrap {
+    position: relative;
+}
+
+.bellBtn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    background: var(--bg-tertiary);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.bellBtn:hover {
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+}
+
+.badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent-orange);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+}
+
+.panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 340px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+}
+
+.panelHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-secondary);
+}
+
+.panelHeader h4 {
+    font-size: var(--font-sm);
+    font-weight: 700;
+}
+
+.viewAll {
+    font-size: var(--font-xs);
+    color: var(--brand-primary);
+    cursor: pointer;
+}
+
+.panelList {
+    display: flex;
+    flex-direction: column;
+}
+
+.panelItem {
+    display: flex;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-secondary);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.panelItem:hover {
+    background: var(--bg-elevated);
+}
+
+.panelItemUnread {
+    background: rgba(0, 212, 170, 0.03);
+}
+
+.panelDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.panelDotRead {
+    background: transparent;
+}
+
+.panelContent {
+    flex: 1;
+}
+
+.panelTitle {
+    font-size: var(--font-sm);
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.panelBody {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.emptyPanel {
+    padding: 24px;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: var(--font-sm);
+}

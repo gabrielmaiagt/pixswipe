@@ -1,0 +1,104 @@
+.affiliatePage h1 {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.statCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    text-align: center;
+}
+
+.statValue {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.statLabel {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    margin-top: 4px;
+}
+
+.linkSection {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 32px;
+}
+
+.linkSection h3 {
+    font-size: var(--font-base);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.linkRow {
+    display: flex;
+    gap: 8px;
+}
+
+.linkInput {
+    flex: 1;
+    background: var(--bg-input);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-size: var(--font-sm);
+    font-family: monospace;
+}
+
+.referralsSection h3 {
+    font-size: var(--font-lg);
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.referralTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.referralTable th {
+    text-align: left;
+    font-size: var(--font-xs);
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-secondary);
+}
+
+.referralTable td {
+    padding: 12px;
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-secondary);
+}
+
+.emptyReferrals {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-tertiary);
+    font-size: var(--font-sm);
+}
+
+@media (max-width: 640px) {
+    .linkRow {
+        flex-direction: column;
+    }
+}

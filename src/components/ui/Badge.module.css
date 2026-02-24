@@ -1,0 +1,76 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-xs);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.badgeIcon {
+    display: flex;
+    align-items: center;
+}
+
+.starter {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--plan-starter);
+}
+
+.pro {
+    background: rgba(108, 92, 231, 0.15);
+    color: var(--plan-pro);
+}
+
+.annual {
+    background: rgba(255, 165, 2, 0.15);
+    color: var(--plan-annual);
+}
+
+.scaling {
+    background: rgba(0, 212, 170, 0.15);
+    color: var(--accent-green);
+}
+
+.updated {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+}
+
+.active {
+    background: rgba(0, 212, 170, 0.15);
+    color: var(--status-active);
+}
+
+.warning {
+    background: rgba(255, 165, 2, 0.15);
+    color: var(--status-warning);
+}
+
+.error {
+    background: rgba(255, 107, 107, 0.15);
+    color: var(--status-error);
+}
+
+/* Upgrade CTA */
+.upgradeCta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.upgradeCta svg {
+    color: var(--plan-pro);
+}
+
+.upgradeCta p {
+    font-size: var(--font-sm);
+}

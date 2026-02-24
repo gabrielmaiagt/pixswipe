@@ -1,0 +1,112 @@
+.searchPage h1 {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.searchBar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.searchWrap {
+    position: relative;
+    flex: 1;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.searchInput {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px 14px 44px;
+    color: var(--text-primary);
+    font-size: var(--font-base);
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--brand-primary-muted);
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-secondary);
+    margin-bottom: 20px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 20px;
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.tab:hover {
+    color: var(--text-primary);
+}
+
+.tabActive {
+    color: var(--brand-primary);
+    border-bottom-color: var(--brand-primary);
+}
+
+.resultsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.lessonResult {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.lessonResult:hover {
+    border-color: var(--border-hover);
+}
+
+.emptySearch {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-secondary);
+}
+
+.emptySearch svg {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.emptySearch h3 {
+    font-size: var(--font-lg);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+    .resultsGrid {
+        grid-template-columns: 1fr;
+    }
+}
