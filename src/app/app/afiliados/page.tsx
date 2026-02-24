@@ -9,24 +9,39 @@ import Button from '@/components/ui/Button';
 import type { Affiliate } from '@/types';
 import { copyToClipboard, formatBRL } from '@/lib/utils';
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 import styles from '@/app/app/afiliados/afiliados.module.css';
 
 export default function AfiliadosPage() {
     const { firebaseUser, userData } = useAuth();
     const [affiliate, setAffiliate] = useState<Affiliate | null>(null);
+    const [recruitmentUrl, setRecruitmentUrl] = useState('');
     const [loading, setLoading] = useState(true);
 
-    const affiliateLink = userData?.affiliateCode
-        ? `${typeof window !== 'undefined' ? window.location.origin : ''}/r?ref=${userData.affiliateCode}`
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const affiliateLink = (mounted && userData?.affiliateCode)
+        ? `${window.location.origin}/r?ref=${userData.affiliateCode}`
         : '';
 
     useEffect(() => {
         if (!firebaseUser) return;
-        async function fetchAffiliate() {
+        async function fetchData() {
             try {
-                const snap = await getDoc(doc(db, 'affiliates', firebaseUser!.uid));
-                if (snap.exists()) {
-                    setAffiliate(snap.data() as Affiliate);
+                // Fetch affiliate stats
+                const affSnap = await getDoc(doc(db, 'affiliates', firebaseUser!.uid));
+                if (affSnap.exists()) {
+                    setAffiliate(affSnap.data() as Affiliate);
+                }
+
+                // Fetch global settings for recruitment link
+                const settingsSnap = await getDoc(doc(db, 'settings', 'general'));
+                if (settingsSnap.exists()) {
+                    setRecruitmentUrl(settingsSnap.data().caktoRecruitmentUrl || '');
                 }
             } catch (err) {
                 console.error('Error:', err);
@@ -34,7 +49,7 @@ export default function AfiliadosPage() {
                 setLoading(false);
             }
         }
-        fetchAffiliate();
+        fetchData();
     }, [firebaseUser]);
 
     function handleCopy() {
@@ -85,21 +100,48 @@ export default function AfiliadosPage() {
                 </div>
             </div>
 
-            {/* Affiliate link */}
-            <div className={styles.linkSection}>
-                <h3><Link2 size={16} /> Seu link de afiliado</h3>
-                <div className={styles.linkRow}>
-                    <input
-                        className={styles.linkInput}
-                        value={affiliateLink}
-                        readOnly
-                        onClick={(e) => (e.target as HTMLInputElement).select()}
-                    />
-                    <Button icon={<Copy size={14} />} onClick={handleCopy}>
-                        Copiar
-                    </Button>
+            {/* Affiliate link or Recruitment */}
+            {userData?.affiliateCode ? (
+                <div className={styles.linkSection}>
+                    <h3><Link2 size={16} /> Seu link de afiliado</h3>
+                    <p style={{ fontSize: 'var(--font-xs)', color: 'var(--text-secondary)', marginBottom: 12 }}>
+                        Use este link para divulgar. Os cliques e vendas serão rastreados automaticamente.
+                    </p>
+                    <div className={styles.linkRow}>
+                        <input
+                            className={styles.linkInput}
+                            value={affiliateLink}
+                            readOnly
+                            onClick={(e) => (e.target as HTMLInputElement).select()}
+                        />
+                        <Button icon={<Copy size={14} />} onClick={handleCopy}>
+                            Copiar
+                        </Button>
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className={`${styles.linkSection} ${styles.recruitmentContainer}`}>
+                    <div className={styles.recruitmentIcon}>
+                        <DollarSign size={40} />
+                    </div>
+                    <h3 className={styles.recruitmentTitle}>Seja um Parceiro Pix Swipe</h3>
+                    <p className={styles.recruitmentText}>
+                        Ganhe 30% de comissão por cada indicação. É simples: afilie-se na Cakto, coloque seu código no perfil e comece a lucrar.
+                    </p>
+                    <div className={styles.recruitmentActions}>
+                        {recruitmentUrl && (
+                            <a href={recruitmentUrl} target="_blank" rel="noreferrer">
+                                <Button size="lg">Quero me afiliar na Cakto</Button>
+                            </a>
+                        )}
+                        <Link href="/app/perfil">
+                            <span className={styles.recruitmentLink}>
+                                Já sou afiliado, quero inserir meu código
+                            </span>
+                        </Link>
+                    </div>
+                </div>
+            )}
 
             {/* Referrals */}
             <div className={styles.referralsSection}>

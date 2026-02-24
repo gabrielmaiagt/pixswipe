@@ -15,6 +15,7 @@ const firebaseConfig = {
     storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'placeholder.appspot.com',
     messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '0',
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '1:0:web:0',
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 function getFirebaseApp(): FirebaseApp {

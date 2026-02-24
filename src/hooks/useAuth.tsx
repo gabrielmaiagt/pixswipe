@@ -48,6 +48,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             if (!user) {
                 setUserData(null);
                 setLoading(false);
+                // Clear session cookie on logout
+                document.cookie = '__session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax';
                 return;
             }
 
@@ -72,7 +74,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     const isAdmin = userData?.role === 'admin';
-    const isActive = userData?.entitlementStatus === 'active';
+
+    // Logic to check if user has an active subscription
+    const isEntitled = userData?.entitlementStatus === 'active';
+    const isWithinPeriod = userData?.currentPeriodEnd
+        ? userData.currentPeriodEnd.toDate() > new Date()
+        : true; // Default to true if no date (legacy support/admins)
+
+    const isActive = isEntitled && isWithinPeriod;
 
     return (
         <AuthContext.Provider value={{ firebaseUser, userData, loading, isAdmin, isActive }}>

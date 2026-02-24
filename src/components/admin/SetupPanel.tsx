@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     Settings,
     UserPlus,
@@ -19,6 +19,11 @@ import styles from './SetupPanel.module.css';
 export default function SetupPanel() {
     const { userData, firebaseUser } = useAuth();
     const [loading, setLoading] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const elevateToAdmin = async () => {
         if (!firebaseUser) {
@@ -41,6 +46,8 @@ export default function SetupPanel() {
             setLoading(false);
         }
     };
+
+    const displayOrigin = mounted ? window.location.origin : 'https://seu-dominio.com';
 
     return (
         <div className={styles.setupPanel}>
@@ -93,7 +100,7 @@ export default function SetupPanel() {
                     <div className={styles.stepInfo}>
                         <h3>3. Ativar Webhooks</h3>
                         <p>
-                            Configure a URL <code>{typeof window !== 'undefined' ? window.location.origin : ''}/api/webhooks/cakto</code>
+                            Configure a URL <code>{displayOrigin}/api/webhooks/cakto</code>
                             no painel da Cakto para receber confirmações de pagamento.
                         </p>
                     </div>

@@ -10,11 +10,12 @@ import {
     Webhook,
     AlertCircle,
 } from 'lucide-react';
-import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore';
+import { collection, getDocs, query, where, orderBy, limit, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { formatBRL, formatDate } from '@/lib/utils';
-import type { WebhookLog } from '@/types';
+import type { WebhookLog, Payment } from '@/types';
 import TestModePanel from '@/components/admin/TestModePanel';
+import GradientChart from '@/components/admin/GradientChart';
 import styles from './admin.module.css';
 
 interface KPI {
@@ -27,6 +28,7 @@ interface KPI {
 export default function AdminDashboard() {
     const [kpis, setKpis] = useState<KPI[]>([]);
     const [recentWebhooks, setRecentWebhooks] = useState<WebhookLog[]>([]);
+    const [revenueData, setRevenueData] = useState<{ name: string; value: number }[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -66,6 +68,34 @@ export default function AdminDashboard() {
                 setRecentWebhooks(
                     whSnap.docs.map((d) => ({ id: d.id, ...d.data() } as WebhookLog))
                 );
+
+                // --- Process Monthly Revenue Chart ---
+                const thirtyDaysAgo = new Date();
+                thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+                const revenueSnap = await getDocs(
+                    query(
+                        collection(db, 'payments'),
+                        where('createdAt', '>=', Timestamp.fromDate(thirtyDaysAgo)),
+                        where('status', '==', 'approved'),
+                        orderBy('createdAt', 'asc')
+                    )
+                );
+
+                const dailyTotals: Record<string, number> = {};
+                revenueSnap.docs.forEach(doc => {
+                    const data = doc.data() as Payment;
+                    const date = data.createdAt.toDate().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+                    dailyTotals[date] = (dailyTotals[date] || 0) + (data.amount || 0);
+                });
+
+                const chartData = Object.entries(dailyTotals).map(([name, value]) => ({
+                    name,
+                    value
+                }));
+
+                setRevenueData(chartData);
+
             } catch (err) {
                 console.error('Admin fetch error:', err);
             } finally {
@@ -102,6 +132,15 @@ export default function AdminDashboard() {
                         <div className={styles.kpiLabel}>{kpi.label}</div>
                     </div>
                 ))}
+            </div>
+
+            <div className={styles.adminHeader} style={{ marginTop: 40 }}>
+                <h2>
+                    <TrendingUp size={18} /> Receita nos últimos 30 dias
+                </h2>
+            </div>
+            <div className={styles.adminCard} style={{ padding: '24px 16px' }}>
+                <GradientChart data={revenueData} valuePrefix="R$ " color="var(--brand-primary)" />
             </div>
 
             <div className={styles.adminHeader}>

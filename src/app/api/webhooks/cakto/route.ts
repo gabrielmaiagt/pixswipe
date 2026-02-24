@@ -92,21 +92,31 @@ export async function POST(request: NextRequest) {
 
 // --- Process each event type ---
 async function processEvent(payload: CaktoWebhookPayload) {
-    const { event, customer_email, sale_id } = payload;
+    const { event, customer, sale_id, id } = payload;
+    const finalSaleId = sale_id || id || 'unknown';
+    const email = customer?.email;
+
+    if (!email) {
+        throw new Error('Customer email is missing in payload');
+    }
 
     // Find user by email
     const usersSnap = await adminDb
         .collection('users')
-        .where('email', '==', customer_email)
+        .where('email', '==', email)
         .limit(1)
         .get();
 
     switch (event) {
-        case 'payment_approved':
+        case 'purchase_approved':
             await handlePaymentApproved(payload, usersSnap);
             break;
-        case 'payment_declined':
+        case 'purchase_refused':
             await handlePaymentDeclined(payload, usersSnap);
+            break;
+        case 'refund':
+        case 'chargeback':
+            await handleRefundOrChargeback(payload, usersSnap);
             break;
         case 'subscription_canceled':
             await handleSubscriptionCanceled(payload, usersSnap);
@@ -126,10 +136,12 @@ async function handlePaymentApproved(
     payload: CaktoWebhookPayload,
     usersSnap: FirebaseFirestore.QuerySnapshot
 ) {
-    const plan = normalizePlan(payload.plan);
+    const plan = normalizePlan((payload.plan as string) || (payload.product?.name as string) || '');
     const periodEnd = payload.period_end
         ? Timestamp.fromDate(new Date(payload.period_end))
         : Timestamp.fromDate(new Date(Date.now() + 30 * 24 * 60 * 60 * 1000));
+
+    const saleId = payload.sale_id || payload.id;
 
     if (!usersSnap.empty) {
         // Update existing user
@@ -141,21 +153,19 @@ async function handlePaymentApproved(
             paymentProviderCustomerId: payload.subscription_id || null,
         });
     }
-    // If no user exists, they'll create an account later and the
-    // system will match by email during signup
 
     // Create payment record (idempotent check)
     const existingPayment = await adminDb
         .collection('payments')
-        .where('caktoSaleId', '==', payload.sale_id)
+        .where('caktoSaleId', '==', saleId)
         .limit(1)
         .get();
 
     if (existingPayment.empty) {
         await adminDb.collection('payments').add({
             uid: usersSnap.empty ? null : usersSnap.docs[0].id,
-            caktoSaleId: payload.sale_id,
-            amount: payload.amount,
+            caktoSaleId: saleId,
+            amount: typeof payload.amount === 'string' ? parseFloat(payload.amount) : payload.amount,
             plan,
             status: 'approved',
             createdAt: Timestamp.now(),
@@ -189,9 +199,29 @@ async function handlePaymentDeclined(
             entitlementStatus: 'past_due',
         });
     }
+}
 
-    // Email will be triggered by a separate Cloud Function or
-    // called directly here if needed
+async function handleRefundOrChargeback(
+    payload: CaktoWebhookPayload,
+    usersSnap: FirebaseFirestore.QuerySnapshot
+) {
+    if (!usersSnap.empty) {
+        const userDoc = usersSnap.docs[0];
+        await userDoc.ref.update({
+            entitlementStatus: 'inactive',
+            plan: null, // Revoke plan access
+        });
+
+        if (payload.subscription_id) {
+            await adminDb
+                .collection('subscriptions')
+                .doc(payload.subscription_id)
+                .update({
+                    status: payload.event === 'refund' ? 'refunded' : 'chargedback',
+                    updatedAt: Timestamp.now(),
+                });
+        }
+    }
 }
 
 async function handleSubscriptionCanceled(
@@ -200,11 +230,7 @@ async function handleSubscriptionCanceled(
 ) {
     if (!usersSnap.empty) {
         const userDoc = usersSnap.docs[0];
-        // Keep active until period end
-        await userDoc.ref.update({
-            entitlementStatus: 'active', // stays active until period end
-        });
-
+        // Keep active until period end, but mark for cancellation
         if (payload.subscription_id) {
             await adminDb
                 .collection('subscriptions')
@@ -222,10 +248,12 @@ async function handleSubscriptionRenewed(
     payload: CaktoWebhookPayload,
     usersSnap: FirebaseFirestore.QuerySnapshot
 ) {
-    const plan = normalizePlan(payload.plan);
+    const plan = normalizePlan((payload.plan as string) || (payload.product?.name as string) || '');
     const periodEnd = payload.period_end
         ? Timestamp.fromDate(new Date(payload.period_end))
         : Timestamp.fromDate(new Date(Date.now() + 30 * 24 * 60 * 60 * 1000));
+
+    const saleId = payload.sale_id || payload.id;
 
     if (!usersSnap.empty) {
         const userDoc = usersSnap.docs[0];
@@ -238,8 +266,8 @@ async function handleSubscriptionRenewed(
         // Create payment record
         await adminDb.collection('payments').add({
             uid: userDoc.id,
-            caktoSaleId: payload.sale_id,
-            amount: payload.amount,
+            caktoSaleId: saleId,
+            amount: typeof payload.amount === 'string' ? parseFloat(payload.amount) : payload.amount,
             plan,
             status: 'approved',
             createdAt: Timestamp.now(),
@@ -259,16 +287,19 @@ async function handleAffiliateSale(payload: CaktoWebhookPayload) {
     if (affiliateSnap.empty) return;
 
     const affiliateDoc = affiliateSnap.docs[0];
-    const commission = payload.amount * 0.3; // 30%
+    const amount = typeof payload.amount === 'string' ? parseFloat(payload.amount) : payload.amount;
+    const commission = amount * 0.3; // 30%
+
+    const saleId = payload.sale_id || payload.id;
 
     // Create affiliate sale record
     await adminDb.collection('affiliateSales').add({
         affiliateUid: affiliateDoc.id,
         buyerUid: null, // will be matched later
-        plan: normalizePlan(payload.plan),
-        saleAmount: payload.amount,
+        plan: normalizePlan((payload.plan as string) || (payload.product?.name as string) || ''),
+        saleAmount: amount,
         commission,
-        caktoSaleId: payload.sale_id,
+        caktoSaleId: saleId,
         status: 'approved',
         createdAt: Timestamp.now(),
     });
@@ -280,9 +311,8 @@ async function handleAffiliateSale(payload: CaktoWebhookPayload) {
     });
 }
 
-function normalizePlan(plan: string): 'starter' | 'pro' | 'annual' {
+function normalizePlan(plan: string): 'starter' | 'pro' {
     const lower = plan.toLowerCase().trim();
-    if (lower.includes('annual') || lower.includes('anual')) return 'annual';
     if (lower.includes('pro')) return 'pro';
     return 'starter';
 }

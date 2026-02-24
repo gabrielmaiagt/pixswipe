@@ -28,18 +28,23 @@ export function validateCaktoWebhook(
 }
 
 // --- Checkout URL builder ---
-const CHECKOUT_URLS: Record<PlanType, string | undefined> = {
+const CHECKOUT_URLS: Record<string, string | undefined> = {
     starter: process.env.CAKTO_CHECKOUT_URL_STARTER,
     pro: process.env.CAKTO_CHECKOUT_URL_PRO,
-    annual: process.env.CAKTO_CHECKOUT_URL_ANNUAL,
 };
 
 export function getCheckoutUrl(
     plan: PlanType,
     affiliateCode?: string | null,
-    email?: string
+    email?: string,
+    overrides?: {
+        checkoutUrlStarter?: string;
+        checkoutUrlPro?: string;
+    }
 ): string {
-    const baseUrl = CHECKOUT_URLS[plan];
+    const overrideKey = `checkoutUrl${plan.charAt(0).toUpperCase() + plan.slice(1)}` as keyof typeof overrides;
+    const baseUrl = (overrides && overrides[overrideKey]) || CHECKOUT_URLS[plan];
+
     if (!baseUrl) {
         throw new Error(`URL de checkout não configurada para o plano: ${plan}`);
     }
@@ -63,19 +68,33 @@ export function getCustomerPortalUrl(): string {
 
 // --- Cakto webhook event types ---
 export type CaktoEvent =
-    | 'payment_approved'
-    | 'payment_declined'
+    | 'initiate_checkout'
+    | 'checkout_abandonment'
+    | 'purchase_approved'
+    | 'purchase_refused'
+    | 'pix_gerado'
+    | 'refund'
+    | 'chargeback'
+    | 'subscription_created'
     | 'subscription_canceled'
     | 'subscription_renewed'
-    | 'affiliate_sale';
+    | 'subscription_renewal_refused'
+    | 'affiliate_sale'; // Maintain compatibility or custom events
 
 export interface CaktoWebhookPayload {
     event: CaktoEvent;
-    sale_id: string;
-    customer_email: string;
-    customer_name?: string;
-    plan: string;
-    amount: number;
+    id?: string; // Some payloads use id for order
+    sale_id?: string; // Keeping for compatibility
+    customer: {
+        name: string;
+        email: string;
+        phone?: string;
+    };
+    product?: {
+        name: string;
+        id: string;
+    };
+    amount: string | number;
     affiliate_code?: string;
     subscription_id?: string;
     period_end?: string;

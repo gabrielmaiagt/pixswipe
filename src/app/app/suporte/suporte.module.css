@@ -1,83 +1,417 @@
 .supportContainer {
-    max-width: 900px;
+    min-height: calc(100vh - 100px);
+    padding: 48px 24px;
+    max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Glow */
+.supportContainer::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(50, 188, 173, 0.1) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .supportHeader {
     text-align: center;
-    margin-bottom: 48px;
+    max-width: 600px;
+    margin: 0 auto 64px;
+    position: relative;
+    z-index: 1;
+}
+
+.labelBadge {
+    display: inline-block;
+    color: var(--brand-primary);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
 }
 
 .supportHeader h1 {
-    font-size: var(--font-2xl);
+    font-size: clamp(32px, 5vw, 48px);
     font-weight: 800;
-    margin-bottom: 8px;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+    margin-bottom: 16px;
 }
 
 .supportHeader p {
     color: var(--text-secondary);
+    font-size: var(--font-md);
+    line-height: 1.6;
 }
 
 .supportGrid {
     display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 32px;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 40px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
 }
 
+/* Ticket Section */
 .ticketSection {
     background: var(--bg-card);
     border: 1px solid var(--border-secondary);
-    border-radius: var(--radius-lg);
-    padding: 32px;
+    border-radius: 32px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-.faqSection {
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.titleIcon {
+    width: 48px;
+    height: 48px;
+    background: rgba(50, 188, 173, 0.1);
+    color: var(--brand-primary);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleText h2 {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.statusIndicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.pulseDot {
+    width: 8px;
+    height: 8px;
+    background: var(--brand-primary);
+    border-radius: 50%;
+    position: relative;
+}
+
+.pulseDot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: var(--brand-primary);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+.statusIndicator span {
+    font-size: 13px;
+    color: var(--text-tertiary);
+}
+
+.statusIndicator strong {
+    color: var(--brand-primary);
+    font-weight: 600;
+}
+
+/* Form Styles */
+.supportForm {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-.faqGroup h3 {
-    font-size: var(--font-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-tertiary);
-    margin-bottom: 12px;
-}
-
-.faqItem {
-    background: var(--bg-card);
-    border: 1px solid var(--border-secondary);
-    border-radius: var(--radius-md);
-    padding: 16px;
-}
-
-.faqItem h4 {
-    font-size: var(--font-sm);
-    font-weight: 700;
-    margin-bottom: 6px;
-}
-
-.faqItem p {
-    font-size: var(--font-xs);
-    color: var(--text-muted);
-    line-height: 1.5;
-}
-
-.formGroup {
-    margin-bottom: 20px;
+    gap: 24px;
 }
 
 .formGroup label {
     display: block;
-    font-size: var(--font-xs);
+    margin-bottom: 10px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 6px;
 }
 
-@media (max-width: 900px) {
+.supportTextarea {
+    width: 100%;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-secondary);
+    border-radius: 16px;
+    padding: 16px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 14px;
+    resize: none;
+    min-height: 150px;
+    transition: all 0.2s ease;
+}
+
+.supportTextarea:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 2px rgba(50, 188, 173, 0.1);
+}
+
+.whatsappDivider {
+    position: relative;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.whatsappDivider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border-secondary);
+}
+
+.whatsappDivider span {
+    position: relative;
+    background: var(--bg-card);
+    padding: 0 16px;
+    color: var(--text-tertiary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.directContact {
+    text-align: center;
+}
+
+.directContact p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.whatsappBtn {
+    border: 1px solid var(--border-secondary) !important;
+    background: transparent !important;
+}
+
+.whatsappBtn:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--text-secondary) !important;
+}
+
+/* Sidebar Column */
+.sidebarColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.faqCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: 32px;
+    padding: 32px;
+}
+
+.faqHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.faqHeader h3 {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.faqList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.faqDetail {
+    border-bottom: 1px solid var(--border-secondary);
+}
+
+.faqDetail:last-child {
+    border-bottom: none;
+}
+
+.faqDetail summary {
+    padding: 16px 0;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.faqDetail summary::-webkit-details-marker {
+    display: none;
+}
+
+.faqDetail summary:hover {
+    color: var(--brand-primary);
+}
+
+.faqAnswer {
+    padding: 0 0 16px 16px;
+    border-left: 2px solid rgba(50, 188, 173, 0.2);
+    color: var(--text-tertiary);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.knowledgeBaseCard {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-secondary);
+    border-radius: 32px;
+    padding: 32px;
+}
+
+.kbHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.kbIcon {
+    width: 48px;
+    height: 48px;
+    background: var(--brand-primary);
+    color: #000;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kbHeader h4 {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.kbContent p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.statusCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-secondary);
+    border-radius: 20px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.statusLeft {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.statusLabel {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.statusValue {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--brand-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.successWrapper {
+    text-align: center;
+    max-width: 500px;
+    margin: 80px auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: 32px;
+    padding: 64px 40px;
+}
+
+.successIcon {
+    width: 80px;
+    height: 80px;
+    background: rgba(50, 188, 173, 0.1);
+    color: var(--brand-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 32px;
+}
+
+.successWrapper h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.successWrapper p {
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.successActions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (max-width: 1024px) {
     .supportGrid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .supportContainer {
+        padding: 32px 16px;
+    }
+
+    .ticketSection {
+        padding: 24px;
     }
 }

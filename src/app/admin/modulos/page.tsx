@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, BookOpen } from 'lucide-react';
+import Link from 'next/link';
 import { collection, getDocs, deleteDoc, doc, orderBy, query } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { StatusBadge } from '@/components/ui/Badge';
@@ -34,7 +35,9 @@ export default function AdminModulos() {
         <div>
             <div className={styles.adminHeader}>
                 <h1>Módulos</h1>
-                <Button icon={<Plus size={16} />}>Novo módulo</Button>
+                <Link href="/admin/modulos/novo">
+                    <Button icon={<Plus size={16} />}>Novo módulo</Button>
+                </Link>
             </div>
 
             {loading ? (
@@ -66,7 +69,9 @@ export default function AdminModulos() {
                                 <td><StatusBadge status={mod.status} /></td>
                                 <td>
                                     <div className={styles.tableActions}>
-                                        <button className={styles.editBtn}><Edit size={12} /> Editar</button>
+                                        <Link href={`/admin/modulos/${mod.id}`}>
+                                            <button className={styles.editBtn}><Edit size={12} /> Editar</button>
+                                        </Link>
                                         <button className={styles.deleteBtn} onClick={() => handleDelete(mod.id)}>
                                             <Trash2 size={12} />
                                         </button>

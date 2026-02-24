@@ -34,14 +34,30 @@ const stagger = {
 export default function LandingPage() {
   const { userData } = useAuth();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [settings, setSettings] = useState<any>(null);
+
+  useState(() => {
+    async function fetchSettings() {
+      try {
+        const { db } = await import('@/lib/firebase');
+        const { doc, getDoc } = await import('firebase/firestore');
+        const snap = await getDoc(doc(db, 'settings', 'general'));
+        if (snap.exists()) {
+          setSettings(snap.data());
+        }
+      } catch (err) {
+        console.error('Error fetching settings:', err);
+      }
+    }
+    fetchSettings();
+  });
 
   const handleSubscribe = (planId: string) => {
     try {
-      const url = getCheckoutUrl(planId as any, null, userData?.email);
+      const url = getCheckoutUrl(planId as any, null, userData?.email, settings);
       window.location.href = url;
     } catch (err) {
       console.error('Checkout error:', err);
-      // Fallback or toast if URL not configured
     }
   };
 
@@ -463,20 +479,20 @@ const PLANS = [
   {
     id: 'starter',
     name: 'Starter',
-    price: '37',
+    price: '67',
     period: 'mês',
     subtitle: 'Para quem está começando',
     featured: false,
     popular: false,
     cta: 'Começar com Starter',
     features: [
-      { label: 'Ofertas básicas', included: true },
-      { label: 'Criativos básicos', included: true },
-      { label: 'Aulas dos módulos iniciais', included: true },
-      { label: 'Comentários na comunidade', included: true },
-      { label: 'Todas as ofertas', included: false },
-      { label: 'Criativos premium', included: false },
-      { label: 'Badge Pro', included: false },
+      { label: 'Ofertas validadas', included: true },
+      { label: 'Criativos testados', included: true },
+      { label: 'Funil de vendas inicial', included: true },
+      { label: 'Aulas dos módulos básicos', included: true },
+      { label: 'Comunidade de membros', included: true },
+      { label: 'Ofertas de escala rápida', included: false },
+      { label: 'Criativos premium ilimitados', included: false },
     ],
   },
   {
@@ -490,31 +506,12 @@ const PLANS = [
     cta: 'Assinar Pro',
     features: [
       { label: 'Todas as ofertas publicadas', included: true },
-      { label: 'Todos os criativos', included: true },
-      { label: 'Todas as aulas', included: true },
-      { label: 'Comentários na comunidade', included: true },
+      { label: 'Todos os criativos (Ads)', included: true },
+      { label: 'Todas as aulas (LMS)', included: true },
+      { label: 'Comunidade VIP', included: true },
       { label: 'Badge Pro no perfil', included: true },
-      { label: 'Acesso prioritário', included: false },
-      { label: 'Badge Anual', included: false },
-    ],
-  },
-  {
-    id: 'annual',
-    name: 'Anual',
-    price: '797',
-    period: 'ano',
-    subtitle: 'Economia de 30%+',
-    featured: false,
-    popular: false,
-    cta: 'Assinar Anual',
-    features: [
-      { label: 'Tudo do Pro incluído', included: true },
-      { label: 'Todas as ofertas e criativos', included: true },
-      { label: 'Todas as aulas', included: true },
-      { label: 'Acesso prioritário a novas ofertas', included: true },
-      { label: 'Badge Anual exclusivo', included: true },
-      { label: 'Economia de R$367 por ano', included: true },
       { label: 'Suporte prioritário', included: true },
+      { label: 'Acesso antecipado a novas ofertas', included: true },
     ],
   },
 ];

@@ -30,7 +30,6 @@ FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n..."
 CAKTO_WEBHOOK_SECRET=xxx (obtido no painel da Cakto)
 CAKTO_CHECKOUT_URL_STARTER=https://checkout.cakto.com.br/plan_id_1
 CAKTO_CHECKOUT_URL_PRO=https://checkout.cakto.com.br/plan_id_2
-CAKTO_CHECKOUT_URL_ANNUAL=https://checkout.cakto.com.br/plan_id_3
 ```
 
 ## 3. Webhooks da Cakto

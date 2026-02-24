@@ -29,17 +29,34 @@ export async function GET(request: NextRequest) {
             .get();
 
         if (!affiliateSnap.empty) {
+            const affiliateDoc = affiliateSnap.docs[0];
             // Increment click counter
-            await affiliateSnap.docs[0].ref.update({
+            await affiliateDoc.ref.update({
                 totalClicks: FieldValue.increment(1),
+            });
+
+            // Record the click with timestamp for charts
+            await adminDb.collection('affiliateClicks').add({
+                affiliateUid: affiliateDoc.id,
+                affiliateCode: ref,
+                timestamp: FieldValue.serverTimestamp(),
+                plan,
+                userAgent: request.headers.get('user-agent'),
             });
         }
 
+        // Fetch dynamic settings from Firestore
+        const settingsSnap = await adminDb.collection('settings').doc('general').get();
+        const settings = settingsSnap.exists ? settingsSnap.data() : {};
+
         // Build checkout URL with affiliate ref
+        const checkoutUrlStarter = settings?.checkoutUrlStarter || process.env.CAKTO_CHECKOUT_URL_STARTER;
+        const checkoutUrlPro = settings?.checkoutUrlPro || process.env.CAKTO_CHECKOUT_URL_PRO;
+        const checkoutUrlAnnual = settings?.checkoutUrlAnnual || process.env.CAKTO_CHECKOUT_URL_ANNUAL;
+
         const checkoutUrls: Record<string, string | undefined> = {
-            starter: process.env.CAKTO_CHECKOUT_URL_STARTER,
-            pro: process.env.CAKTO_CHECKOUT_URL_PRO,
-            annual: process.env.CAKTO_CHECKOUT_URL_ANNUAL,
+            starter: checkoutUrlStarter,
+            pro: checkoutUrlPro,
         };
 
         const checkoutUrl = checkoutUrls[plan] || checkoutUrls.starter;

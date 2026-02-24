@@ -16,6 +16,7 @@ import {
     Menu,
     X,
     ShieldCheck,
+    DollarSign,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { signOut } from '@/lib/auth';
@@ -31,6 +32,7 @@ const NAV_ITEMS = [
     { label: 'Salvos', href: '/app/salvos', icon: Bookmark },
     { label: 'Afiliados', href: '/app/afiliados', icon: Users },
     { label: 'Suporte', href: '/app/suporte', icon: Headphones },
+    { label: 'Financeiro', href: '/app/financeiro', icon: DollarSign },
 ];
 
 const PROFILE_ITEMS = [

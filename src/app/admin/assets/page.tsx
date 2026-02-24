@@ -1,16 +1,23 @@
 'use client';
 
 import { ImageIcon } from 'lucide-react';
+import AssetManager from '@/components/admin/AssetManager';
 import styles from '../admin.module.css';
 
-export default function AdminAssets() {
+export default function AdminAssetsPage() {
     return (
         <div>
-            <div className={styles.adminHeader}><h1>Assets Gallery</h1></div>
-            <div className={styles.emptyAdmin}>
-                <ImageIcon size={48} />
-                <h3 style={{ marginTop: 12 }}>Em breve</h3>
-                <p>A galeria de assets será implementada com Firebase Storage.</p>
+            <div className={styles.adminHeader}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <div className={styles.kpiIcon} style={{ background: 'var(--brand-primary)', margin: 0 }}>
+                        <ImageIcon size={20} />
+                    </div>
+                    <h1>Galeria de Assets</h1>
+                </div>
+            </div>
+
+            <div className={styles.section} style={{ padding: 0, background: 'transparent', border: 'none' }}>
+                <AssetManager />
             </div>
         </div>
     );

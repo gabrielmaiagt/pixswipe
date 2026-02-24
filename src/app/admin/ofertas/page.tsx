@@ -35,7 +35,9 @@ export default function AdminOffers() {
         <div>
             <div className={styles.adminHeader}>
                 <h1>Ofertas</h1>
-                <Button icon={<Plus size={16} />}>Nova oferta</Button>
+                <Link href="/admin/ofertas/nova">
+                    <Button icon={<Plus size={16} />}>Nova oferta</Button>
+                </Link>
             </div>
 
             {loading ? (
@@ -74,7 +76,9 @@ export default function AdminOffers() {
                                         <Link href={`/app/ofertas/${offer.id}`}>
                                             <button className={styles.editBtn}><Eye size={12} /> Ver</button>
                                         </Link>
-                                        <button className={styles.editBtn}><Edit size={12} /> Editar</button>
+                                        <Link href={`/admin/ofertas/${offer.id}`}>
+                                            <button className={styles.editBtn}><Edit size={12} /> Editar</button>
+                                        </Link>
                                         <button className={styles.deleteBtn} onClick={() => handleDelete(offer.id)}>
                                             <Trash2 size={12} />
                                         </button>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, GraduationCap } from 'lucide-react';
+import Link from 'next/link';
 import { collection, getDocs, deleteDoc, doc, orderBy, query } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { StatusBadge } from '@/components/ui/Badge';
@@ -35,7 +36,9 @@ export default function AdminAulas() {
         <div>
             <div className={styles.adminHeader}>
                 <h1>Aulas</h1>
-                <Button icon={<Plus size={16} />}>Nova aula</Button>
+                <Link href="/admin/aulas/nova">
+                    <Button icon={<Plus size={16} />}>Nova aula</Button>
+                </Link>
             </div>
 
             {loading ? (
@@ -69,7 +72,9 @@ export default function AdminAulas() {
                                 <td><StatusBadge status={lesson.status} /></td>
                                 <td>
                                     <div className={styles.tableActions}>
-                                        <button className={styles.editBtn}><Edit size={12} /> Editar</button>
+                                        <Link href={`/admin/aulas/${lesson.id}`}>
+                                            <button className={styles.editBtn}><Edit size={12} /> Editar</button>
+                                        </Link>
                                         <button className={styles.deleteBtn} onClick={() => handleDelete(lesson.id)}>
                                             <Trash2 size={12} />
                                         </button>

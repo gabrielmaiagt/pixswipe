@@ -264,8 +264,32 @@ export interface AuditLog {
 export interface SupportTicket {
   id: string;
   userId: string;
+  userName: string;
+  userEmail: string;
   subject: string;
   message: string;
   status: 'open' | 'closed';
   createdAt: Timestamp;
+}
+
+// --- Financial Tracking ---
+export interface TrackingItem {
+  id: string;
+  userId: string;
+  title: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+export interface FinancialEntry {
+  id: string;
+  userId: string;
+  trackingItemId: string; // ID of the TrackingItem
+  date: Timestamp; // The day this entry corresponds to
+  adSpend: number; // Gasto (Ads)
+  revenue: number; // Retorno (Vendas)
+  leads: number; // Conversas (Leads)
+  salesCount: number; // Quantidade de Vendas
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
 }

@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Users, Mail, Shield, Search } from 'lucide-react';
+import { Users, Mail, Shield, Search, Plus, Edit } from 'lucide-react';
+import Link from 'next/link';
+import Button from '@/components/ui/Button';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { PlanBadge, StatusBadge } from '@/components/ui/Badge';
@@ -33,6 +35,9 @@ export default function AdminUsuarios() {
         <div>
             <div className={styles.adminHeader}>
                 <h1>Usuários ({users.length})</h1>
+                <Link href="/admin/usuarios/novo">
+                    <Button icon={<Plus size={16} />}>Novo usuário</Button>
+                </Link>
             </div>
 
             <div style={{ marginBottom: 20, position: 'relative', maxWidth: 400 }}>
@@ -74,6 +79,7 @@ export default function AdminUsuarios() {
                             <th>Status</th>
                             <th>Role</th>
                             <th>Criado em</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -95,6 +101,11 @@ export default function AdminUsuarios() {
                                     </span>
                                 </td>
                                 <td>{user.createdAt?.toDate ? formatDate(user.createdAt.toDate()) : '-'}</td>
+                                <td>
+                                    <Link href={`/admin/usuarios/${user.uid}`}>
+                                        <button className={styles.editBtn}><Edit size={12} /> Editar</button>
+                                    </Link>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

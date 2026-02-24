@@ -1,7 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Headphones, CheckCircle } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import {
+    Headphones,
+    CheckCircle,
+    Clock,
+    AlertCircle,
+    User,
+    Mail,
+    MessageSquare,
+    CheckCircle2,
+    XCircle
+} from 'lucide-react';
 import { collection, getDocs, doc, updateDoc, query, orderBy } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import Button from '@/components/ui/Button';
@@ -13,72 +23,150 @@ import styles from '../admin.module.css';
 export default function AdminSuporte() {
     const [tickets, setTickets] = useState<SupportTicket[]>([]);
     const [loading, setLoading] = useState(true);
+    const [actionLoading, setActionLoading] = useState<string | null>(null);
 
-    useEffect(() => {
-        async function fetch() {
+    async function fetchTickets() {
+        setLoading(true);
+        try {
             const snap = await getDocs(query(collection(db, 'supportTickets'), orderBy('createdAt', 'desc')));
             setTickets(snap.docs.map((d) => ({ id: d.id, ...d.data() } as SupportTicket)));
+        } catch (error) {
+            console.error('Error fetching tickets:', error);
+            toast.error('Erro ao carregar chamados');
+        } finally {
             setLoading(false);
         }
-        fetch();
+    }
+
+    useEffect(() => {
+        fetchTickets();
     }, []);
 
     async function closeTicket(id: string) {
-        await updateDoc(doc(db, 'supportTickets', id), { status: 'closed' });
-        setTickets((prev) => prev.map((t) => (t.id === id ? { ...t, status: 'closed' as const } : t)));
-        toast.success('Ticket fechado');
+        if (!confirm('Deseja marcar este chamado como resolvido?')) return;
+
+        setActionLoading(id);
+        try {
+            await updateDoc(doc(db, 'supportTickets', id), {
+                status: 'closed',
+                updatedAt: new Date()
+            });
+            setTickets((prev) => prev.map((t) => (t.id === id ? { ...t, status: 'closed' as const } : t)));
+            toast.success('Chamado encerrado com sucesso');
+        } catch (error) {
+            toast.error('Erro ao fechar chamado');
+        } finally {
+            setActionLoading(null);
+        }
     }
 
+    const stats = useMemo(() => {
+        return tickets.reduce((acc, ticket) => {
+            acc.total++;
+            if (ticket.status === 'open') acc.open++;
+            else acc.closed++;
+            return acc;
+        }, { total: 0, open: 0, closed: 0 });
+    }, [tickets]);
+
     return (
-        <div>
-            <div className={styles.adminHeader}><h1>Suporte</h1></div>
+        <div className={styles.adminContainer}>
+            <div className={styles.adminHeader}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <div className={styles.kpiIcon} style={{ background: 'var(--brand-primary)', margin: 0 }}>
+                        <Headphones size={20} />
+                    </div>
+                    <h1>Central de Suporte</h1>
+                </div>
+                <Button variant="secondary" onClick={fetchTickets} loading={loading}>Atualizar</Button>
+            </div>
+
+            <div className={styles.kpiGrid} style={{ marginBottom: 32 }}>
+                <div className={styles.kpiCard}>
+                    <div className={styles.kpiLabel}>Total de Chamados</div>
+                    <div className={styles.kpiValue}>{stats.total}</div>
+                </div>
+                <div className={styles.kpiCard}>
+                    <div className={styles.kpiLabel}>Abertos</div>
+                    <div className={styles.kpiValue} style={{ color: 'var(--brand-primary)' }}>{stats.open}</div>
+                </div>
+                <div className={styles.kpiCard}>
+                    <div className={styles.kpiLabel}>Resolvidos</div>
+                    <div className={styles.kpiValue} style={{ color: 'var(--text-tertiary)' }}>{stats.closed}</div>
+                </div>
+            </div>
 
             {loading ? (
-                <div className={styles.kpiGrid}>
-                    {Array.from({ length: 3 }).map((_, i) => (
-                        <div key={i} className="skeleton" style={{ height: 60, borderRadius: 8 }} />
-                    ))}
-                </div>
+                <div className="skeleton" style={{ height: 400, borderRadius: 20 }} />
             ) : tickets.length === 0 ? (
-                <div className={styles.emptyAdmin}>
-                    <Headphones size={48} />
-                    <p>Nenhum ticket de suporte</p>
+                <div className={styles.emptyAdmin} style={{ background: 'var(--bg-card)', borderRadius: 20, border: '1px solid var(--border-secondary)' }}>
+                    <div className={styles.emptyIcon}>
+                        <CheckCircle2 size={48} />
+                    </div>
+                    <h2>Tudo limpo por aqui!</h2>
+                    <p>Não há chamados de suporte pendentes no momento.</p>
                 </div>
             ) : (
-                <table className={styles.dataTable}>
-                    <thead>
-                        <tr>
-                            <th>Assunto</th>
-                            <th>Mensagem</th>
-                            <th>Status</th>
-                            <th>Data</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tickets.map((ticket) => (
-                            <tr key={ticket.id}>
-                                <td style={{ fontWeight: 600 }}>{ticket.subject}</td>
-                                <td style={{ color: 'var(--text-secondary)', maxWidth: 300, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                                    {ticket.message}
-                                </td>
-                                <td>
-                                    <span className={`${styles.statusPill} ${ticket.status === 'open' ? styles.statusProcessing : styles.statusOk}`}>
-                                        {ticket.status === 'open' ? 'Aberto' : 'Fechado'}
-                                    </span>
-                                </td>
-                                <td>{ticket.createdAt?.toDate ? formatDate(ticket.createdAt.toDate()) : '-'}</td>
-                                <td>
-                                    {ticket.status === 'open' && (
-                                        <Button size="sm" variant="secondary" icon={<CheckCircle size={12} />} onClick={() => closeTicket(ticket.id)}>
-                                            Fechar
-                                        </Button>
-                                    )}
-                                </td>
+                <div className={styles.tableWrapper} style={{ background: 'var(--bg-card)', borderRadius: 20, border: '1px solid var(--border-secondary)', overflow: 'hidden' }}>
+                    <table className={styles.dataTable}>
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Assunto</th>
+                                <th>Mensagem</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th style={{ textAlign: 'right' }}>Ações</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {tickets.map((ticket) => (
+                                <tr key={ticket.id}>
+                                    <td>
+                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                            <span style={{ fontWeight: 600, fontSize: '14px' }}>{ticket.userName || 'Usuário'}</span>
+                                            <span style={{ color: 'var(--text-tertiary)', fontSize: '12px' }}>{ticket.userEmail}</span>
+                                        </div>
+                                    </td>
+                                    <td style={{ fontWeight: 600 }}>{ticket.subject}</td>
+                                    <td style={{
+                                        color: 'var(--text-secondary)',
+                                        maxWidth: 250,
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        whiteSpace: 'nowrap',
+                                        fontSize: '13px'
+                                    }} title={ticket.message}>
+                                        {ticket.message}
+                                    </td>
+                                    <td style={{ color: 'var(--text-tertiary)', fontSize: '13px' }}>
+                                        {ticket.createdAt?.toDate ? formatDate(ticket.createdAt.toDate()) : '-'}
+                                    </td>
+                                    <td>
+                                        <span className={`${styles.statusPill} ${ticket.status === 'open' ? styles.statusProcessing : styles.statusOk}`}>
+                                            {ticket.status === 'open' ? 'Aberto' : 'Resolvido'}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                            {ticket.status === 'open' && (
+                                                <Button
+                                                    size="sm"
+                                                    variant="secondary"
+                                                    icon={<CheckCircle size={14} />}
+                                                    onClick={() => closeTicket(ticket.id)}
+                                                    loading={actionLoading === ticket.id}
+                                                >
+                                                    Resolver
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
         </div>
     );
