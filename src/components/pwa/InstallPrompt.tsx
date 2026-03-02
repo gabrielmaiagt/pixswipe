@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Download } from 'lucide-react';
 import styles from './InstallPrompt.module.css';
 
@@ -10,6 +11,7 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 export default function InstallPrompt() {
+    const pathname = usePathname();
     const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
     const [dismissed, setDismissed] = useState(false);
 
@@ -44,7 +46,9 @@ export default function InstallPrompt() {
         sessionStorage.setItem('pwa-dismissed', '1');
     }
 
-    if (!deferredPrompt || dismissed) return null;
+    const isExcluded = pathname === '/' || pathname === '/login';
+
+    if (!deferredPrompt || dismissed || isExcluded) return null;
 
     return (
         <div className={styles.installBanner}>
