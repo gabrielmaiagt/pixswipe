@@ -17,6 +17,7 @@ import {
     ArrowLeft,
     Settings,
     ShoppingBag,
+    History,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './admin.module.css';
@@ -25,6 +26,7 @@ const ADMIN_NAV = [
     { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
     { label: 'Vendas', href: '/admin/vendas', icon: ShoppingBag },
     { label: 'Ofertas', href: '/admin/ofertas', icon: Package },
+    { label: 'Logs de Sync', href: '/admin/logs-sync', icon: History },
     { label: 'Módulos', href: '/admin/modulos', icon: BookOpen },
     { label: 'Aulas', href: '/admin/aulas', icon: GraduationCap },
     { label: 'Usuários', href: '/admin/usuarios', icon: Users },

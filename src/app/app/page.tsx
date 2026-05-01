@@ -1,92 +1,134 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 import { useAuth } from '@/hooks/useAuth';
 import Onboarding from '@/components/auth/Onboarding';
-import { Package, GraduationCap, Zap, ArrowRight, PlayCircle } from 'lucide-react';
+import { Flame, Sparkles, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import Button from '@/components/ui/Button';
+import { PlanBadge } from '@/components/ui/Badge';
+import OfferCard from '@/components/offers/OfferCard';
+import type { Offer } from '@/types';
 import styles from '@/app/app/dashboard.module.css';
+
+function getGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Bom dia';
+    if (hour < 18) return 'Boa tarde';
+    return 'Boa noite';
+}
+
+function NicheTag({ niche }: { niche: string }) {
+    return <span className={styles.nicheTag}>{niche}</span>;
+}
 
 export default function DashboardPage() {
     const { userData, loading } = useAuth();
+    const [latestOffers, setLatestOffers] = useState<Offer[]>([]);
+    const [offersLoading, setOffersLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchLatest() {
+            try {
+                const q = query(
+                    collection(db, 'offers'),
+                    where('status', '==', 'published'),
+                    orderBy('createdAt', 'desc'),
+                    limit(4)
+                );
+                const snap = await getDocs(q);
+                setLatestOffers(snap.docs.map(d => ({ id: d.id, ...d.data() } as Offer)));
+            } catch (e) {
+                console.error(e);
+            } finally {
+                setOffersLoading(false);
+            }
+        }
+        fetchLatest();
+    }, []);
 
     if (loading) {
         return (
-            <div className={styles.loadingState}>
-                <div className="skeleton" style={{ height: '40px', width: '300px', marginBottom: '32px' }} />
-                <div className={styles.statsGrid}>
-                    <div className="skeleton" style={{ height: '100px', borderRadius: '12px' }} />
-                    <div className="skeleton" style={{ height: '100px', borderRadius: '12px' }} />
+            <div className={styles.dashboard}>
+                <div className={styles.heroSkeleton}>
+                    <div className="skeleton" style={{ height: '28px', width: '200px', marginBottom: '12px' }} />
+                    <div className="skeleton" style={{ height: '48px', width: '360px', marginBottom: '16px' }} />
+                    <div className="skeleton" style={{ height: '20px', width: '280px' }} />
                 </div>
-                <div className="skeleton" style={{ height: '300px', borderRadius: '24px', marginTop: '40px' }} />
+                <div className={styles.sectionHeader}>
+                    <div className="skeleton" style={{ height: '22px', width: '160px' }} />
+                </div>
+                <div className={styles.offersGrid}>
+                    {[...Array(4)].map((_, i) => (
+                        <div key={i} className="skeleton" style={{ height: '110px', borderRadius: '14px' }} />
+                    ))}
+                </div>
             </div>
         );
     }
 
-    // Show onboarding if not completed
     if (userData && !userData.onboarding?.completed) {
         return <Onboarding uid={userData.uid} onComplete={() => window.location.reload()} />;
     }
 
     const firstName = userData?.name?.split(' ')[0] || 'Membro';
+    const greeting = getGreeting();
 
     return (
         <div className={styles.dashboard}>
-            <header className={styles.dashboardHeader}>
-                <h1>Olá, {firstName} 👋</h1>
-                <p style={{ color: 'var(--text-secondary)' }}>Que bom ter você de volta. O que vamos rodar hoje?</p>
-            </header>
 
-            <div className={styles.statsGrid}>
-                <div className={styles.statCard}>
-                    <div className={`${styles.statIcon} bg-brand-primary-light`}>
-                        <Package size={24} color="var(--brand-primary)" />
-                    </div>
-                    <div className={styles.statInfo}>
-                        <h3>{userData?.metrics?.offersViewed || 0}</h3>
-                        <p>Ofertas Visualizadas</p>
+            {/* ── Hero ── */}
+            <section className={styles.hero}>
+                <div className={styles.heroGlow} />
+                <div className={styles.heroContent}>
+                    <p className={styles.heroGreeting}>{greeting}, {firstName} 👋</p>
+                    <h1 className={styles.heroTitle}>Sua próxima oferta<br />vencedora está aqui.</h1>
+                    <div className={styles.heroBadges}>
+                        {userData?.plan && <PlanBadge plan={userData.plan} />}
+                        <span className={styles.heroDivider}>•</span>
+                        <span className={styles.heroDate}>
+                            {new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}
+                        </span>
                     </div>
                 </div>
-                <div className={styles.statCard}>
-                    <div className={`${styles.statIcon} bg-brand-secondary-light`}>
-                        <GraduationCap size={24} color="var(--brand-secondary)" />
-                    </div>
-                    <div className={styles.statInfo}>
-                        <h3>{userData?.metrics?.lessonsDone || 0}</h3>
-                        <p>Aulas Concluídas</p>
-                    </div>
-                </div>
-            </div>
+                <Link href="/app/ofertas" className={styles.heroCta}>
+                    <Sparkles size={15} />
+                    Ver todas as ofertas
+                    <ArrowRight size={15} />
+                </Link>
+            </section>
 
-            <div className={styles.welcomeBanner}>
-                <div className={styles.welcomeContent}>
-                    <h2>Sua primeira venda está a um clique</h2>
-                    <p>Acesse nossa biblioteca de ofertas validadas e escale seu faturamento no X1 com criativos e funis prontos.</p>
-                    <Link href="/app/ofertas">
-                        <Button icon={<Zap size={18} />}>Ver Ofertas Agora</Button>
+            {/* ── Últimas ofertas ── */}
+            <section>
+                <div className={styles.sectionHeader}>
+                    <h2 className={styles.sectionTitle}>
+                        <Flame size={18} color="var(--urgency-warm)" />
+                        Recém-adicionadas
+                    </h2>
+                    <Link href="/app/ofertas" className={styles.sectionLink}>
+                        Ver todas <ArrowRight size={14} />
                     </Link>
                 </div>
-            </div>
 
-            <div className={styles.dashboardActions}>
-                <Link href="/app/ofertas" className={styles.actionCard}>
-                    <div className={styles.actionIcon}><Package size={20} /></div>
-                    <div className={styles.actionInfo}>
-                        <h3>Explorar Ofertas</h3>
-                        <p>As melhores ofertas X1 do mercado brasileiro.</p>
+                {offersLoading ? (
+                    <div className={styles.offersGrid}>
+                        {[...Array(4)].map((_, i) => (
+                            <div key={i} className="skeleton" style={{ height: '280px', borderRadius: '12px' }} />
+                        ))}
                     </div>
-                    <ArrowRight size={16} className="mt-auto self-end text-muted" />
-                </Link>
-
-                <Link href="/app/aulas" className={styles.actionCard}>
-                    <div className={styles.actionIcon}><PlayCircle size={20} /></div>
-                    <div className={styles.actionInfo}>
-                        <h3>Treinamentos</h3>
-                        <p>Aprenda a implementar e escalar as ofertas.</p>
+                ) : latestOffers.length === 0 ? (
+                    <div className={styles.emptyOffers}>
+                        <p>Nenhuma oferta publicada ainda.</p>
                     </div>
-                    <ArrowRight size={16} className="mt-auto self-end text-muted" />
-                </Link>
-            </div>
+                ) : (
+                    <div className={styles.offersGrid}>
+                        {latestOffers.map(offer => (
+                            <OfferCard key={offer.id} offer={offer} userPlan={userData?.plan} />
+                        ))}
+                    </div>
+                )}
+            </section>
         </div>
     );
 }

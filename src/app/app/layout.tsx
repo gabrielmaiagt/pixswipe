@@ -17,6 +17,7 @@ import {
     X,
     ShieldCheck,
     DollarSign,
+    MessageCircle,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { signOut } from '@/lib/auth';
@@ -91,6 +92,21 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                             </Link>
                         );
                     })}
+
+                    <div className={styles.sidebarSection}>Comunidade</div>
+                    <a
+                        href="https://chat.whatsapp.com/COLE_O_LINK_AQUI"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.navItem}
+                        style={{ color: '#25D366' }}
+                        onClick={() => setSidebarOpen(false)}
+                    >
+                        <span className={styles.navItemIcon}>
+                            <MessageCircle size={18} />
+                        </span>
+                        Grupo de Networking
+                    </a>
 
                     <div className={styles.sidebarSection}>Conta</div>
                     {PROFILE_ITEMS.map((item) => {

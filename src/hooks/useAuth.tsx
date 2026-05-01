@@ -79,7 +79,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const isEntitled = userData?.entitlementStatus === 'active';
     const isWithinPeriod = userData?.currentPeriodEnd
         ? userData.currentPeriodEnd.toDate() > new Date()
-        : true; // Default to true if no date (legacy support/admins)
+        : false; // Sem data = sem período ativo pagante
 
     const isActive = isEntitled && isWithinPeriod;
 

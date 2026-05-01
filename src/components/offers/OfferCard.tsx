@@ -101,6 +101,19 @@ export default function OfferCard({
 
                 {/* Body */}
                 <div className={styles.body}>
+                    <div className={styles.typeRow}>
+                        <span className={styles.offerTypeBadge}>
+                            {offer.offerType === 'x1' && '🤝 X1'}
+                            {offer.offerType === 'trafego_direto_brasil' && '🇧🇷 Direto Brasil'}
+                            {offer.offerType === 'trafego_direto_global' && '🌐 Direto Global'}
+                            {!offer.offerType && '—'}
+                        </span>
+                        {offer.offerLabel && (
+                            <span className={offer.offerLabel === 'white' ? styles.whiteBadge : styles.blackBadge}>
+                                {offer.offerLabel === 'white' ? '⚪ White' : '⚫ Black'}
+                            </span>
+                        )}
+                    </div>
                     <h3 className={styles.title}>{offer.title}</h3>
                     <div className={styles.meta}>
                         <span className={styles.metaItem}>
@@ -109,14 +122,6 @@ export default function OfferCard({
                                 R${offer.ticket.toFixed(2).replace('.', ',')}
                             </span>
                         </span>
-                        {offer.referenceCpl && (
-                            <span className={styles.metaItem}>
-                                CPL{' '}
-                                <span className={styles.metaValue}>
-                                    R${offer.referenceCpl.toFixed(2).replace('.', ',')}
-                                </span>
-                            </span>
-                        )}
                     </div>
                 </div>
 

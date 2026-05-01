@@ -37,6 +37,11 @@
   --accent-pink: #fd79a8;
   --accent-cyan: #00cec9;
 
+  /* Urgency Colors */
+  --urgency-warm: #ff9f43;
+  --urgency-warm-muted: rgba(255, 159, 67, 0.15);
+  --urgency-glow: 0 0 20px rgba(255, 159, 67, 0.3);
+
   /* Text Colors */
   --text-primary: #f0f0f5;
   --text-secondary: #a0a0b8;
@@ -67,6 +72,7 @@
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
   --shadow-glow-green: 0 0 20px rgba(0, 212, 170, 0.3);
   --shadow-glow-purple: 0 0 20px rgba(108, 92, 231, 0.3);
+  --shadow-glow-warm: 0 0 20px rgba(255, 159, 67, 0.3);
 
   /* Gradients */
   --gradient-brand: linear-gradient(135deg, #00d4aa, #00b894);
@@ -130,7 +136,9 @@
 }
 
 /* --- Reset & Base --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -163,7 +171,8 @@ a:hover {
   color: var(--brand-primary-hover);
 }
 
-img, video {
+img,
+video {
   max-width: 100%;
   height: auto;
   display: block;
@@ -177,12 +186,15 @@ button {
   background: none;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -237,11 +249,25 @@ ul, ol {
   line-height: var(--line-height-tight);
 }
 
-.text-sm { font-size: var(--font-sm); }
-.text-xs { font-size: var(--font-xs); }
-.text-lg { font-size: var(--font-lg); }
-.text-muted { color: var(--text-secondary); }
-.text-dimmed { color: var(--text-tertiary); }
+.text-sm {
+  font-size: var(--font-sm);
+}
+
+.text-xs {
+  font-size: var(--font-xs);
+}
+
+.text-lg {
+  font-size: var(--font-lg);
+}
+
+.text-muted {
+  color: var(--text-secondary);
+}
+
+.text-dimmed {
+  color: var(--text-tertiary);
+}
 
 /* --- Button Styles --- */
 .btn {
@@ -493,8 +519,59 @@ ul, ol {
 }
 
 @keyframes skeleton-loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes border-spin {
+  0% {
+    --angle: 0deg;
+  }
+
+  100% {
+    --angle: 360deg;
+  }
 }
 
 /* --- Toast Overrides --- */
@@ -598,8 +675,13 @@ ul, ol {
     grid-template-columns: 1fr;
   }
 
-  .heading-1 { font-size: var(--font-3xl); }
-  .heading-2 { font-size: var(--font-2xl); }
+  .heading-1 {
+    font-size: var(--font-3xl);
+  }
+
+  .heading-2 {
+    font-size: var(--font-2xl);
+  }
 }
 
 @media (max-width: 480px) {
@@ -614,24 +696,70 @@ ul, ol {
 }
 
 /* --- Utility Classes --- */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.gap-xs { gap: var(--space-xs); }
-.gap-sm { gap: var(--space-sm); }
-.gap-md { gap: var(--space-md); }
-.gap-lg { gap: var(--space-lg); }
-.gap-xl { gap: var(--space-xl); }
-.w-full { width: 100%; }
-.text-center { text-align: center; }
-.relative { position: relative; }
-.hidden { display: none; }
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-xs {
+  gap: var(--space-xs);
+}
+
+.gap-sm {
+  gap: var(--space-sm);
+}
+
+.gap-md {
+  gap: var(--space-md);
+}
+
+.gap-lg {
+  gap: var(--space-lg);
+}
+
+.gap-xl {
+  gap: var(--space-xl);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
 
 @media (min-width: 769px) {
-  .mobile-only { display: none; }
+  .mobile-only {
+    display: none;
+  }
 }
+
 @media (max-width: 768px) {
-  .desktop-only { display: none; }
+  .desktop-only {
+    display: none;
+  }
 }

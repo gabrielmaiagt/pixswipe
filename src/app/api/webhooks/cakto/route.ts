@@ -6,7 +6,7 @@
 export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
-import { adminDb } from '@/lib/firebase-admin';
+import { adminDb, adminAuth } from '@/lib/firebase-admin';
 import { validateCaktoWebhook, type CaktoWebhookPayload } from '@/lib/cakto';
 import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 
@@ -132,6 +132,8 @@ async function processEvent(payload: CaktoWebhookPayload) {
     }
 }
 
+const DEFAULT_PASSWORD = 'PixSwipe2024!';
+
 async function handlePaymentApproved(
     payload: CaktoWebhookPayload,
     usersSnap: FirebaseFirestore.QuerySnapshot
@@ -142,19 +144,61 @@ async function handlePaymentApproved(
         : Timestamp.fromDate(new Date(Date.now() + 30 * 24 * 60 * 60 * 1000));
 
     const saleId = payload.sale_id || payload.id;
+    const email = payload.customer?.email!;
+    const name = payload.customer?.name || '';
+
+    let uid: string | null = null;
 
     if (!usersSnap.empty) {
-        // Update existing user
+        // ── Existing user: just update plan ──
         const userDoc = usersSnap.docs[0];
+        uid = userDoc.id;
         await userDoc.ref.update({
             plan,
             entitlementStatus: 'active',
             currentPeriodEnd: periodEnd,
             paymentProviderCustomerId: payload.subscription_id || null,
         });
+    } else {
+        // ── New buyer: create Firebase Auth user + Firestore profile ──
+        try {
+            // Try to get existing Auth user (in case only Auth exists without Firestore)
+            let authUser;
+            try {
+                authUser = await adminAuth.getUserByEmail(email);
+            } catch {
+                // User doesn't exist in Auth either — create fresh
+                authUser = await adminAuth.createUser({
+                    email,
+                    password: DEFAULT_PASSWORD,
+                    displayName: name,
+                });
+            }
+
+            uid = authUser.uid;
+
+            // Create Firestore profile
+            await adminDb.collection('users').doc(uid).set({
+                uid,
+                email,
+                name,
+                role: 'user',
+                plan,
+                entitlementStatus: 'active',
+                currentPeriodEnd: periodEnd,
+                paymentProviderCustomerId: payload.subscription_id || null,
+                createdAt: Timestamp.now(),
+                updatedAt: Timestamp.now(),
+            });
+
+            console.log(`[Webhook] Created new user for ${email} with plan ${plan}`);
+        } catch (err) {
+            console.error('[Webhook] Failed to create user:', err);
+            throw err;
+        }
     }
 
-    // Create payment record (idempotent check)
+    // Create payment record (idempotent)
     const existingPayment = await adminDb
         .collection('payments')
         .where('caktoSaleId', '==', saleId)
@@ -163,7 +207,7 @@ async function handlePaymentApproved(
 
     if (existingPayment.empty) {
         await adminDb.collection('payments').add({
-            uid: usersSnap.empty ? null : usersSnap.docs[0].id,
+            uid,
             caktoSaleId: saleId,
             amount: typeof payload.amount === 'string' ? parseFloat(payload.amount) : payload.amount,
             plan,
@@ -173,10 +217,10 @@ async function handlePaymentApproved(
     }
 
     // Create/update subscription
-    if (!usersSnap.empty && payload.subscription_id) {
-        await adminDb.collection('subscriptions').doc(payload.subscription_id).set(
+    if (uid && payload.subscription_id) {
+        await adminDb.collection('subscriptions').doc(payload.subscription_id as string).set(
             {
-                uid: usersSnap.docs[0].id,
+                uid,
                 provider: 'cakto',
                 plan,
                 status: 'active',

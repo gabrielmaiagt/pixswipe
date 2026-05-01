@@ -42,7 +42,7 @@ export default function CadastroPage() {
                 avatarUrl: null,
                 role: 'user',
                 plan: 'starter',
-                entitlementStatus: 'active',
+                entitlementStatus: 'free',
                 currentPeriodEnd: null,
                 paymentProviderCustomerId: null,
                 onboarding: {

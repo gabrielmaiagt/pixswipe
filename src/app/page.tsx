@@ -88,20 +88,22 @@ export default function LandingPage() {
           animate="visible"
           variants={stagger}
         >
-          <motion.div className={styles.heroTag} variants={fadeUp}>
-            <Sparkles size={14} />
-            Ofertas X1 prontas para rodar
-          </motion.div>
 
           <motion.h1 className={styles.heroTitle} variants={fadeUp}>
             Copie ofertas validadas e<br />
             <span>comece a vender hoje</span>
           </motion.h1>
 
-          <motion.p className={styles.heroSubtitle} variants={fadeUp}>
-            Biblioteca de ofertas X1 completas — criativos, funil do WhatsApp,
-            e tutorial de implementação. Pague, copie e saia rodando.
-          </motion.p>
+
+          <motion.div className={styles.heroPreview} variants={fadeUp}>
+            <div className={styles.heroPreviewBlur}>
+              <div className={styles.heroPreviewInner}>
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className={styles.heroPreviewCard} />
+                ))}
+              </div>
+            </div>
+          </motion.div>
 
           <motion.div className={styles.heroCtas} variants={fadeUp}>
             <Link href="/#precos">
@@ -114,16 +116,6 @@ export default function LandingPage() {
                 Como funciona
               </Button>
             </Link>
-          </motion.div>
-
-          <motion.div className={styles.heroPreview} variants={fadeUp}>
-            <div className={styles.heroPreviewBlur}>
-              <div className={styles.heroPreviewInner}>
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className={styles.heroPreviewCard} />
-                ))}
-              </div>
-            </div>
           </motion.div>
         </motion.div>
       </section>
@@ -159,43 +151,6 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* === Preview Cards === */}
-      <section className={styles.preview}>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={stagger}
-        >
-          <motion.h2 className={styles.sectionTitle} variants={fadeUp}>
-            Ofertas prontas para copiar
-          </motion.h2>
-          <motion.p className={styles.sectionSubtitle} variants={fadeUp}>
-            Veja um preview do que está dentro da plataforma
-          </motion.p>
-
-          <div className={styles.previewGrid}>
-            {PREVIEW_OFFERS.map((offer, i) => (
-              <motion.div
-                key={i}
-                className={styles.previewCard}
-                variants={fadeUp}
-              >
-                <div className={styles.lockBadge}>
-                  <Lock size={10} /> Membros
-                </div>
-                <div className={styles.previewCardImage}>
-                  <TrendingUp size={32} style={{ color: 'var(--text-muted)' }} />
-                </div>
-                <div className={styles.previewCardBody}>
-                  <h3>{offer.title}</h3>
-                  <p>{offer.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
 
       {/* === How It Works === */}
       <section className={styles.howItWorks} id="como-funciona">
@@ -246,37 +201,59 @@ export default function LandingPage() {
                 className={`${styles.pricingCard} ${plan.featured ? styles.pricingCardFeatured : ''}`}
                 variants={fadeUp}
               >
-                {plan.popular && (
-                  <div className={styles.pricingPopular}>Mais popular</div>
-                )}
-                <h3>{plan.name}</h3>
-                <div className={styles.pricingPrice}>
-                  R${plan.price}
-                  <span>/{plan.period}</span>
+                <div className={styles.pricingHeader}>
+                  <h3>{plan.name}</h3>
                 </div>
-                <p className={styles.pricingPeriod}>{plan.subtitle}</p>
-                <ul className={styles.pricingFeatures}>
-                  {plan.features.map((feature, j) => (
-                    <li key={j}>
-                      {feature.included ? (
-                        <Check size={16} className={styles.pricingCheck} />
-                      ) : (
-                        <X size={16} className={styles.pricingX} />
-                      )}
-                      {feature.label}
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  variant={plan.featured ? 'primary' : 'secondary'}
-                  fullWidth
-                  onClick={() => handleSubscribe(plan.id)}
-                >
-                  {plan.cta}
-                </Button>
+                <div className={styles.pricingBody}>
+                  <div className={styles.pricingPrice}>
+                    {plan.price}<span>R$</span>
+                  </div>
+                  <p className={styles.pricingPeriod}>{plan.subtitle}</p>
+                  <ul className={styles.pricingFeatures}>
+                    {plan.features.map((feature, j) => (
+                      <li key={j}>
+                        {feature.included ? (
+                          <Check size={16} className={styles.pricingCheck} />
+                        ) : (
+                          <X size={16} className={styles.pricingX} />
+                        )}
+                        {feature.label}
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    className={styles.pricingCta}
+                    onClick={() => handleSubscribe(plan.id)}
+                  >
+                    COMEÇAR AGORA
+                  </button>
+                </div>
               </motion.div>
             ))}
           </div>
+        </motion.div>
+      </section>
+
+      {/* === Guarantee === */}
+      <section className={styles.guarantee}>
+        <motion.div
+          className={styles.guaranteeContent}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={stagger}
+        >
+          <motion.div className={styles.guaranteeSeal} variants={fadeUp}>
+            <span className={styles.guaranteeSealDays}>7</span>
+            <span className={styles.guaranteeSealLabel}>dias</span>
+          </motion.div>
+          <motion.h3 className={styles.guaranteeTitle} variants={fadeUp}>
+            Garantia <span>incondicional</span>
+          </motion.h3>
+          <motion.p className={styles.guaranteeText} variants={fadeUp}>
+            Teste o Pix Swipe por 7 dias. Se não gostar, devolvemos 100% do seu
+            dinheiro — sem perguntas, sem burocracia. Você não tem nada a perder.
+          </motion.p>
         </motion.div>
       </section>
 
@@ -486,13 +463,11 @@ const PLANS = [
     popular: false,
     cta: 'Começar com Starter',
     features: [
-      { label: 'Ofertas validadas', included: true },
-      { label: 'Criativos testados', included: true },
-      { label: 'Funil de vendas inicial', included: true },
-      { label: 'Aulas dos módulos básicos', included: true },
-      { label: 'Comunidade de membros', included: true },
-      { label: 'Ofertas de escala rápida', included: false },
-      { label: 'Criativos premium ilimitados', included: false },
+      { label: 'Ofertas de X1 Validadas', included: true },
+      { label: 'Criativos Escalados', included: true },
+      { label: 'Funil de Vendas Completo', included: true },
+      { label: 'Aulas Exclusivas De X1', included: true },
+      { label: 'Networking Com Players Que Escalam', included: true },
     ],
   },
   {
@@ -505,13 +480,12 @@ const PLANS = [
     popular: true,
     cta: 'Assinar Pro',
     features: [
-      { label: 'Todas as ofertas publicadas', included: true },
-      { label: 'Todos os criativos (Ads)', included: true },
-      { label: 'Todas as aulas (LMS)', included: true },
-      { label: 'Comunidade VIP', included: true },
-      { label: 'Badge Pro no perfil', included: true },
-      { label: 'Suporte prioritário', included: true },
-      { label: 'Acesso antecipado a novas ofertas', included: true },
+      { label: 'Tudo do Plano Starter', included: true },
+      { label: 'Ofertas De Tráfego Direto', included: true },
+      { label: 'Criativos Escalados', included: true },
+      { label: 'Ofertas White/Black/Hot', included: true },
+      { label: 'Aulas Exclusivas Sobre Tráfego Direto', included: true },
+      { label: 'Networking Com Players Que Escalam', included: true },
     ],
   },
 ];

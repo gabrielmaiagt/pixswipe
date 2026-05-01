@@ -4,11 +4,18 @@ service cloud.firestore {
 
     // === Helpers ===
     function isAuth() { return request.auth != null; }
+    function userExists() { return isAuth() && exists(/databases/$(database)/documents/users/$(request.auth.uid)); }
     function userData() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
-    function isActive() { return userData().entitlementStatus == 'active'; }
+    function isActive() { return userExists() && userData().entitlementStatus == 'active'; }
     function hasPlanAccess(allowedPlans) { return isActive() && userData().plan in allowedPlans; }
-    function isAdmin() { return isAuth() && userData().role == 'admin'; }
+    function isAdmin() { return userExists() && userData().role == 'admin'; }
     function isOwner(uid) { return isAuth() && request.auth.uid == uid; }
+
+    // === Settings ===
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
 
     // === Users ===
     match /users/{uid} {
@@ -92,6 +99,14 @@ service cloud.firestore {
     match /affiliates/{uid} {
       allow read: if isOwner(uid) || isAdmin();
       allow write: if isAdmin();
+    }
+
+    // === Notifications (alternative top-level) ===
+    match /notifications/{uid}/items/{notifId} {
+      allow read: if isOwner(uid);
+      allow update: if isOwner(uid);
+      allow create: if isAdmin();
+      allow delete: if isOwner(uid) || isAdmin();
     }
 
     // === Affiliate Sales ===

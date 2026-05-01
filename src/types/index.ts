@@ -59,6 +59,8 @@ export interface Subscription {
 // --- Offer ---
 export type OfferStatus = 'draft' | 'published' | 'archived';
 export type CreativeStorageType = 'firebase' | 'drive';
+export type OfferType = 'x1' | 'trafego_direto_brasil' | 'trafego_direto_global';
+export type OfferLabel = 'white' | 'black';
 export type CreativeType = 'image' | 'video' | 'text';
 export type FunnelStepLabel = 'qualificacao' | 'prova' | 'pitch' | 'fechamento';
 
@@ -75,7 +77,9 @@ export interface Offer {
   niche: string;
   ticket: number;
   status: OfferStatus;
-  summary: OfferSummary;
+  offerType: OfferType;
+  offerLabel?: OfferLabel;
+  summary?: OfferSummary;
   tags: string[];
   createdAt: Timestamp;
   updatedAt: Timestamp;
@@ -92,6 +96,31 @@ export interface Offer {
   lastUpdatedNote?: string;
   creativeStorageType: CreativeStorageType;
   thumbnailUrl?: string;
+  // Links
+  adLibraryUrl?: string;
+  checkoutUrl?: string;
+  siteUrl?: string;
+  // X1 specific
+  funnelNumber?: string;
+  funnelVideoUrls?: string[];
+  // Monitoring
+  lastAdCount?: number;
+  lastSyncedAt?: Timestamp;
+}
+
+export interface AdCreative {
+  url: string;
+  count: number; // For scaling insights: how many ads use this creative
+  type: 'image' | 'video';
+}
+
+export interface AdSnapshot {
+  id: string; // YYYY-MM-DD
+  adCount: number;
+  creatives: AdCreative[];
+  landingUrls?: string[];
+  debugRawItems?: number; // Total items returned by Apify before extraction
+  scrapedAt: Timestamp;
 }
 
 export interface Creative {

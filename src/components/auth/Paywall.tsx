@@ -2,7 +2,9 @@
 
 import { Lock, CreditCard } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button';
+import { signOut } from '@/lib/auth';
 import styles from './Paywall.module.css';
 
 interface PaywallProps {
@@ -10,8 +12,13 @@ interface PaywallProps {
 }
 
 export default function Paywall({ status }: PaywallProps) {
+    const router = useRouter();
     const isPastDue = status === 'past_due';
-    const isExpired = status === 'expired' || status === 'canceled';
+
+    async function handleSwitchAccount() {
+        await signOut();
+        router.push('/login');
+    }
 
     return (
         <div className={styles.paywallOverlay}>
@@ -32,9 +39,12 @@ export default function Paywall({ status }: PaywallProps) {
                             {isPastDue ? 'Regularizar Assinatura' : 'Ver Planos e Assinar'}
                         </Button>
                     </Link>
-                    <Link href="/login" style={{ fontSize: 'var(--font-xs)', color: 'var(--text-tertiary)', marginTop: '8px' }}>
+                    <button
+                        onClick={handleSwitchAccount}
+                        style={{ fontSize: 'var(--font-xs)', color: 'var(--text-tertiary)', marginTop: '8px', background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
                         Entrar com outra conta
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>

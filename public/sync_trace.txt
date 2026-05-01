@@ -1,0 +1,498 @@
+[2026-03-20T22:31:25.531Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T22:31:25.533Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T22:31:25.534Z] Fetching offer from Firestore: ao009r
+[2026-03-20T22:31:25.601Z] Offer data keys: title, niche, ticket, status, offerType, offerLabel, tags, featured, scalingBadge, availableOnPlans, creativeStorageType, adLibraryUrl, funnelVideoUrls, views, saves, version, createdAt, lastAdCount, lastSyncedAt, updatedAt
+[2026-03-20T22:31:25.602Z] URL to sync: https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&id=1150268160453909&is_targeted_country=false&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=238587899340152
+[2026-03-20T22:31:25.602Z] Starting Apify Actor...
+[2026-03-20T22:31:26.224Z] Apify Response Status: 404
+[2026-03-20T22:31:26.225Z] Apify Response Body: {"error":{"type":"page-not-found","message":"We have bad news: there is no API endpoint at this URL. Did you specify it correctly?"}}
+[2026-03-20T22:35:07.177Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T22:35:07.180Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T22:35:07.180Z] Fetching offer from Firestore: ao009r
+[2026-03-20T22:35:07.410Z] Offer data keys: title, niche, ticket, status, offerType, offerLabel, tags, featured, scalingBadge, availableOnPlans, creativeStorageType, adLibraryUrl, funnelVideoUrls, views, saves, version, createdAt, lastAdCount, lastSyncedAt, updatedAt
+[2026-03-20T22:35:07.411Z] URL to sync: https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&id=1150268160453909&is_targeted_country=false&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=238587899340152
+[2026-03-20T22:35:07.411Z] Starting Apify Actor...
+[2026-03-20T22:35:08.281Z] Apify Response Status: 201
+[2026-03-20T22:35:08.282Z] Apify Response Body: {"data":{"id":"Azcy1NiGBbEnAJe85","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T22:36:37.684Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":314,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.889749,"maxItems":843,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"9Rx7C05E2rv1kgEPK","defaultDatasetId":"FjtsphuRnL2deKAcL","defaultRequestQueueId":"2C3lGcP3faIgMs6RA","storageIds":{"keyValueStores":{"default":"9Rx7C05E2rv1kgEPK"},"datasets":{"default":"FjtsphuRnL2deKAcL"},"requestQueues":{"default":"2C3lGcP3faIgMs6RA"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://tgjb9gectwhg.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T22:35:08.282Z] Sync started successfully. RunID: Azcy1NiGBbEnAJe85, DatasetID: FjtsphuRnL2deKAcL
+[2026-03-20T22:51:39.929Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T22:51:39.941Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T22:51:39.942Z] Fetching offer from Firestore: ao009r
+[2026-03-20T22:51:40.351Z] Offer data keys: title, niche, ticket, status, offerType, offerLabel, tags, featured, scalingBadge, availableOnPlans, creativeStorageType, adLibraryUrl, funnelVideoUrls, views, saves, version, createdAt, lastAdCount, lastSyncedAt, updatedAt
+[2026-03-20T22:51:40.352Z] URL to sync: https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&id=1150268160453909&is_targeted_country=false&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=238587899340152
+[2026-03-20T22:51:40.352Z] Starting Apify Actor...
+[2026-03-20T22:51:41.235Z] Apify Response Status: 201
+[2026-03-20T22:51:41.236Z] Apify Response Body: {"data":{"id":"sD2k3CysTuqNLdrGo","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T22:53:10.649Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":314,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.878147,"maxItems":841,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"EVymngnpTRfJGlobi","defaultDatasetId":"h21htgVO9PVGi6HTC","defaultRequestQueueId":"NP3kCG4OQy1bXSYgG","storageIds":{"keyValueStores":{"default":"EVymngnpTRfJGlobi"},"datasets":{"default":"h21htgVO9PVGi6HTC"},"requestQueues":{"default":"NP3kCG4OQy1bXSYgG"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://egzlzmfvmtjo.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T22:51:41.236Z] Sync started successfully. RunID: sD2k3CysTuqNLdrGo, DatasetID: h21htgVO9PVGi6HTC
+[2026-03-20T22:51:47.575Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:51:48.210Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:51:53.263Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:51:53.844Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:51:58.278Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:51:58.864Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:52:03.279Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:03.855Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:03.856Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:04.025Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:04.027Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:04.133Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:04.499Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:08.271Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:08.844Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:08.845Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:09.005Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:09.005Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:09.108Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:09.307Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:13.262Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:13.863Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:13.864Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:14.041Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:14.041Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:14.136Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:14.329Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:18.261Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:18.831Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:18.832Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:18.991Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:18.992Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:19.091Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:19.291Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:23.258Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:23.825Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:23.826Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:23.983Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:23.984Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:24.065Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:24.387Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:28.264Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:28.846Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:28.846Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:29.006Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:29.007Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:29.099Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:29.279Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:33.261Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:33.851Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:33.852Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:34.020Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:34.021Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:34.118Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:34.279Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:38.258Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:38.830Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:38.830Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:39.000Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:39.001Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:39.088Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:39.282Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:43.264Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:43.901Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:43.902Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:44.063Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:44.064Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:44.185Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:44.352Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:48.262Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:48.829Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:48.829Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:49.005Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:49.005Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:49.082Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:49.232Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:53.266Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:53.847Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:53.847Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:54.013Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:54.013Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:54.090Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:54.242Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:52:58.260Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:52:58.833Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:52:58.834Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:52:59.008Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:52:59.008Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:52:59.085Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:52:59.230Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:53:03.256Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:53:03.846Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:53:03.847Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:53:04.011Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:53:04.012Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:53:04.106Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:53:04.292Z] [POLL] CRITICAL ERROR in POLL: Update() requires either a single JavaScript object or an alternating list of field/value pairs that can be followed by an optional precondition. Value for argument "dataOrField" is not a valid Firestore value. Cannot use "undefined" as a Firestore value (found in field "thumbnailUrl"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+[2026-03-20T22:53:08.333Z] [POLL] Poll request: runId=sD2k3CysTuqNLdrGo, datasetId=h21htgVO9PVGi6HTC, offerId=ao009r
+[2026-03-20T22:53:08.910Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:53:08.910Z] [POLL] Fetching dataset items: h21htgVO9PVGi6HTC
+[2026-03-20T22:53:09.082Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:53:09.083Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:53:09.155Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:53:09.366Z] [POLL] Sync process completed successfully
+[2026-03-20T22:53:33.263Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T22:53:33.264Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T22:53:33.265Z] Fetching offer from Firestore: ao009r
+[2026-03-20T22:53:33.365Z] Offer data keys: title, niche, ticket, status, offerType, offerLabel, tags, featured, scalingBadge, availableOnPlans, creativeStorageType, adLibraryUrl, funnelVideoUrls, views, saves, version, createdAt, lastAdCount, updatedAt, lastSyncedAt, thumbnailUrl
+[2026-03-20T22:53:33.366Z] URL to sync: https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&id=1150268160453909&is_targeted_country=false&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=238587899340152
+[2026-03-20T22:53:33.366Z] Starting Apify Actor...
+[2026-03-20T22:53:34.064Z] Apify Response Status: 201
+[2026-03-20T22:53:34.065Z] Apify Response Body: {"data":{"id":"Oer9ovrkZPJfHK7Pr","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T22:55:03.546Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":314,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.878147,"maxItems":841,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"C5Fhq8ZW2Q7ThzSZB","defaultDatasetId":"xoRjon9FwsczpaXbf","defaultRequestQueueId":"bqdkyafALumIewl5r","storageIds":{"keyValueStores":{"default":"C5Fhq8ZW2Q7ThzSZB"},"datasets":{"default":"xoRjon9FwsczpaXbf"},"requestQueues":{"default":"bqdkyafALumIewl5r"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://2clbs7gvexp3.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T22:53:34.066Z] Sync started successfully. RunID: Oer9ovrkZPJfHK7Pr, DatasetID: xoRjon9FwsczpaXbf
+[2026-03-20T22:53:39.123Z] [POLL] Poll request: runId=Oer9ovrkZPJfHK7Pr, datasetId=xoRjon9FwsczpaXbf, offerId=ao009r
+[2026-03-20T22:53:39.695Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:53:44.743Z] [POLL] Poll request: runId=Oer9ovrkZPJfHK7Pr, datasetId=xoRjon9FwsczpaXbf, offerId=ao009r
+[2026-03-20T22:53:45.336Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:53:45.336Z] [POLL] Fetching dataset items: xoRjon9FwsczpaXbf
+[2026-03-20T22:53:45.505Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:53:45.506Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:53:45.591Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:53:45.850Z] [POLL] Sync process completed successfully
+[2026-03-20T22:55:23.373Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T22:55:23.374Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T22:55:23.375Z] Fetching offer from Firestore: ao009r
+[2026-03-20T22:55:23.470Z] Offer data keys: title, niche, ticket, status, offerType, offerLabel, tags, featured, scalingBadge, availableOnPlans, creativeStorageType, adLibraryUrl, funnelVideoUrls, views, saves, version, createdAt, lastAdCount, updatedAt, thumbnailUrl, lastSyncedAt
+[2026-03-20T22:55:23.471Z] URL to sync: https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&id=1150268160453909&is_targeted_country=false&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=238587899340152
+[2026-03-20T22:55:23.471Z] Starting Apify Actor...
+[2026-03-20T22:55:24.169Z] Apify Response Status: 201
+[2026-03-20T22:55:24.170Z] Apify Response Body: {"data":{"id":"mcNorEoiMuFRGshvq","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T22:56:53.657Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":314,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.86653,"maxItems":839,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"3UhFhE6DWUBbrtA11","defaultDatasetId":"Pgg2FqWZX4URftyhN","defaultRequestQueueId":"lirUhm7a7wVHaXBKQ","storageIds":{"keyValueStores":{"default":"3UhFhE6DWUBbrtA11"},"datasets":{"default":"Pgg2FqWZX4URftyhN"},"requestQueues":{"default":"lirUhm7a7wVHaXBKQ"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://eywpaxvrzbsp.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T22:55:24.170Z] Sync started successfully. RunID: mcNorEoiMuFRGshvq, DatasetID: Pgg2FqWZX4URftyhN
+[2026-03-20T22:55:29.294Z] [POLL] Poll request: runId=mcNorEoiMuFRGshvq, datasetId=Pgg2FqWZX4URftyhN, offerId=ao009r
+[2026-03-20T22:55:29.833Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:55:34.894Z] [POLL] Poll request: runId=mcNorEoiMuFRGshvq, datasetId=Pgg2FqWZX4URftyhN, offerId=ao009r
+[2026-03-20T22:55:35.427Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:55:39.893Z] [POLL] Poll request: runId=mcNorEoiMuFRGshvq, datasetId=Pgg2FqWZX4URftyhN, offerId=ao009r
+[2026-03-20T22:55:40.425Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:55:44.894Z] [POLL] Poll request: runId=mcNorEoiMuFRGshvq, datasetId=Pgg2FqWZX4URftyhN, offerId=ao009r
+[2026-03-20T22:55:45.467Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:55:49.893Z] [POLL] Poll request: runId=mcNorEoiMuFRGshvq, datasetId=Pgg2FqWZX4URftyhN, offerId=ao009r
+[2026-03-20T22:55:50.501Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T22:55:50.502Z] [POLL] Fetching dataset items: Pgg2FqWZX4URftyhN
+[2026-03-20T22:55:50.672Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T22:55:50.672Z] [POLL] First item keys: url, error, errorDescription
+[2026-03-20T22:55:50.673Z] [POLL] First item sample: {"url":"https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&id=1150268160453909&is_targeted_country=false&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=238587899340152","error":"no_items","errorDescription":"Empty or private data for provided input"}
+[2026-03-20T22:55:50.673Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T22:55:50.762Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T22:55:51.077Z] [POLL] Sync process completed successfully
+[2026-03-20T22:59:17.321Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T22:59:17.324Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T22:59:17.325Z] Fetching offer from Firestore: ao009r
+[2026-03-20T22:59:17.421Z] Offer data keys: title, niche, ticket, status, offerType, offerLabel, tags, featured, scalingBadge, availableOnPlans, creativeStorageType, funnelVideoUrls, views, saves, version, createdAt, lastAdCount, thumbnailUrl, lastSyncedAt, adLibraryUrl, updatedAt
+[2026-03-20T22:59:17.421Z] URL to sync: https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&id=1492933599218265&is_targeted_country=false&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=238587899340152
+[2026-03-20T22:59:17.422Z] Starting Apify Actor...
+[2026-03-20T22:59:18.288Z] Apify Response Status: 201
+[2026-03-20T22:59:18.289Z] Apify Response Body: {"data":{"id":"SO6mLzyQC5zlfXokH","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T23:00:47.685Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":314,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.86653,"maxItems":839,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"PlxbFDyuxMovdsYbP","defaultDatasetId":"lmElJCTXar0bQNI6q","defaultRequestQueueId":"9nUiWSbeGK5mJhJXT","storageIds":{"keyValueStores":{"default":"PlxbFDyuxMovdsYbP"},"datasets":{"default":"lmElJCTXar0bQNI6q"},"requestQueues":{"default":"9nUiWSbeGK5mJhJXT"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://gi4ywavymqu3.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T22:59:18.289Z] Sync started successfully. RunID: SO6mLzyQC5zlfXokH, DatasetID: lmElJCTXar0bQNI6q
+[2026-03-20T22:59:23.489Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T22:59:24.038Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:59:29.099Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T22:59:29.659Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:59:34.092Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T22:59:34.657Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:59:39.096Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T22:59:39.632Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:59:44.093Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T22:59:44.639Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:59:49.091Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T22:59:49.642Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:59:54.096Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T22:59:54.647Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T22:59:59.110Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T22:59:59.633Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:00:04.113Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T23:00:04.759Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:00:09.098Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T23:00:09.680Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:00:14.098Z] [POLL] Poll request: runId=SO6mLzyQC5zlfXokH, datasetId=lmElJCTXar0bQNI6q, offerId=ao009r
+[2026-03-20T23:00:14.669Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T23:00:14.669Z] [POLL] Fetching dataset items: lmElJCTXar0bQNI6q
+[2026-03-20T23:00:14.867Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T23:00:14.868Z] [POLL] First item keys: totalCount, pageID, adArchiveID, startDateFormatted, endDateFormatted, adArchiveId, collationId, collationCount, pageId, snapshot, isActive, hasUserReported, reportCount, menuItems, stateMediaRunLabel, pageIsDeleted, pageName, impressionsWithIndex, gatedType, categories, isAaaEligible, containsDigitalCreatedMedia, reachEstimate, currency, spend, endDate, publisherPlatform, startDate, containsSensitiveContent, totalActiveTime, regionalRegulationData, hideDataStatus, fevInfo, adId
+[2026-03-20T23:00:14.869Z] [POLL] First item sample: {"totalCount":1,"pageID":"238587899340152","adArchiveID":"1492933599218265","startDateFormatted":"2026-03-20T07:00:00.000Z","endDateFormatted":"2026-03-20T07:00:00.000Z","adArchiveId":"1492933599218265","collationId":null,"collationCount":null,"pageId":"238587899340152","snapshot":{"brandedContent":null,"pageId":"238587899340152","pageIsDeleted":false,"pageProfileUri":"https://www.facebook.com/61556625662158/","rootResharedPost":null,"byline":null,"disclaimerLabel":null,"pageName":"Michele","pag
+[2026-03-20T23:00:14.872Z] [POLL] Extracted result: adCount=1, creativeCount=6
+[2026-03-20T23:00:14.976Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T23:00:15.287Z] [POLL] Sync process completed successfully
+[2026-03-20T23:04:20.140Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T23:04:20.144Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T23:04:20.144Z] Fetching offer from Firestore: ao009r
+[2026-03-20T23:04:20.484Z] Simplified URL to: https://www.facebook.com/ads/library/?view_all_page_id=238587899340152
+[2026-03-20T23:04:20.485Z] Starting Apify Actor for URL: https://www.facebook.com/ads/library/?view_all_page_id=238587899340152
+[2026-03-20T23:04:21.237Z] Apify Response Status: 201
+[2026-03-20T23:04:21.237Z] Apify Response Body: {"data":{"id":"0zfQHlv6esqqsyshX","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T23:05:50.700Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":133,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.854922,"maxItems":837,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"6cfjaryL07hEpYlFt","defaultDatasetId":"0OwYomP72JGVcJxEt","defaultRequestQueueId":"sJf3A0rY5cvcp7A99","storageIds":{"keyValueStores":{"default":"6cfjaryL07hEpYlFt"},"datasets":{"default":"0OwYomP72JGVcJxEt"},"requestQueues":{"default":"sJf3A0rY5cvcp7A99"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://6hfg3vule0o6.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T23:04:21.238Z] Sync started successfully. RunID: 0zfQHlv6esqqsyshX, DatasetID: 0OwYomP72JGVcJxEt
+[2026-03-20T23:04:26.314Z] [POLL] Poll request: runId=0zfQHlv6esqqsyshX, datasetId=0OwYomP72JGVcJxEt, offerId=ao009r
+[2026-03-20T23:04:26.864Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:04:31.948Z] [POLL] Poll request: runId=0zfQHlv6esqqsyshX, datasetId=0OwYomP72JGVcJxEt, offerId=ao009r
+[2026-03-20T23:04:32.531Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:04:36.947Z] [POLL] Poll request: runId=0zfQHlv6esqqsyshX, datasetId=0OwYomP72JGVcJxEt, offerId=ao009r
+[2026-03-20T23:04:37.479Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:04:41.929Z] [POLL] Poll request: runId=0zfQHlv6esqqsyshX, datasetId=0OwYomP72JGVcJxEt, offerId=ao009r
+[2026-03-20T23:04:42.460Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:04:46.936Z] [POLL] Poll request: runId=0zfQHlv6esqqsyshX, datasetId=0OwYomP72JGVcJxEt, offerId=ao009r
+[2026-03-20T23:04:47.522Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:04:51.944Z] [POLL] Poll request: runId=0zfQHlv6esqqsyshX, datasetId=0OwYomP72JGVcJxEt, offerId=ao009r
+[2026-03-20T23:04:52.522Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:04:56.938Z] [POLL] Poll request: runId=0zfQHlv6esqqsyshX, datasetId=0OwYomP72JGVcJxEt, offerId=ao009r
+[2026-03-20T23:04:57.482Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:05:01.936Z] [POLL] Poll request: runId=0zfQHlv6esqqsyshX, datasetId=0OwYomP72JGVcJxEt, offerId=ao009r
+[2026-03-20T23:05:02.547Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T23:05:02.547Z] [POLL] Fetching dataset items: 0OwYomP72JGVcJxEt
+[2026-03-20T23:05:02.760Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T23:05:02.760Z] [POLL] First item keys: inputUrl, pageInfo, isResultComplete, results, totalCount
+[2026-03-20T23:05:02.761Z] [POLL] First item sample: {"inputUrl":"https://www.facebook.com/ads/library/?view_all_page_id=238587899340152","pageInfo":{"adLibrarySystemStatus":{"systemStatus":{"status":"NO_KNOWN_ISSUES","activeIssues":[{"product":"Ad Library","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library Report","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library API","status":"NO_KNOWN_ISSUES"},{"product":"Branded Content","status":"NO_KNOWN_ISSUES"}]}},"xfbAdLibraryIsCaptchaRequired":false,"adLibraryPageInfo":{"pageInfo":{"relatedPages":[],"ha
+[2026-03-20T23:05:02.762Z] [POLL] Extracted result: adCount=4, creativeCount=0
+[2026-03-20T23:05:02.861Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T23:05:03.122Z] [POLL] Sync process completed successfully
+[2026-03-20T23:06:26.682Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T23:06:26.685Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T23:06:26.686Z] Fetching offer from Firestore: ao009r
+[2026-03-20T23:06:26.765Z] Simplified URL to: https://www.facebook.com/ads/library/?view_all_page_id=238587899340152
+[2026-03-20T23:06:26.766Z] Starting Apify Actor for URL: https://www.facebook.com/ads/library/?view_all_page_id=238587899340152
+[2026-03-20T23:06:27.525Z] Apify Response Status: 201
+[2026-03-20T23:06:27.526Z] Apify Response Body: {"data":{"id":"GjwJWgKlXAFJfKtEV","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T23:07:56.962Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":133,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.854922,"maxItems":837,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"KwePVn19FGSjUgld1","defaultDatasetId":"GQSg1PKKPjlVMsfFn","defaultRequestQueueId":"1YWmLHgH8ffUy6TC6","storageIds":{"keyValueStores":{"default":"KwePVn19FGSjUgld1"},"datasets":{"default":"GQSg1PKKPjlVMsfFn"},"requestQueues":{"default":"1YWmLHgH8ffUy6TC6"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://otw5gtfd1xbj.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T23:06:27.527Z] Sync started successfully. RunID: GjwJWgKlXAFJfKtEV, DatasetID: GQSg1PKKPjlVMsfFn
+[2026-03-20T23:06:32.857Z] [POLL] Poll request: runId=GjwJWgKlXAFJfKtEV, datasetId=GQSg1PKKPjlVMsfFn, offerId=ao009r
+[2026-03-20T23:06:33.388Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:06:38.869Z] [POLL] Poll request: runId=GjwJWgKlXAFJfKtEV, datasetId=GQSg1PKKPjlVMsfFn, offerId=ao009r
+[2026-03-20T23:06:39.409Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:06:43.514Z] [POLL] Poll request: runId=GjwJWgKlXAFJfKtEV, datasetId=GQSg1PKKPjlVMsfFn, offerId=ao009r
+[2026-03-20T23:06:44.277Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:06:48.608Z] [POLL] Poll request: runId=GjwJWgKlXAFJfKtEV, datasetId=GQSg1PKKPjlVMsfFn, offerId=ao009r
+[2026-03-20T23:06:49.186Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T23:06:49.186Z] [POLL] Fetching dataset items: GQSg1PKKPjlVMsfFn
+[2026-03-20T23:06:49.391Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T23:06:49.391Z] [POLL] First item keys: inputUrl, pageInfo, isResultComplete, results, totalCount
+[2026-03-20T23:06:49.392Z] [POLL] First item sample: {"inputUrl":"https://www.facebook.com/ads/library/?view_all_page_id=238587899340152","pageInfo":{"adLibrarySystemStatus":{"systemStatus":{"status":"NO_KNOWN_ISSUES","activeIssues":[{"product":"Ad Library","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library Report","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library API","status":"NO_KNOWN_ISSUES"},{"product":"Branded Content","status":"NO_KNOWN_ISSUES"}]}},"xfbAdLibraryIsCaptchaRequired":false,"adLibraryPageInfo":{"pageInfo":{"relatedPages":[],"ha
+[2026-03-20T23:06:49.393Z] [POLL] Extracted result: adCount=4, creativeCount=0
+[2026-03-20T23:06:49.393Z] [POLL] Warning: Found 4 ads but 0 creatives. Item[0] results keys: 
+[2026-03-20T23:06:49.525Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T23:06:49.821Z] [POLL] Sync process completed successfully
+[2026-03-20T23:11:04.247Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T23:11:04.251Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T23:11:04.251Z] Fetching offer from Firestore: ao009r
+[2026-03-20T23:11:04.549Z] Extracted Page ID: 238587899340152. Simplified URL: https://www.facebook.com/ads/library/?view_all_page_id=238587899340152
+[2026-03-20T23:11:04.550Z] Starting Apify Actor for URL: https://www.facebook.com/ads/library/?view_all_page_id=238587899340152
+[2026-03-20T23:11:05.275Z] Apify Response Status: 201
+[2026-03-20T23:11:05.276Z] Apify Response Body: {"data":{"id":"zsgm5HZS8YGWcmcjL","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T23:12:34.717Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":235,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.843318,"maxItems":835,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"4j9sgvix6tzoAu2So","defaultDatasetId":"06oabDbkEFMMsezx3","defaultRequestQueueId":"k5zlUGXpbH4lggkbQ","storageIds":{"keyValueStores":{"default":"4j9sgvix6tzoAu2So"},"datasets":{"default":"06oabDbkEFMMsezx3"},"requestQueues":{"default":"k5zlUGXpbH4lggkbQ"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://shgpahzloi5i.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T23:11:05.276Z] Sync started successfully. RunID: zsgm5HZS8YGWcmcjL, DatasetID: 06oabDbkEFMMsezx3
+[2026-03-20T23:11:10.550Z] [POLL] Poll request: runId=zsgm5HZS8YGWcmcjL, datasetId=06oabDbkEFMMsezx3, offerId=ao009r
+[2026-03-20T23:11:11.174Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:11:16.251Z] [POLL] Poll request: runId=zsgm5HZS8YGWcmcjL, datasetId=06oabDbkEFMMsezx3, offerId=ao009r
+[2026-03-20T23:11:16.907Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:11:21.256Z] [POLL] Poll request: runId=zsgm5HZS8YGWcmcjL, datasetId=06oabDbkEFMMsezx3, offerId=ao009r
+[2026-03-20T23:11:21.811Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:11:26.246Z] [POLL] Poll request: runId=zsgm5HZS8YGWcmcjL, datasetId=06oabDbkEFMMsezx3, offerId=ao009r
+[2026-03-20T23:11:26.835Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:11:31.240Z] [POLL] Poll request: runId=zsgm5HZS8YGWcmcjL, datasetId=06oabDbkEFMMsezx3, offerId=ao009r
+[2026-03-20T23:11:31.845Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:11:36.249Z] [POLL] Poll request: runId=zsgm5HZS8YGWcmcjL, datasetId=06oabDbkEFMMsezx3, offerId=ao009r
+[2026-03-20T23:11:36.841Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:11:41.265Z] [POLL] Poll request: runId=zsgm5HZS8YGWcmcjL, datasetId=06oabDbkEFMMsezx3, offerId=ao009r
+[2026-03-20T23:11:41.837Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T23:11:41.837Z] [POLL] Fetching dataset items: 06oabDbkEFMMsezx3
+[2026-03-20T23:11:42.042Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T23:11:42.043Z] [POLL] First item keys: inputUrl, pageInfo, isResultComplete, results, totalCount
+[2026-03-20T23:11:42.043Z] [POLL] First item sample: {"inputUrl":"https://www.facebook.com/ads/library/?view_all_page_id=238587899340152","pageInfo":{"adLibrarySystemStatus":{"systemStatus":{"status":"NO_KNOWN_ISSUES","activeIssues":[{"product":"Ad Library","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library Report","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library API","status":"NO_KNOWN_ISSUES"},{"product":"Branded Content","status":"NO_KNOWN_ISSUES"}]}},"xfbAdLibraryIsCaptchaRequired":false,"adLibraryPageInfo":{"pageInfo":{"relatedPages":[],"ha
+[2026-03-20T23:11:42.046Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T23:11:42.139Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T23:11:42.504Z] [POLL] Sync process completed successfully
+[2026-03-20T23:12:53.585Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T23:12:53.589Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T23:12:53.590Z] Fetching offer from Firestore: ao009r
+[2026-03-20T23:12:53.714Z] Extracted Page ID: 238587899340152. Using direct page search.
+[2026-03-20T23:12:53.715Z] Starting Apify Actor for Offer: ao009r
+[2026-03-20T23:12:54.321Z] Apify Response Status: 400
+[2026-03-20T23:12:54.322Z] Apify Response Body: {"error":{"type":"invalid-input","message":"Input is not valid: Field input.startUrls is required"}}
+[2026-03-20T23:13:50.579Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T23:13:50.582Z] Request body: {"offerId":"ao009r"}
+[2026-03-20T23:13:50.582Z] Fetching offer from Firestore: ao009r
+[2026-03-20T23:13:51.308Z] Extracted Page ID: 238587899340152. Using direct page search.
+[2026-03-20T23:13:51.308Z] Starting Apify Actor for Offer: ao009r
+[2026-03-20T23:13:52.068Z] Apify Response Status: 201
+[2026-03-20T23:13:52.068Z] Apify Response Body: {"data":{"id":"GiSXggPUgpYE5MeKZ","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T23:15:21.458Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":408,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.843318,"maxItems":835,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"CgyrpdUGgo8SZ9dPG","defaultDatasetId":"ch4kacTok9PZYxZsC","defaultRequestQueueId":"ae14K1ksGwv2brAEN","storageIds":{"keyValueStores":{"default":"CgyrpdUGgo8SZ9dPG"},"datasets":{"default":"ch4kacTok9PZYxZsC"},"requestQueues":{"default":"ae14K1ksGwv2brAEN"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://dgjgavorzjck.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T23:13:52.069Z] Sync started successfully. RunID: GiSXggPUgpYE5MeKZ, DatasetID: ch4kacTok9PZYxZsC
+[2026-03-20T23:13:57.148Z] [POLL] Poll request: runId=GiSXggPUgpYE5MeKZ, datasetId=ch4kacTok9PZYxZsC, offerId=ao009r
+[2026-03-20T23:13:57.783Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:14:02.850Z] [POLL] Poll request: runId=GiSXggPUgpYE5MeKZ, datasetId=ch4kacTok9PZYxZsC, offerId=ao009r
+[2026-03-20T23:14:03.432Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T23:14:03.433Z] [POLL] Fetching dataset items: ch4kacTok9PZYxZsC
+[2026-03-20T23:14:03.589Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T23:14:03.590Z] [POLL] First item keys: totalCount, pageID, adArchiveID, startDateFormatted, endDateFormatted, adArchiveId, collationId, collationCount, pageId, snapshot, isActive, hasUserReported, reportCount, menuItems, stateMediaRunLabel, pageIsDeleted, pageName, impressionsWithIndex, gatedType, categories, isAaaEligible, containsDigitalCreatedMedia, reachEstimate, currency, spend, endDate, publisherPlatform, startDate, containsSensitiveContent, totalActiveTime, regionalRegulationData, hideDataStatus, fevInfo, adId
+[2026-03-20T23:14:03.590Z] [POLL] First item sample: {"totalCount":1,"pageID":"238587899340152","adArchiveID":"1492933599218265","startDateFormatted":"2026-03-20T07:00:00.000Z","endDateFormatted":"2026-03-20T07:00:00.000Z","adArchiveId":"1492933599218265","collationId":null,"collationCount":null,"pageId":"238587899340152","snapshot":{"brandedContent":null,"pageId":"238587899340152","pageIsDeleted":false,"pageProfileUri":"https://www.facebook.com/61556625662158/","rootResharedPost":null,"byline":null,"disclaimerLabel":null,"pageName":"Michele","pag
+[2026-03-20T23:14:03.591Z] [POLL] Extracted result: adCount=1, creativeCount=6
+[2026-03-20T23:14:03.680Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T23:14:03.970Z] [POLL] Sync process completed successfully
+[2026-03-20T23:16:24.454Z] --- NEW SYNC ATTEMPT ---
+[2026-03-20T23:16:24.456Z] Request body: {"offerId":"knlcge"}
+[2026-03-20T23:16:24.457Z] Fetching offer from Firestore: knlcge
+[2026-03-20T23:16:24.560Z] Starting Apify Actor for Offer: knlcge
+[2026-03-20T23:16:25.384Z] Apify Response Status: 201
+[2026-03-20T23:16:25.384Z] Apify Response Body: {"data":{"id":"Kcqc4wRA7GDfA0kC1","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-20T23:17:54.820Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":213,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.831709,"maxItems":833,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"kNeth2Bd4yXoXhqds","defaultDatasetId":"2XhOYssOHf7FNBBcr","defaultRequestQueueId":"6WShoB9XtpiLnQQyf","storageIds":{"keyValueStores":{"default":"kNeth2Bd4yXoXhqds"},"datasets":{"default":"2XhOYssOHf7FNBBcr"},"requestQueues":{"default":"6WShoB9XtpiLnQQyf"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://3jpf80wvmstg.runs.apify.net","usageTotalUsd":0}}
+[2026-03-20T23:16:25.385Z] Sync started successfully. RunID: Kcqc4wRA7GDfA0kC1, DatasetID: 2XhOYssOHf7FNBBcr
+[2026-03-20T23:16:30.444Z] [POLL] Poll request: runId=Kcqc4wRA7GDfA0kC1, datasetId=2XhOYssOHf7FNBBcr, offerId=knlcge
+[2026-03-20T23:16:31.030Z] [POLL] Apify Run Status: RUNNING
+[2026-03-20T23:16:36.107Z] [POLL] Poll request: runId=Kcqc4wRA7GDfA0kC1, datasetId=2XhOYssOHf7FNBBcr, offerId=knlcge
+[2026-03-20T23:16:36.694Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-20T23:16:36.694Z] [POLL] Fetching dataset items: 2XhOYssOHf7FNBBcr
+[2026-03-20T23:16:36.858Z] [POLL] Received 1 raw items from dataset
+[2026-03-20T23:16:36.858Z] [POLL] First item keys: inputUrl, pageInfo, isResultComplete, results, totalCount
+[2026-03-20T23:16:36.859Z] [POLL] First item sample: {"inputUrl":"https://www.facebook.com/ads/library/?view_all_page_id=238587899340152","pageInfo":{"adLibrarySystemStatus":{"systemStatus":{"status":"NO_KNOWN_ISSUES","activeIssues":[{"product":"Ad Library","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library Report","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library API","status":"NO_KNOWN_ISSUES"},{"product":"Branded Content","status":"NO_KNOWN_ISSUES"}]}},"xfbAdLibraryIsCaptchaRequired":false,"adLibraryPageInfo":{"pageInfo":{"relatedPages":[],"ha
+[2026-03-20T23:16:36.859Z] [POLL] Extracted result: adCount=0, creativeCount=0
+[2026-03-20T23:16:36.963Z] [POLL] Saving snapshot to Firestore for date 2026-03-20
+[2026-03-20T23:16:37.250Z] [POLL] Sync process completed successfully
+[2026-03-21T00:14:26.116Z] --- NEW SYNC ATTEMPT ---
+[2026-03-21T00:14:26.118Z] Request body: {"offerId":"ao009r"}
+[2026-03-21T00:14:26.118Z] Fetching offer from Firestore: ao009r
+[2026-03-21T00:14:26.386Z] Extracted Page ID: 238587899340152. Using direct page search.
+[2026-03-21T00:14:26.386Z] Starting Deep Page Search for Page ID: 238587899340152
+[2026-03-21T00:14:27.165Z] Apify Response Status: 201
+[2026-03-21T00:14:27.165Z] Apify Response Body: {"data":{"id":"0WDMq1tiSOp732mrh","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-21T00:15:56.500Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":289,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.831709,"maxItems":833,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"JWjsYqzLtjKGUyFIu","defaultDatasetId":"4p4BKx0IdMIsWiStN","defaultRequestQueueId":"ZK93e6bSGZmomniJg","storageIds":{"keyValueStores":{"default":"JWjsYqzLtjKGUyFIu"},"datasets":{"default":"4p4BKx0IdMIsWiStN"},"requestQueues":{"default":"ZK93e6bSGZmomniJg"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://3ogxqvvbssrk.runs.apify.net","usageTotalUsd":0}}
+[2026-03-21T00:14:27.166Z] Sync started successfully. RunID: 0WDMq1tiSOp732mrh, DatasetID: 4p4BKx0IdMIsWiStN
+[2026-03-21T00:14:32.222Z] [POLL] Poll request: runId=0WDMq1tiSOp732mrh, datasetId=4p4BKx0IdMIsWiStN, offerId=ao009r
+[2026-03-21T00:14:32.806Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:14:37.859Z] [POLL] Poll request: runId=0WDMq1tiSOp732mrh, datasetId=4p4BKx0IdMIsWiStN, offerId=ao009r
+[2026-03-21T00:14:38.406Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:14:42.858Z] [POLL] Poll request: runId=0WDMq1tiSOp732mrh, datasetId=4p4BKx0IdMIsWiStN, offerId=ao009r
+[2026-03-21T00:14:43.387Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:14:47.851Z] [POLL] Poll request: runId=0WDMq1tiSOp732mrh, datasetId=4p4BKx0IdMIsWiStN, offerId=ao009r
+[2026-03-21T00:14:48.385Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:14:52.864Z] [POLL] Poll request: runId=0WDMq1tiSOp732mrh, datasetId=4p4BKx0IdMIsWiStN, offerId=ao009r
+[2026-03-21T00:14:53.420Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-21T00:14:53.420Z] [POLL] Fetching dataset items: 4p4BKx0IdMIsWiStN
+[2026-03-21T00:14:53.711Z] [POLL] Received 27 raw items from dataset
+[2026-03-21T00:14:53.711Z] [POLL] First item keys: inputUrl, pageInfo, pageID, adArchiveID, startDateFormatted, endDateFormatted, adArchiveId, collationCount, collationId, pageId, snapshot, isActive, hasUserReported, reportCount, menuItems, stateMediaRunLabel, pageIsDeleted, pageName, impressionsWithIndex, gatedType, categories, isAaaEligible, containsDigitalCreatedMedia, reachEstimate, currency, spend, endDate, publisherPlatform, startDate, containsSensitiveContent, totalActiveTime, regionalRegulationData, hideDataStatus, fevInfo, adId, targetedOrReachedCountries
+[2026-03-21T00:14:53.712Z] [POLL] First item sample: {"inputUrl":"https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&view_all_page_id=238587899340152","pageInfo":{"adLibrarySystemStatus":{"systemStatus":{"status":"NO_KNOWN_ISSUES","activeIssues":[{"product":"Ad Library","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library Report","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library API","status":"NO_KNOWN_ISSUES"},{"product":"Branded Content","status":"NO_KNOWN_ISSUES"}]}},"xfbAdLibraryIsCaptchaRequired":false,"adLibrary
+[2026-03-21T00:14:53.713Z] [POLL] Extracted result: adCount=27, creativeCount=89
+[2026-03-21T00:14:53.807Z] [POLL] Saving snapshot to Firestore for date 2026-03-21
+[2026-03-21T00:14:54.136Z] [POLL] Sync process completed successfully
+[2026-03-21T00:30:51.888Z] --- NEW SYNC ATTEMPT ---
+[2026-03-21T00:30:51.900Z] Request body: {"offerId":"ao009r"}
+[2026-03-21T00:30:51.900Z] Fetching offer from Firestore: ao009r
+[2026-03-21T00:30:52.286Z] Extracted Page ID: 238587899340152. Using direct page search.
+[2026-03-21T00:30:52.287Z] Starting Deep Page Search for Page ID: 238587899340152
+[2026-03-21T00:30:53.125Z] Apify Response Status: 201
+[2026-03-21T00:30:53.126Z] Apify Response Body: {"data":{"id":"KOBc3c8gI9l14Ro9J","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-21T00:32:22.449Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":289,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.669307,"maxItems":805,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"bPNC1lQccVT4buCyZ","defaultDatasetId":"gX8RfR7CzbTEZcKgh","defaultRequestQueueId":"llhWcF2vTlSR9ux03","storageIds":{"keyValueStores":{"default":"bPNC1lQccVT4buCyZ"},"datasets":{"default":"gX8RfR7CzbTEZcKgh"},"requestQueues":{"default":"llhWcF2vTlSR9ux03"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://5kgw7fcz4ixl.runs.apify.net","usageTotalUsd":0}}
+[2026-03-21T00:30:53.126Z] Sync started successfully. RunID: KOBc3c8gI9l14Ro9J, DatasetID: gX8RfR7CzbTEZcKgh
+[2026-03-21T00:30:58.806Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:30:59.405Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:04.451Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:05.004Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:09.462Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:10.064Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:14.465Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:15.050Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:19.461Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:20.003Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:24.468Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:24.995Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:29.471Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:30.123Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:34.462Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:35.064Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:39.458Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:39.984Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:44.455Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:45.035Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:49.464Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:49.995Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:54.461Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:55.168Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:31:59.453Z] [POLL] Poll request: runId=KOBc3c8gI9l14Ro9J, datasetId=gX8RfR7CzbTEZcKgh, offerId=ao009r
+[2026-03-21T00:31:59.999Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-21T00:31:59.999Z] [POLL] Fetching dataset items: gX8RfR7CzbTEZcKgh
+[2026-03-21T00:32:00.324Z] [POLL] Received 28 raw items from dataset
+[2026-03-21T00:32:00.324Z] [POLL] First item keys: inputUrl, pageInfo, pageID, adArchiveID, startDateFormatted, endDateFormatted, adArchiveId, collationCount, collationId, pageId, snapshot, isActive, hasUserReported, reportCount, menuItems, stateMediaRunLabel, pageIsDeleted, pageName, impressionsWithIndex, gatedType, categories, isAaaEligible, containsDigitalCreatedMedia, reachEstimate, currency, spend, endDate, publisherPlatform, startDate, containsSensitiveContent, totalActiveTime, regionalRegulationData, hideDataStatus, fevInfo, adId, targetedOrReachedCountries
+[2026-03-21T00:32:00.325Z] [POLL] First item sample: {"inputUrl":"https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&view_all_page_id=238587899340152","pageInfo":{"adLibrarySystemStatus":{"systemStatus":{"status":"NO_KNOWN_ISSUES","activeIssues":[{"product":"Ad Library","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library Report","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library API","status":"NO_KNOWN_ISSUES"},{"product":"Branded Content","status":"NO_KNOWN_ISSUES"}]}},"xfbAdLibraryIsCaptchaRequired":false,"adLibrary
+[2026-03-21T00:32:00.330Z] [POLL] Extracted result: adCount=28, creativeCount=48
+[2026-03-21T00:32:00.510Z] [POLL] Saving snapshot to Firestore for date 2026-03-21
+[2026-03-21T00:32:00.856Z] [POLL] Sync process completed successfully
+[2026-03-21T00:41:01.438Z] --- NEW SYNC ATTEMPT ---
+[2026-03-21T00:41:01.445Z] Request body: {"offerId":"ao009r"}
+[2026-03-21T00:41:01.446Z] Fetching offer from Firestore: ao009r
+[2026-03-21T00:41:01.775Z] Extracted Page ID: 238587899340152. Using direct page search.
+[2026-03-21T00:41:01.775Z] Starting Deep Page Search for Page ID: 238587899340152
+[2026-03-21T00:41:02.625Z] Apify Response Status: 201
+[2026-03-21T00:41:02.626Z] Apify Response Body: {"data":{"id":"VDJHwSWPD00UMHVB6","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-21T00:42:31.953Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":289,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.506844,"maxItems":777,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"ZViMLRYUMi0waAmOy","defaultDatasetId":"PcqvDYl4wvCdplNpZ","defaultRequestQueueId":"DnLvIpYQTQoZFrjaK","storageIds":{"keyValueStores":{"default":"ZViMLRYUMi0waAmOy"},"datasets":{"default":"PcqvDYl4wvCdplNpZ"},"requestQueues":{"default":"DnLvIpYQTQoZFrjaK"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://wf23kttgqh4b.runs.apify.net","usageTotalUsd":0}}
+[2026-03-21T00:41:02.627Z] Sync started successfully. RunID: VDJHwSWPD00UMHVB6, DatasetID: PcqvDYl4wvCdplNpZ
+[2026-03-21T00:41:09.240Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:09.767Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:15.580Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:16.124Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:20.592Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:21.138Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:25.603Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:26.175Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:29.846Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:29.984Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:34.835Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:35.358Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:39.832Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:40.364Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:44.836Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:45.367Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:49.834Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:50.452Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:54.834Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:41:55.369Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:41:59.839Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:42:00.382Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:42:04.830Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:42:05.507Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:42:09.837Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:42:10.400Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:42:14.832Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:42:15.411Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:42:19.832Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:42:20.373Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T00:42:24.829Z] [POLL] Poll request: runId=VDJHwSWPD00UMHVB6, datasetId=PcqvDYl4wvCdplNpZ, offerId=ao009r
+[2026-03-21T00:42:25.366Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-21T00:42:25.366Z] [POLL] Fetching dataset items: PcqvDYl4wvCdplNpZ
+[2026-03-21T00:42:25.712Z] [POLL] Received 28 raw items from dataset
+[2026-03-21T00:42:25.712Z] [POLL] First item keys: inputUrl, pageInfo, pageID, adArchiveID, startDateFormatted, endDateFormatted, adArchiveId, collationCount, collationId, pageId, snapshot, isActive, hasUserReported, reportCount, menuItems, stateMediaRunLabel, pageIsDeleted, pageName, impressionsWithIndex, gatedType, categories, isAaaEligible, containsDigitalCreatedMedia, reachEstimate, currency, spend, endDate, publisherPlatform, startDate, containsSensitiveContent, totalActiveTime, regionalRegulationData, hideDataStatus, fevInfo, adId, targetedOrReachedCountries
+[2026-03-21T00:42:25.713Z] [POLL] First item sample: {"inputUrl":"https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&view_all_page_id=238587899340152","pageInfo":{"adLibrarySystemStatus":{"systemStatus":{"status":"NO_KNOWN_ISSUES","activeIssues":[{"product":"Ad Library","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library Report","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library API","status":"NO_KNOWN_ISSUES"},{"product":"Branded Content","status":"NO_KNOWN_ISSUES"}]}},"xfbAdLibraryIsCaptchaRequired":false,"adLibrary
+[2026-03-21T00:42:25.722Z] [POLL] Extracted result: adCount=28, creativeCount=40
+[2026-03-21T00:42:25.827Z] [POLL] Saving snapshot to Firestore for date 2026-03-21
+[2026-03-21T00:42:26.187Z] [POLL] Sync process completed successfully
+[2026-03-21T01:11:40.763Z] --- NEW SYNC ATTEMPT ---
+[2026-03-21T01:11:40.784Z] Request body: {"offerId":"ao009r"}
+[2026-03-21T01:11:40.785Z] Fetching offer from Firestore: ao009r
+[2026-03-21T01:11:41.208Z] Extracted Page ID: 238587899340152. Using direct page search.
+[2026-03-21T01:11:41.209Z] Starting Deep Page Search for Page ID: 238587899340152
+[2026-03-21T01:11:42.037Z] Apify Response Status: 201
+[2026-03-21T01:11:42.038Z] Apify Response Body: {"data":{"id":"HGZRIyBYs8iT5XUYa","actId":"JJghSZmShuco4j9gJ","userId":"7Q1ZrDudsScB7V6VL","startedAt":"2026-03-21T01:13:11.281Z","finishedAt":null,"status":"READY","meta":{"origin":"API","userAgent":"node"},"stats":{"inputBodyLen":289,"migrationCount":0,"rebootCount":0,"restartCount":0,"resurrectCount":0,"computeUnits":0},"options":{"build":"latest","timeoutSecs":0,"memoryMbytes":1024,"maxTotalChargeUsd":4.344408,"maxItems":749,"diskMbytes":2048},"buildId":"vZdLyic0SHV1DzbEk","defaultKeyValueStoreId":"vWbUHD7KEOEPvjNyk","defaultDatasetId":"AO31Q5BVvZ7Ag5pWt","defaultRequestQueueId":"fm9odOwOcxrhd1HzM","storageIds":{"keyValueStores":{"default":"vWbUHD7KEOEPvjNyk"},"datasets":{"default":"AO31Q5BVvZ7Ag5pWt"},"requestQueues":{"default":"fm9odOwOcxrhd1HzM"}},"pricingInfo":{"minimalMaxTotalChargeUsd":null,"pricingModel":"PAY_PER_EVENT","isPriceChangeNotificationSuppressed":true,"createdAt":"2026-03-04T15:13:39.747Z","startedAt":"2026-03-04T15:13:39.747Z","apifyMarginPercentage":0.2,"pricingPerEvent":{"actorChargeEvents":{"apify-default-dataset-item":{"eventTitle":"Ad","eventDescription":"Single ad in the default dataset.","isOneTimeEvent":false,"isPrimaryEvent":true,"eventPriceUsd":0.0058}}}},"chargedEventCounts":{"apify-default-dataset-item":0},"platformUsageBillingModel":"DEVELOPER","accountedChargedEventCounts":{"apify-default-dataset-item":0},"generalAccess":"FOLLOW_USER_SETTING","buildNumber":"0.0.263","containerUrl":"https://91ddyitox1jx.runs.apify.net","usageTotalUsd":0}}
+[2026-03-21T01:11:42.039Z] Sync started successfully. RunID: HGZRIyBYs8iT5XUYa, DatasetID: AO31Q5BVvZ7Ag5pWt
+[2026-03-21T01:11:47.911Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:11:48.440Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:11:53.511Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:11:54.089Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:11:58.514Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:11:59.100Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:03.506Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:04.047Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:08.498Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:09.040Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:13.516Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:14.055Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:18.513Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:19.100Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:23.511Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:24.063Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:28.519Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:29.110Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:33.509Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:34.045Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:38.494Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:39.058Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:43.707Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:44.778Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:48.499Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:48.650Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:53.491Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:54.067Z] [POLL] Apify Run Status: RUNNING
+[2026-03-21T01:12:58.503Z] [POLL] Poll request: runId=HGZRIyBYs8iT5XUYa, datasetId=AO31Q5BVvZ7Ag5pWt, offerId=ao009r
+[2026-03-21T01:12:59.096Z] [POLL] Apify Run Status: SUCCEEDED
+[2026-03-21T01:12:59.097Z] [POLL] Fetching dataset items: AO31Q5BVvZ7Ag5pWt
+[2026-03-21T01:12:59.424Z] [POLL] Received 28 raw items from dataset
+[2026-03-21T01:12:59.424Z] [POLL] First item keys: inputUrl, pageInfo, pageID, adArchiveID, startDateFormatted, endDateFormatted, adArchiveId, collationCount, collationId, pageId, snapshot, isActive, hasUserReported, reportCount, menuItems, stateMediaRunLabel, pageIsDeleted, pageName, impressionsWithIndex, gatedType, categories, isAaaEligible, containsDigitalCreatedMedia, reachEstimate, currency, spend, endDate, publisherPlatform, startDate, containsSensitiveContent, totalActiveTime, regionalRegulationData, hideDataStatus, fevInfo, adId, targetedOrReachedCountries
+[2026-03-21T01:12:59.425Z] [POLL] First item sample: {"inputUrl":"https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=BR&view_all_page_id=238587899340152","pageInfo":{"adLibrarySystemStatus":{"systemStatus":{"status":"NO_KNOWN_ISSUES","activeIssues":[{"product":"Ad Library","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library Report","status":"NO_KNOWN_ISSUES"},{"product":"Ad Library API","status":"NO_KNOWN_ISSUES"},{"product":"Branded Content","status":"NO_KNOWN_ISSUES"}]}},"xfbAdLibraryIsCaptchaRequired":false,"adLibrary
+[2026-03-21T01:12:59.427Z] [POLL] Extracted result: adCount=28, creativeCount=16
+[2026-03-21T01:12:59.524Z] [POLL] Saving snapshot to Firestore for date 2026-03-21
+[2026-03-21T01:12:59.829Z] [POLL] Sync process completed successfully

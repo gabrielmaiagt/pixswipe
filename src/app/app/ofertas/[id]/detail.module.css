@@ -195,6 +195,66 @@
     border: 1px solid var(--border-secondary);
 }
 
+/* Links section */
+.linksSection {
+    margin-bottom: 20px;
+}
+
+.linksSectionTitle {
+    font-size: var(--font-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.linksList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.linkRow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-sm);
+    color: var(--brand-primary);
+    font-weight: 500;
+    transition: opacity var(--transition-fast);
+}
+
+.linkRow:hover {
+    opacity: 0.8;
+}
+
+.bigLinkRow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    font-size: var(--font-sm);
+    transition: all var(--transition-fast);
+    text-decoration: none;
+}
+
+.bigLinkRow:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-card-hover);
+    transform: translateX(4px);
+    color: var(--brand-primary);
+}
+
+.bigLinkRow svg {
+    flex-shrink: 0;
+    color: var(--brand-primary);
+}
+
 /* Creatives tab */
 .creativesGrid {
     display: grid;
