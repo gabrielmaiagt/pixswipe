@@ -31,6 +31,7 @@ export function validateCaktoWebhook(
 const CHECKOUT_URLS: Record<string, string | undefined> = {
     starter: process.env.CAKTO_CHECKOUT_URL_STARTER,
     pro: process.env.CAKTO_CHECKOUT_URL_PRO,
+    elite: process.env.CAKTO_CHECKOUT_URL_ELITE,
 };
 
 export function getCheckoutUrl(
@@ -40,6 +41,7 @@ export function getCheckoutUrl(
     overrides?: {
         checkoutUrlStarter?: string;
         checkoutUrlPro?: string;
+        checkoutUrlElite?: string;
     }
 ): string {
     const overrideKey = `checkoutUrl${plan.charAt(0).toUpperCase() + plan.slice(1)}` as keyof typeof overrides;
