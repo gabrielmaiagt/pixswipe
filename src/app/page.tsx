@@ -16,6 +16,7 @@ import {
   ArrowRight,
   Sparkles,
   TrendingUp,
+  Play,
 } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { useAuth } from '@/hooks/useAuth';
@@ -88,35 +89,58 @@ export default function LandingPage() {
           animate="visible"
           variants={stagger}
         >
+          <div className={styles.heroText}>
+            <motion.h1 className={styles.heroTitle} variants={fadeUp}>
+              Copie ofertas validadas e<br />
+              <span>comece a vender hoje</span>
+            </motion.h1>
 
-          <motion.h1 className={styles.heroTitle} variants={fadeUp}>
-            Copie ofertas validadas e<br />
-            <span>comece a vender hoje</span>
-          </motion.h1>
-
-
-          <motion.div className={styles.heroPreview} variants={fadeUp}>
-            <div className={styles.heroPreviewBlur}>
-              <div className={styles.heroPreviewInner}>
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className={styles.heroPreviewCard} />
-                ))}
+            <motion.div className={styles.heroBenefits} variants={fadeUp}>
+              <div className={styles.heroBenefit}>
+                <Check size={16} />
+                <span>Ofertas de X1 Validadas</span>
               </div>
-            </div>
-          </motion.div>
+              <div className={styles.heroBenefit}>
+                <Check size={16} />
+                <span>Criativos Escalados</span>
+              </div>
+              <div className={styles.heroBenefit}>
+                <Check size={16} />
+                <span>Funil de Vendas Completo</span>
+              </div>
+              <div className={styles.heroBenefit}>
+                <Check size={16} />
+                <span>Aulas Exclusivas De X1</span>
+              </div>
+            </motion.div>
 
-          <motion.div className={styles.heroCtas} variants={fadeUp}>
-            <Link href="/#precos">
-              <Button size="lg" icon={<ArrowRight size={18} />}>
-                Começar agora
-              </Button>
-            </Link>
-            <Link href="#como-funciona">
-              <Button variant="secondary" size="lg">
-                Como funciona
-              </Button>
-            </Link>
-          </motion.div>
+            <motion.div className={styles.heroCtas} variants={fadeUp}>
+              <Link href="/#precos">
+                <Button size="lg" icon={<ArrowRight size={18} />}>
+                  Começar Agora
+                </Button>
+              </Link>
+              <Link href="#como-funciona">
+                <Button variant="secondary" size="lg" icon={<Play size={18} />}>
+                  Ver Como Funciona
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
+
+          <div className={styles.heroVisual}>
+            <motion.div className={styles.heroPreview} variants={fadeUp}>
+              <iframe
+                width="100%"
+                src="https://www.youtube.com/embed/1A33dpHNo-s"
+                title="VSL"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className={styles.vslIframe}
+              ></iframe>
+            </motion.div>
+          </div>
         </motion.div>
       </section>
 

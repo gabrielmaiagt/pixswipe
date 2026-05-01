@@ -74,8 +74,23 @@
 
 .heroContent {
     position: relative;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    text-align: left;
+}
+
+.heroText {
+    flex: 1.2;
+    z-index: 2;
+}
+
+.heroVisual {
+    flex: 1;
+    z-index: 1;
+    width: 100%;
 }
 
 .heroTag {
@@ -105,11 +120,12 @@
 }
 
 .heroTitle {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 32px;
+    letter-spacing: -0.04em;
+    text-align: left;
 }
 
 .heroTitle span {
@@ -123,27 +139,72 @@
     font-size: var(--font-lg);
     color: var(--text-secondary);
     max-width: 600px;
-    margin: 0 auto 32px;
+    margin: 0 0 32px;
     line-height: var(--line-height-relaxed);
+    text-align: left;
 }
 
 .heroCtas {
     display: flex;
     gap: var(--space-md);
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 48px;
-    margin-bottom: 48px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.heroBenefits {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.heroBenefit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+}
+
+.heroBenefit svg {
+    color: var(--brand-primary);
+    flex-shrink: 0;
+}
+
+.vslIframe {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    display: block;
+    border: none;
 }
 
 .heroPreview {
     position: relative;
-    max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
     border-radius: var(--radius-xl);
     overflow: hidden;
     border: 1px solid var(--border-primary);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    background: #000;
+}
+
+@media (max-width: 992px) {
+    .heroContent {
+        flex-direction: column;
+        text-align: center;
+        gap: 48px;
+    }
+
+    .heroTitle, .heroSubtitle, .heroCtas {
+        text-align: center;
+        justify-content: center;
+    }
 }
 
 .heroPreviewBlur {
