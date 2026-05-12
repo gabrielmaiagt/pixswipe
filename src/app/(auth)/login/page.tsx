@@ -4,7 +4,7 @@ import { useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import logoImg from '../../../public/logo.png';
+import logoImg from '../../../../public/logo.png';
 import { motion } from 'framer-motion';
 import { LogIn } from 'lucide-react';
 import { signIn } from '@/lib/auth';

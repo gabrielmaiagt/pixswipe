@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import logoImg from '../../../public/logo.png';
+import logoImg from '../../../../public/logo.png';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { UserPlus } from 'lucide-react';
