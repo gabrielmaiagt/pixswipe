@@ -32,8 +32,24 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 20px;
     padding: 0 8px;
+}
+
+.navSection {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.navSectionTitle {
+    padding: 0 14px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
 }
 
 .adminNavItem {

@@ -34,11 +34,17 @@ export default function AdminDashboard() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const usersSnap = await getDocs(collection(db, 'users'));
+                const usersSnap = await getDocs(
+                    query(collection(db, 'users'), where('role', '==', 'user'))
+                );
                 const totalUsers = usersSnap.size;
 
                 const activeSnap = await getDocs(
-                    query(collection(db, 'users'), where('entitlementStatus', '==', 'active'))
+                    query(
+                        collection(db, 'users'),
+                        where('role', '==', 'user'),
+                        where('entitlementStatus', '==', 'active')
+                    )
                 );
                 const activeUsers = activeSnap.size;
 

@@ -22,6 +22,7 @@ import OfferCard from '@/components/offers/OfferCard';
 import Button from '@/components/ui/Button';
 import type { Offer } from '@/types';
 import { NICHE_OPTIONS } from '@/lib/utils';
+import toast from 'react-hot-toast';
 import styles from './ofertas.module.css';
 
 const PAGE_SIZE = 12;
@@ -29,11 +30,38 @@ const PAGE_SIZE = 12;
 export default function OfertasPage() {
     const { userData, firebaseUser } = useAuth();
 
+    // Persistence
+    const PERSISTENCE_KEY = 'pixswipe_offers_filters';
+
     // Filters
     const [searchTerm, setSearchTerm] = useState('');
     const [nicheFilter, setNicheFilter] = useState('');
     const [featuredOnly, setFeaturedOnly] = useState(false);
     const [scalingOnly, setScalingOnly] = useState(false);
+
+    // Initial load from localStorage
+    useEffect(() => {
+        const saved = localStorage.getItem(PERSISTENCE_KEY);
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                if (parsed.searchTerm) setSearchTerm(parsed.searchTerm);
+                if (parsed.nicheFilter) setNicheFilter(parsed.nicheFilter);
+                if (parsed.featuredOnly !== undefined) setFeaturedOnly(parsed.featuredOnly);
+                if (parsed.scalingOnly !== undefined) setScalingOnly(parsed.scalingOnly);
+            } catch (e) {}
+        }
+    }, []);
+
+    // Save filters to localStorage
+    useEffect(() => {
+        localStorage.setItem(PERSISTENCE_KEY, JSON.stringify({
+            searchTerm,
+            nicheFilter,
+            featuredOnly,
+            scalingOnly
+        }));
+    }, [searchTerm, nicheFilter, featuredOnly, scalingOnly]);
 
     // Data
     const [offers, setOffers] = useState<Offer[]>([]);
@@ -154,9 +182,11 @@ export default function OfertasPage() {
                 next.delete(offerId);
                 return next;
             });
+            toast.success('Removido dos salvos');
         } else {
             await setDoc(ref, { offerId, savedAt: new Date() });
             setSavedIds((prev) => new Set(prev).add(offerId));
+            toast.success('Salvo com sucesso!');
         }
     }
 

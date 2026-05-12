@@ -83,6 +83,21 @@
     text-transform: uppercase;
 }
 
+.adCountBadge {
+    background: rgba(10, 10, 15, 0.75);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 212, 170, 0.2);
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--brand-primary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 .saveBtnWrap {
     position: absolute;
     top: 10px;
@@ -124,9 +139,24 @@
 }
 
 .offerTypeBadge {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+}
+
+.badgeX1 {
+    background: rgba(140, 82, 255, 0.15);
+    color: #8c52ff;
+    border: 1px solid rgba(140, 82, 255, 0.3);
+}
+
+.badgeDireto {
+    background: rgba(0, 212, 170, 0.15);
+    color: #00d4aa;
+    border: 1px solid rgba(0, 212, 170, 0.3);
 }
 
 .whiteBadge {

@@ -6,7 +6,7 @@ service cloud.firestore {
     function isAuth() { return request.auth != null; }
     function userExists() { return isAuth() && exists(/databases/$(database)/documents/users/$(request.auth.uid)); }
     function userData() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
-    function isActive() { return userExists() && userData().entitlementStatus == 'active'; }
+    function isActive() { return userExists() && (userData().entitlementStatus == 'active' || userData().entitlementStatus == 'free'); }
     function hasPlanAccess(allowedPlans) { return isActive() && userData().plan in allowedPlans; }
     function isAdmin() { return userExists() && userData().role == 'admin'; }
     function isOwner(uid) { return isAuth() && request.auth.uid == uid; }
@@ -23,6 +23,14 @@ service cloud.firestore {
       allow create: if isOwner(uid);
       allow update: if isOwner(uid) || isAdmin();
       allow delete: if isAdmin();
+
+      match /saves/{saveId} {
+        allow read, write: if isOwner(uid);
+      }
+
+      match /progress/{progId} {
+        allow read, write: if isOwner(uid);
+      }
     }
 
     // === Subscriptions ===
@@ -75,16 +83,6 @@ service cloud.firestore {
         allow update: if isAuth() && (request.auth.uid == resource.data.userId || isAdmin());
         allow delete: if isAuth() && (request.auth.uid == resource.data.userId || isAdmin());
       }
-    }
-
-    // === Saves ===
-    match /saves/{uid}/{document=**} {
-      allow read, write: if isOwner(uid);
-    }
-
-    // === Progress ===
-    match /progress/{uid}/{document=**} {
-      allow read, write: if isOwner(uid);
     }
 
     // === Notifications (subcollection of users) ===

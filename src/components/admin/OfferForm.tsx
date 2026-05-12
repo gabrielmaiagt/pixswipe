@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import type { Offer, OfferStatus, OfferType, OfferLabel, CreativeStorageType, PlanType } from '@/types';
+import { NICHE_OPTIONS } from '@/lib/utils';
 import AssetManager from './AssetManager';
 import FileUpload from './FileUpload';
 import styles from './OfferForm.module.css';
@@ -211,14 +212,22 @@ export default function OfferForm({ initialData, offerId, isEditing }: OfferForm
                     placeholder="Ex: Método Seca Barriga"
                 />
                 <div className={styles.row}>
-                    <Input
-                        label="Nicho"
-                        name="niche"
-                        value={form.niche}
-                        onChange={handleChange}
-                        required
-                        placeholder="Ex: Emagrecimento"
-                    />
+                    <div style={{ flex: 1 }}>
+                        <Input
+                            label="Nicho"
+                            name="niche"
+                            value={form.niche}
+                            onChange={handleChange}
+                            required
+                            placeholder="Selecione ou digite um novo nicho"
+                            list="niche-options"
+                        />
+                        <datalist id="niche-options">
+                            {NICHE_OPTIONS.map(n => (
+                                <option key={n} value={n} />
+                            ))}
+                        </datalist>
+                    </div>
                     <Input
                         label="Ticket do Produto (R$)"
                         name="ticket"

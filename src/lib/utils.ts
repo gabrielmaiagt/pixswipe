@@ -152,8 +152,13 @@ export const NICHE_OPTIONS = [
     'Relacionamento',
     'Saúde',
     'Finanças',
+    'Religioso',
+    'Jogos',
     'Educação',
     'Tecnologia',
+    'Pets',
+    'Estética',
+    'Espiritualidade',
     'Outro',
 ] as const;
 

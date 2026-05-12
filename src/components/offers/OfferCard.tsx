@@ -70,6 +70,9 @@ export default function OfferCard({
                                 <Star size={10} /> Destaque
                             </span>
                         )}
+                        <span className={styles.adCountBadge} title="Anúncios Ativos">
+                            <TrendingUp size={10} /> {offer.lastAdCount ?? 0} ads
+                        </span>
                     </div>
 
                     {/* Save button */}
@@ -102,10 +105,12 @@ export default function OfferCard({
                 {/* Body */}
                 <div className={styles.body}>
                     <div className={styles.typeRow}>
-                        <span className={styles.offerTypeBadge}>
+                        <span className={`
+                            ${styles.offerTypeBadge} 
+                            ${offer.offerType === 'x1' ? styles.badgeX1 : styles.badgeDireto}
+                        `}>
                             {offer.offerType === 'x1' && '🤝 X1'}
-                            {offer.offerType === 'trafego_direto_brasil' && '🇧🇷 Direto Brasil'}
-                            {offer.offerType === 'trafego_direto_global' && '🌐 Direto Global'}
+                            {offer.offerType?.startsWith('trafego_direto') && '🚀 Direto'}
                             {!offer.offerType && '—'}
                         </span>
                         {offer.offerLabel && (

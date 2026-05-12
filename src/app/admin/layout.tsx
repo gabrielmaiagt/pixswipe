@@ -22,21 +22,40 @@ import {
 import { useAuth } from '@/hooks/useAuth';
 import styles from './admin.module.css';
 
-const ADMIN_NAV = [
-    { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-    { label: 'Vendas', href: '/admin/vendas', icon: ShoppingBag },
-    { label: 'Ofertas', href: '/admin/ofertas', icon: Package },
-    { label: 'Logs de Sync', href: '/admin/logs-sync', icon: History },
-    { label: 'Módulos', href: '/admin/modulos', icon: BookOpen },
-    { label: 'Aulas', href: '/admin/aulas', icon: GraduationCap },
-    { label: 'Usuários', href: '/admin/usuarios', icon: Users },
-    { label: 'Afiliados', href: '/admin/afiliados', icon: DollarSign },
-    { label: 'Notificações', href: '/admin/notificacoes', icon: Bell },
-    { label: 'Financeiro', href: '/admin/financeiro', icon: DollarSign },
-    { label: 'Suporte', href: '/admin/suporte', icon: Headphones },
-    { label: 'Webhooks', href: '/admin/webhooks', icon: Webhook },
-    { label: 'Assets', href: '/admin/assets', icon: ImageIcon },
-    { label: 'Configurações', href: '/admin/configuracoes', icon: Settings },
+const NAV_SECTIONS = [
+    {
+        title: 'Negócios',
+        items: [
+            { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+            { label: 'Vendas', href: '/admin/vendas', icon: ShoppingBag },
+            { label: 'Financeiro', href: '/admin/financeiro', icon: DollarSign },
+        ]
+    },
+    {
+        title: 'Conteúdo',
+        items: [
+            { label: 'Ofertas', href: '/admin/ofertas', icon: Package },
+            { label: 'Treinamentos', href: '/admin/modulos', icon: GraduationCap },
+            { label: 'Assets', href: '/admin/assets', icon: ImageIcon },
+        ]
+    },
+    {
+        title: 'Comunidade',
+        items: [
+            { label: 'Usuários', href: '/admin/usuarios', icon: Users },
+            { label: 'Afiliados', href: '/admin/afiliados', icon: DollarSign },
+            { label: 'Suporte', href: '/admin/suporte', icon: Headphones },
+            { label: 'Notificações', href: '/admin/notificacoes', icon: Bell },
+        ]
+    },
+    {
+        title: 'Técnico',
+        items: [
+            { label: 'Logs de Sync', href: '/admin/logs-sync', icon: History },
+            { label: 'Webhooks', href: '/admin/webhooks', icon: Webhook },
+            { label: 'Configurações', href: '/admin/configuracoes', icon: Settings },
+        ]
+    }
 ];
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -70,23 +89,28 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                     </Link>
                 </div>
                 <nav className={styles.adminNav}>
-                    {ADMIN_NAV.map((item) => {
-                        const Icon = item.icon;
-                        const isActive =
-                            item.href === '/admin'
-                                ? pathname === '/admin'
-                                : pathname.startsWith(item.href);
-                        return (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className={`${styles.adminNavItem} ${isActive ? styles.adminNavItemActive : ''}`}
-                            >
-                                <Icon size={16} />
-                                {item.label}
-                            </Link>
-                        );
-                    })}
+                    {NAV_SECTIONS.map((section) => (
+                        <div key={section.title} className={styles.navSection}>
+                            <h4 className={styles.navSectionTitle}>{section.title}</h4>
+                            {section.items.map((item) => {
+                                const Icon = item.icon;
+                                const isActive =
+                                    item.href === '/admin'
+                                        ? pathname === '/admin'
+                                        : pathname.startsWith(item.href);
+                                return (
+                                    <Link
+                                        key={item.href}
+                                        href={item.href}
+                                        className={`${styles.adminNavItem} ${isActive ? styles.adminNavItemActive : ''}`}
+                                    >
+                                        <Icon size={16} />
+                                        {item.label}
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    ))}
                 </nav>
             </aside>
             <main className={styles.adminMain}>{children}</main>

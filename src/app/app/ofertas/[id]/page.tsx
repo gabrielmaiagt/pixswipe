@@ -18,7 +18,6 @@ import {
     Video,
     FileText,
     MessageSquare,
-    ClipboardList,
     Copy,
     Download,
     Check,
@@ -48,7 +47,7 @@ import styles from './detail.module.css';
 
 import { ExternalLink, Globe } from 'lucide-react';
 
-type TabType = 'overview' | 'creatives' | 'funnel' | 'links' | 'monitoring' | 'implementation';
+type TabType = 'overview' | 'creatives' | 'funnel';
 
 const OFFER_TYPE_LABEL: Record<string, string> = {
     x1: '🤝 X1',
@@ -56,20 +55,14 @@ const OFFER_TYPE_LABEL: Record<string, string> = {
     trafego_direto_global: '🌐 Direto Global',
 };
 
-function buildTabs(offerType?: string, hasAdLibrary?: boolean): { key: TabType; label: string; icon: React.ReactNode }[] {
+function buildTabs(offerType?: string): { key: TabType; label: string; icon: React.ReactNode }[] {
     const tabs: { key: TabType; label: string; icon: React.ReactNode }[] = [
         { key: 'overview', label: 'Resumo', icon: <Target size={16} /> },
         { key: 'creatives', label: 'Criativos', icon: <Image size={16} /> },
     ];
     if (offerType === 'x1' || !offerType) {
         tabs.push({ key: 'funnel', label: 'Funil WhatsApp', icon: <MessageSquare size={16} /> });
-    } else {
-        tabs.push({ key: 'links', label: 'Links Úteis', icon: <Globe size={16} /> });
     }
-    if (hasAdLibrary) {
-        tabs.push({ key: 'monitoring', label: 'Monitoramento', icon: <TrendingUp size={16} /> });
-    }
-    tabs.push({ key: 'implementation', label: 'Implementação', icon: <ClipboardList size={16} /> });
     return tabs;
 }
 
@@ -88,7 +81,7 @@ export default function OfferDetailPage({
     const [isSaved, setIsSaved] = useState(false);
     const [activeTab, setActiveTab] = useState<TabType>('overview');
     const [adSnapshots, setAdSnapshots] = useState<AdSnapshot[]>([]);
-    const tabs = offer ? buildTabs(offer.offerType, !!offer.adLibraryUrl) : buildTabs();
+    const tabs = offer ? buildTabs(offer.offerType) : buildTabs();
 
     // Fetch offer and subcollections
     useEffect(() => {
@@ -312,14 +305,24 @@ export default function OfferDetailPage({
                     </div>
                 </div>
 
+                {offer.thumbnailUrl && (
+                    <div className={styles.offerCover}>
+                        <img src={offer.thumbnailUrl} alt={offer.title} />
+                    </div>
+                )}
+
                 <div className={styles.badges}>
                     {offer.offerType && (
                         <span style={{
-                            fontSize: '12px', fontWeight: 700, padding: '3px 10px',
-                            borderRadius: 'var(--radius-full)', background: 'var(--bg-tertiary)',
-                            color: 'var(--brand-primary)', border: '1px solid rgba(0,212,170,0.2)',
+                            fontSize: '11px', fontWeight: 900, padding: '5px 14px',
+                            borderRadius: '6px', 
+                            background: offer.offerType === 'x1' ? 'rgba(140, 82, 255, 0.2)' : 'rgba(0, 212, 170, 0.2)',
+                            color: offer.offerType === 'x1' ? '#a370ff' : '#00d4aa',
+                            border: `1px solid ${offer.offerType === 'x1' ? 'rgba(140, 82, 255, 0.4)' : 'rgba(0, 212, 170, 0.4)'}`,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.1em'
                         }}>
-                            {OFFER_TYPE_LABEL[offer.offerType] || offer.offerType}
+                            {offer.offerType === 'x1' ? '🤝 Estratégia X1' : '🚀 Tráfego Direto'}
                         </span>
                     )}
                     {offer.offerLabel && (
@@ -342,6 +345,10 @@ export default function OfferDetailPage({
                     <span className={styles.metaItem}>
                         <DollarSign size={14} />
                         Ticket: <span className={styles.metaValue}>R${offer.ticket.toFixed(2).replace('.', ',')}</span>
+                    </span>
+                    <span className={styles.metaItem} title="Anúncios ativos agora">
+                        <TrendingUp size={14} />
+                        Anúncios: <span className={styles.metaValue}>{offer.lastAdCount ?? '—'}</span>
                     </span>
                     <span className={styles.metaItem}>
                         <Eye size={14} />
@@ -379,47 +386,68 @@ export default function OfferDetailPage({
                 {activeTab === 'overview' && (
                     <>
                         {offer.summary && (
-                            <div className={styles.summaryGrid}>
-                                <div className={styles.summaryCard}>
-                                    <h4><Target size={14} /> Promessa</h4>
-                                    <p>{offer.summary.promise}</p>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                                <div className={styles.bigLinkRow} style={{ cursor: 'default' }}>
+                                    <Target size={20} />
+                                    <div>
+                                        <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>Promessa</div>
+                                        <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 2, lineHeight: '1.5' }}>{offer.summary.promise}</div>
+                                    </div>
                                 </div>
-                                <div className={styles.summaryCard}>
-                                    <h4><TrendingUp size={14} /> Mecanismo</h4>
-                                    <p>{offer.summary.mechanism}</p>
+                                <div className={styles.bigLinkRow} style={{ cursor: 'default' }}>
+                                    <TrendingUp size={20} />
+                                    <div>
+                                        <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>Mecanismo</div>
+                                        <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 2, lineHeight: '1.5' }}>{offer.summary.mechanism}</div>
+                                    </div>
                                 </div>
-                                <div className={styles.summaryCard}>
-                                    <h4><Users size={14} /> Público</h4>
-                                    <p>{offer.summary.audience}</p>
+                                <div className={styles.bigLinkRow} style={{ cursor: 'default' }}>
+                                    <Users size={20} />
+                                    <div>
+                                        <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>Público</div>
+                                        <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 2, lineHeight: '1.5' }}>{offer.summary.audience}</div>
+                                    </div>
                                 </div>
-                                <div className={styles.summaryCard}>
-                                    <h4><ShieldQuestion size={14} /> Objeções</h4>
-                                    <p>{offer.summary.objections}</p>
+                                <div className={styles.bigLinkRow} style={{ cursor: 'default' }}>
+                                    <ShieldQuestion size={20} />
+                                    <div>
+                                        <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>Objeções</div>
+                                        <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 2, lineHeight: '1.5' }}>{offer.summary.objections}</div>
+                                    </div>
                                 </div>
                             </div>
                         )}
 
                         {/* Links section — always shown if any link exists */}
                         {(offer.adLibraryUrl || offer.checkoutUrl || offer.siteUrl) && (
-                            <div className={styles.linksSection}>
-                                <h4 className={styles.linksSectionTitle}>Links</h4>
-                                <div className={styles.linksList}>
+                            <div className={styles.linksSection} style={{ marginTop: 24 }}>
+                                <h4 className={styles.linksSectionTitle}>Links Rápidos</h4>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                                     {offer.adLibraryUrl && (
-                                        <a href={offer.adLibraryUrl} target="_blank" rel="noopener noreferrer" className={styles.linkRow}>
-                                            <ExternalLink size={14} />
-                                            <span>Biblioteca de Anúncios</span>
+                                        <a href={offer.adLibraryUrl} target="_blank" rel="noopener noreferrer" className={styles.bigLinkRow}>
+                                            <ExternalLink size={20} />
+                                            <div>
+                                                <div style={{ fontWeight: 700, fontSize: '14px' }}>Biblioteca de Anúncios</div>
+                                                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 2 }}>Ver criativos na biblioteca oficial</div>
+                                            </div>
                                         </a>
                                     )}
                                     {offer.checkoutUrl && (
-                                        <a href={offer.checkoutUrl} target="_blank" rel="noopener noreferrer" className={styles.linkRow}>
-                                            <ExternalLink size={14} />
-                                            <span>Checkout</span>
+                                        <a href={offer.checkoutUrl} target="_blank" rel="noopener noreferrer" className={styles.bigLinkRow}>
+                                            <ExternalLink size={20} />
+                                            <div>
+                                                <div style={{ fontWeight: 700, fontSize: '14px' }}>Checkout</div>
+                                                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 2 }}>Link direto para a página de pagamento</div>
+                                            </div>
                                         </a>
                                     )}
                                     {offer.siteUrl && (
-                                        <a href={offer.siteUrl} target="_blank" rel="noopener noreferrer" className={styles.linkRow}>
-                                            <Globe size={14} />
-                                            <span>Site / Landing Page</span>
+                                        <a href={offer.siteUrl} target="_blank" rel="noopener noreferrer" className={styles.bigLinkRow}>
+                                            <Globe size={20} />
+                                            <div>
+                                                <div style={{ fontWeight: 700, fontSize: '14px' }}>Site / Landing Page</div>
+                                                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 2 }}>Visualizar a oferta completa no ar</div>
+                                            </div>
                                         </a>
                                     )}
                                 </div>
@@ -427,7 +455,7 @@ export default function OfferDetailPage({
                         )}
 
                         {offer.tags.length > 0 && (
-                            <div className={styles.tagsRow}>
+                            <div className={styles.tagsRow} style={{ marginTop: 24 }}>
                                 {offer.tags.map((tag) => (
                                     <span key={tag} className={styles.tag}>{tag}</span>
                                 ))}
@@ -559,315 +587,7 @@ export default function OfferDetailPage({
                     </>
                 )}
 
-                {/* === Links tab (Tráfego Direto) === */}
-                {activeTab === 'links' && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                        {!offer.adLibraryUrl && !offer.checkoutUrl && !offer.siteUrl ? (
-                            <p style={{ color: 'var(--text-secondary)' }}>Nenhum link cadastrado para esta oferta.</p>
-                        ) : (
-                            <>
-                                {offer.adLibraryUrl && (
-                                    <a href={offer.adLibraryUrl} target="_blank" rel="noopener noreferrer" className={styles.bigLinkRow}>
-                                        <ExternalLink size={18} />
-                                        <div>
-                                            <div style={{ fontWeight: 700 }}>Biblioteca de Anúncios</div>
-                                            <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)', marginTop: 2 }}>{offer.adLibraryUrl}</div>
-                                        </div>
-                                    </a>
-                                )}
-                                {offer.checkoutUrl && (
-                                    <a href={offer.checkoutUrl} target="_blank" rel="noopener noreferrer" className={styles.bigLinkRow}>
-                                        <ExternalLink size={18} />
-                                        <div>
-                                            <div style={{ fontWeight: 700 }}>Checkout</div>
-                                            <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)', marginTop: 2 }}>{offer.checkoutUrl}</div>
-                                        </div>
-                                    </a>
-                                )}
-                                {offer.siteUrl && (
-                                    <a href={offer.siteUrl} target="_blank" rel="noopener noreferrer" className={styles.bigLinkRow}>
-                                        <Globe size={18} />
-                                        <div>
-                                            <div style={{ fontWeight: 700 }}>Site / Landing Page</div>
-                                            <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)', marginTop: 2 }}>{offer.siteUrl}</div>
-                                        </div>
-                                    </a>
-                                )}
-                            </>
-                        )}
-                    </div>
-                )}
 
-                {/* === Monitoramento (Apify) === */}
-                {activeTab === 'monitoring' && (() => {
-                    const maxCount = Math.max(...adSnapshots.map(s => s.adCount), 1);
-
-                    // Aggregate creatives across all snapshots: unique URL, max frequency found
-                    const aggregatedCreatives = new Map<string, { url: string, count: number, type: 'image' | 'video' }>();
-                    adSnapshots.forEach(snap => {
-                        (snap.creatives || []).forEach(c => {
-                            const existing = aggregatedCreatives.get(c.url);
-                            if (!existing || c.count > existing.count) {
-                                aggregatedCreatives.set(c.url, c);
-                            }
-                        });
-                    });
-
-                    const allCreatives = Array.from(aggregatedCreatives.values())
-                        .sort((a, b) => b.count - a.count);
-
-                    const allLandingUrls = [...new Set(adSnapshots.flatMap(s => s.landingUrls || []))];
-                    const latest = adSnapshots[adSnapshots.length - 1];
-                    const prev = adSnapshots[adSnapshots.length - 2];
-                    const trend = latest && prev ? latest.adCount - prev.adCount : 0;
-
-                    return (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-
-                            {/* ── Stat cards ── */}
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 12 }}>
-                                {/* Active ads */}
-                                <div style={{
-                                    background: 'linear-gradient(135deg, rgba(0,212,170,0.12), rgba(0,212,170,0.04))',
-                                    border: '1px solid rgba(0,212,170,0.25)', borderRadius: 14, padding: '18px 20px',
-                                }}>
-                                    <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'rgba(0,212,170,0.7)', marginBottom: 6 }}>Anúncios ativos</div>
-                                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                                        <span style={{ fontSize: 34, fontWeight: 800, color: '#00d4aa', lineHeight: 1 }}>
-                                            {offer.lastAdCount ?? '—'}
-                                        </span>
-                                        {trend !== 0 && (
-                                            <span style={{ fontSize: 13, fontWeight: 600, color: trend > 0 ? '#00d4aa' : '#ff6b6b' }}>
-                                                {trend > 0 ? `+${trend}` : trend}
-                                            </span>
-                                        )}
-                                    </div>
-                                    {offer.lastSyncedAt && (
-                                        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginTop: 6 }}>
-                                            Atualizado {new Date((offer.lastSyncedAt as any).seconds * 1000).toLocaleDateString('pt-BR')}
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Creatives */}
-                                <div style={{
-                                    background: 'var(--bg-card)', border: '1px solid var(--border-secondary)',
-                                    borderRadius: 14, padding: '18px 20px',
-                                }}>
-                                    <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: 6 }}>Criativos</div>
-                                    <div style={{ fontSize: 34, fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1 }}>{allCreatives.length}</div>
-                                    <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 6 }}>imagens e vídeos</div>
-                                </div>
-
-                                {/* Days monitored */}
-                                <div style={{
-                                    background: 'var(--bg-card)', border: '1px solid var(--border-secondary)',
-                                    borderRadius: 14, padding: '18px 20px',
-                                }}>
-                                    <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: 6 }}>Dias monitorados</div>
-                                    <div style={{ fontSize: 34, fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1 }}>{adSnapshots.length}</div>
-                                    <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 6 }}>syncs realizados</div>
-                                </div>
-                            </div>
-
-                            {/* ── Bar chart ── */}
-                            <div style={{
-                                background: 'var(--bg-card)', border: '1px solid var(--border-secondary)',
-                                borderRadius: 16, padding: '20px 24px',
-                            }}>
-                                <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4, color: 'var(--text-primary)' }}>
-                                    Histórico de anúncios ativos
-                                </div>
-                                <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 18 }}>
-                                    Cada barra representa um sync — cresce conforme o admin sincroniza diariamente
-                                </div>
-
-                                {adSnapshots.length > 0 ? (
-                                    <>
-                                        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 5, height: 100, position: 'relative' }}>
-                                            {adSnapshots.map((snap) => {
-                                                const h = maxCount > 0 ? Math.round((snap.adCount / maxCount) * 88) + 12 : 12;
-                                                return (
-                                                    <div
-                                                        key={snap.id}
-                                                        style={{ flex: 1, minWidth: 8, position: 'relative' }}
-                                                    >
-                                                        <div
-                                                            title={`${snap.id}: ${snap.adCount} ads`}
-                                                            style={{
-                                                                height: h, borderRadius: '4px 4px 2px 2px',
-                                                                background: snap === latest
-                                                                    ? 'var(--brand-primary)'
-                                                                    : 'rgba(0,212,170,0.35)',
-                                                                transition: 'background 0.15s, transform 0.15s',
-                                                                cursor: 'default',
-                                                            }}
-                                                            onMouseEnter={e => {
-                                                                e.currentTarget.style.background = 'var(--brand-primary)';
-                                                                e.currentTarget.style.transform = 'scaleY(1.04)';
-                                                                e.currentTarget.style.transformOrigin = 'bottom';
-                                                            }}
-                                                            onMouseLeave={e => {
-                                                                e.currentTarget.style.background = snap === latest ? 'var(--brand-primary)' : 'rgba(0,212,170,0.35)';
-                                                                e.currentTarget.style.transform = 'scaleY(1)';
-                                                            }}
-                                                        />
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 10, fontSize: 11, color: 'var(--text-muted)' }}>
-                                            <span>{adSnapshots[0]?.id}</span>
-                                            {adSnapshots.length > 2 && <span style={{ color: 'var(--brand-primary)', fontWeight: 600 }}>{latest?.adCount} ads hoje</span>}
-                                            <span>{latest?.id}</span>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <div style={{
-                                        height: 100, display: 'flex', flexDirection: 'column',
-                                        alignItems: 'center', justifyContent: 'center',
-                                        border: '1px dashed var(--border-secondary)', borderRadius: 10,
-                                        gap: 8,
-                                    }}>
-                                        <span style={{ fontSize: 24 }}>📊</span>
-                                        <p style={{ fontSize: 13, color: 'var(--text-muted)', textAlign: 'center' }}>
-                                            O gráfico vai aparecer aqui conforme o admin sincroniza diariamente
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* ── Landing pages ── */}
-                            {allLandingUrls.length > 0 && (
-                                <div style={{
-                                    background: 'var(--bg-card)', border: '1px solid var(--border-secondary)',
-                                    borderRadius: 16, padding: '20px 24px',
-                                }}>
-                                    <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 14, color: 'var(--text-primary)' }}>
-                                        Páginas de destino encontradas nos anúncios
-                                    </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                                        {allLandingUrls.slice(0, 8).map((url, i) => (
-                                            <a key={i} href={url} target="_blank" rel="noopener noreferrer"
-                                                style={{
-                                                    display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px',
-                                                    background: 'var(--bg-tertiary)', borderRadius: 10,
-                                                    textDecoration: 'none', fontSize: 12, color: 'var(--brand-primary)',
-                                                    wordBreak: 'break-all',
-                                                }}>
-                                                <ExternalLink size={13} style={{ flexShrink: 0 }} />
-                                                {url}
-                                            </a>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* ── Creatives grid ── */}
-                            {allCreatives.length > 0 ? (
-                                <div>
-                                    <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 14, color: 'var(--text-primary)' }}>
-                                        Criativos capturados ({allCreatives.length})
-                                    </div>
-                                    <div style={{
-                                        display: 'grid',
-                                        gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
-                                        gap: 12,
-                                    }}>
-                                        {allCreatives.map((creative, i) => {
-                                            const isVideo = creative.type === 'video';
-                                            const isScaled = creative.count > 2;
-
-                                            return (
-                                                <div key={i} style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', background: 'var(--bg-tertiary)' }}>
-                                                    {/* Scaling Badge */}
-                                                    {isScaled && (
-                                                        <div style={{
-                                                            position: 'absolute', top: 8, left: 8, zIndex: 10,
-                                                            background: 'linear-gradient(to right, #ff8a00, #ff2000)',
-                                                            color: '#fff', fontSize: 10, fontWeight: 800,
-                                                            padding: '4px 8px', borderRadius: 20,
-                                                            boxShadow: '0 4px 12px rgba(255,50,0,0.3)',
-                                                            display: 'flex', alignItems: 'center', gap: 4,
-                                                        }}>
-                                                            <span>🔥 ESCALADO</span>
-                                                            <span style={{ opacity: 0.8, fontSize: 9 }}>({creative.count} ads)</span>
-                                                        </div>
-                                                    )}
-
-                                                    {isVideo ? (
-                                                        <div style={{ position: 'relative', aspectRatio: '9/16' }}>
-                                                            <video
-                                                                src={creative.url}
-                                                                controls
-                                                                style={{
-                                                                    width: '100%', height: '100%',
-                                                                    background: '#000', objectFit: 'cover',
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    ) : (
-                                                        <a href={creative.url} target="_blank" rel="noopener noreferrer"
-                                                            style={{ display: 'block', position: 'relative', aspectRatio: '1' }}>
-                                                            <img
-                                                                src={creative.url}
-                                                                alt={`Criativo ${i + 1}`}
-                                                                onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                                                                style={{
-                                                                    width: '100%', height: '100%',
-                                                                    objectFit: 'cover', display: 'block',
-                                                                    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                                                }}
-                                                                onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.08)')}
-                                                                onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
-                                                            />
-                                                        </a>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            ) : (
-                                adSnapshots.length > 0 && (
-                                    <div style={{
-                                        padding: '40px', border: '1px dashed var(--border-secondary)',
-                                        borderRadius: 20, textAlign: 'center', background: 'var(--bg-card)',
-                                    }}>
-                                        <div style={{ fontSize: 32, marginBottom: 12 }}>📸</div>
-                                        <p style={{ fontSize: 14, color: 'var(--text-muted)' }}>
-                                            Nenhum criativo capturado ainda. O Apify pode não ter encontrado imagens nesta biblioteca.
-                                        </p>
-                                    </div>
-                                )
-                            )}
-                        </div>
-                    );
-                })()}
-
-                {/* === Implementation Checklist === */}
-                {activeTab === 'implementation' && (
-                    <div className={styles.checklist}>
-                        {checklist.length === 0 ? (
-                            <p style={{ color: 'var(--text-secondary)' }}>
-                                Nenhum checklist disponível para esta oferta.
-                            </p>
-                        ) : (
-                            checklist.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className={`${styles.checkItem} ${item.checked ? styles.checkItemDone : ''}`}
-                                    onClick={() => toggleCheck(item.id)}
-                                >
-                                    <div className={`${styles.checkbox} ${item.checked ? styles.checkboxChecked : ''}`}>
-                                        {item.checked && <Check size={14} />}
-                                    </div>
-                                    <span className={styles.checkLabel}>{item.label}</span>
-                                </div>
-                            ))
-                        )}
-                    </div>
-                )}
             </motion.div>
 
             {/* Comments */}

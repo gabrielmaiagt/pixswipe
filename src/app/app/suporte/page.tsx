@@ -24,20 +24,28 @@ import styles from '@/app/app/suporte/suporte.module.css';
 
 const FAQS = [
     {
-        q: 'Como encontro as ofertas mais lucrativas?',
-        a: 'Acesse o painel de métricas e filtre por ROI acumulado nos últimos 30 dias.'
+        q: 'Como encontro as ofertas mais validadas?',
+        a: 'Acesse a aba "Ofertas" e use o filtro "Escalando". Esse filtro mostra produtos que estão com alto volume de anúncios ativos, o que é o principal sinal de uma oferta validada e lucrativa.'
     },
     {
-        q: 'Como integrar o funil no meu WhatsApp?',
-        a: 'No menu configurações, selecione Integrações > WhatsApp e escaneie o QR Code.'
+        q: 'O que significa o selo de "Escala"?',
+        a: 'O selo de Escala (Hot Offer) é atribuído automaticamente a ofertas que possuem um grande volume de anúncios ativos no Meta Ads, indicando que o produtor está investindo pesado e a oferta está convertendo.'
     },
     {
-        q: 'Posso usar os criativos em qualquer plataforma?',
-        a: 'Sim, nossos criativos são otimizados para Meta Ads, Google Ads e TikTok Ads.'
+        q: 'Qual a diferença entre X1 e Tráfego Direto?',
+        a: 'Estratégias de X1 focam em converter o cliente através de uma conversa no WhatsApp (ideal para tickets maiores). Tráfego Direto envia o usuário direto para a página de vendas ou checkout.'
     },
     {
-        q: 'Como recebo minhas comissões?',
-        a: 'Os saques são processados via PIX em até 24 horas após a solicitação no painel.'
+        q: 'Posso baixar e usar os criativos?',
+        a: 'Sim! Na página de detalhes de cada oferta, você encontrará os melhores criativos. Você pode baixá-los e usá-los como base para suas próprias campanhas no Meta, TikTok ou Google.'
+    },
+    {
+        q: 'Com que frequência as ofertas são atualizadas?',
+        a: 'Nossa equipe realiza mineração 24/7. Novas ofertas validadas são adicionadas diariamente ao painel, garantindo que você esteja sempre à frente da concorrência.'
+    },
+    {
+        q: 'Como funciona a comissão de parceiro?',
+        a: 'Ao indicar o Vortex Swipe, você recebe 50% de comissão recorrente. Todo o processo é gerido de forma transparente pela Cakto.'
     }
 ];
 

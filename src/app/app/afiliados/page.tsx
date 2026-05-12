@@ -13,38 +13,20 @@ import Link from 'next/link';
 import styles from '@/app/app/afiliados/afiliados.module.css';
 
 export default function AfiliadosPage() {
-    const { firebaseUser, userData } = useAuth();
-    const [affiliate, setAffiliate] = useState<Affiliate | null>(null);
+    const { firebaseUser } = useAuth();
     const [recruitmentUrl, setRecruitmentUrl] = useState('');
     const [loading, setLoading] = useState(true);
-
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const affiliateLink = (mounted && userData?.affiliateCode)
-        ? `${window.location.origin}/r?ref=${userData.affiliateCode}`
-        : '';
 
     useEffect(() => {
         if (!firebaseUser) return;
         async function fetchData() {
             try {
-                // Fetch affiliate stats
-                const affSnap = await getDoc(doc(db, 'affiliates', firebaseUser!.uid));
-                if (affSnap.exists()) {
-                    setAffiliate(affSnap.data() as Affiliate);
-                }
-
-                // Fetch global settings for recruitment link
                 const settingsSnap = await getDoc(doc(db, 'settings', 'general'));
                 if (settingsSnap.exists()) {
-                    setRecruitmentUrl(settingsSnap.data().caktoRecruitmentUrl || '');
+                    setRecruitmentUrl(settingsSnap.data().caktoRecruitmentUrl || 'https://cakto.com.br');
                 }
             } catch (err) {
-                console.error('Error:', err);
+                console.error('Error fetching settings:', err);
             } finally {
                 setLoading(false);
             }
@@ -52,129 +34,74 @@ export default function AfiliadosPage() {
         fetchData();
     }, [firebaseUser]);
 
-    function handleCopy() {
-        copyToClipboard(affiliateLink);
-        toast.success('Link copiado!');
-    }
-
     if (loading) {
         return (
             <div className={styles.affiliatePage}>
                 <h1>Afiliados</h1>
-                <div className={styles.statsGrid}>
-                    {Array.from({ length: 4 }).map((_, i) => (
-                        <div key={i} className="skeleton" style={{ height: 90, borderRadius: 12 }} />
-                    ))}
-                </div>
+                <div className="skeleton" style={{ height: 300, borderRadius: 20 }} />
             </div>
         );
     }
 
     return (
         <div className={styles.affiliatePage}>
-            <h1>Afiliados</h1>
+            <div className={styles.header}>
+                <h1>Programa de Parceiros</h1>
+                <p>Ganhe comissões indicando o Vortex Swipe para outros players.</p>
+            </div>
 
-            {/* Stats */}
-            <div className={styles.statsGrid}>
-                <div className={styles.statCard}>
-                    <div className={styles.statValue}>{affiliate?.totalClicks || 0}</div>
-                    <div className={styles.statLabel}><MousePointerClick size={12} /> Cliques</div>
+            <div className={styles.recruitmentContainer}>
+                <div className={styles.recruitmentIcon}>
+                    <DollarSign size={48} />
                 </div>
-                <div className={styles.statCard}>
-                    <div className={styles.statValue}>{affiliate?.totalSales || 0}</div>
-                    <div className={styles.statLabel}><ShoppingCart size={12} /> Vendas</div>
-                </div>
-                <div className={styles.statCard}>
-                    <div className={styles.statValue}>
-                        {formatBRL(affiliate?.totalEarnings || 0)}
+                <h2 className={styles.recruitmentTitle}>Seja um Afiliado Vortex Swipe</h2>
+                <p className={styles.recruitmentText}>
+                    Nossa afiliação é gerida diretamente pela <strong>Cakto</strong>. Como parceiro, você recebe <strong>50% de comissão</strong> por cada assinatura realizada através da sua indicação.
+                </p>
+
+                <div className={styles.benefitsList}>
+                    <div className={styles.benefitItem}>
+                        <div className={styles.benefitDot}></div>
+                        <span>Comissão recorrente de 50%</span>
                     </div>
-                    <div className={styles.statLabel}><DollarSign size={12} /> Comissões</div>
-                </div>
-                <div className={styles.statCard}>
-                    <div className={styles.statValue}>
-                        {affiliate?.totalSales && affiliate.totalClicks
-                            ? ((affiliate.totalSales / affiliate.totalClicks) * 100).toFixed(1) + '%'
-                            : '0%'}
+                    <div className={styles.benefitItem}>
+                        <div className={styles.benefitDot}></div>
+                        <span>Pagamento garantido pela Cakto</span>
                     </div>
-                    <div className={styles.statLabel}>Conversão</div>
+                    <div className={styles.benefitItem}>
+                        <div className={styles.benefitDot}></div>
+                        <span>Material de apoio exclusivo</span>
+                    </div>
+                </div>
+
+                <div className={styles.recruitmentActions}>
+                    <a href={recruitmentUrl} target="_blank" rel="noreferrer" style={{ width: '100%' }}>
+                        <Button size="lg" style={{ width: '100%', height: 56, fontSize: 16 }}>
+                            Quero me afiliar agora na Cakto
+                        </Button>
+                    </a>
+                    <p className={styles.infoNote}>
+                        O rastreamento de vendas e pagamentos é feito automaticamente pela plataforma Cakto.
+                    </p>
                 </div>
             </div>
 
-            {/* Affiliate link or Recruitment */}
-            {userData?.affiliateCode ? (
-                <div className={styles.linkSection}>
-                    <h3><Link2 size={16} /> Seu link de afiliado</h3>
-                    <p style={{ fontSize: 'var(--font-xs)', color: 'var(--text-secondary)', marginBottom: 12 }}>
-                        Use este link para divulgar. Os cliques e vendas serão rastreados automaticamente.
-                    </p>
-                    <div className={styles.linkRow}>
-                        <input
-                            className={styles.linkInput}
-                            value={affiliateLink}
-                            readOnly
-                            onClick={(e) => (e.target as HTMLInputElement).select()}
-                        />
-                        <Button icon={<Copy size={14} />} onClick={handleCopy}>
-                            Copiar
-                        </Button>
+            <div className={styles.instructions}>
+                <h3>Como funciona?</h3>
+                <div className={styles.steps}>
+                    <div className={styles.step}>
+                        <div className={styles.stepNum}>1</div>
+                        <p>Clique no botão acima para abrir a página de afiliação na Cakto.</p>
+                    </div>
+                    <div className={styles.step}>
+                        <div className={styles.stepNum}>2</div>
+                        <p>Solicite sua afiliação e aguarde nossa aprovação rápida.</p>
+                    </div>
+                    <div className={styles.step}>
+                        <div className={styles.stepNum}>3</div>
+                        <p>Pegue seu link na Cakto e comece a divulgar!</p>
                     </div>
                 </div>
-            ) : (
-                <div className={`${styles.linkSection} ${styles.recruitmentContainer}`}>
-                    <div className={styles.recruitmentIcon}>
-                        <DollarSign size={40} />
-                    </div>
-                    <h3 className={styles.recruitmentTitle}>Seja um Parceiro Vortex Swipe</h3>
-                    <p className={styles.recruitmentText}>
-                        Ganhe 30% de comissão por cada indicação. É simples: afilie-se na Cakto, coloque seu código no perfil e comece a lucrar.
-                    </p>
-                    <div className={styles.recruitmentActions}>
-                        {recruitmentUrl && (
-                            <a href={recruitmentUrl} target="_blank" rel="noreferrer">
-                                <Button size="lg">Quero me afiliar na Cakto</Button>
-                            </a>
-                        )}
-                        <Link href="/app/perfil">
-                            <span className={styles.recruitmentLink}>
-                                Já sou afiliado, quero inserir meu código
-                            </span>
-                        </Link>
-                    </div>
-                </div>
-            )}
-
-            {/* Referrals */}
-            <div className={styles.referralsSection}>
-                <h3>Histórico de indicações</h3>
-                {affiliate?.referrals && affiliate.referrals.length > 0 ? (
-                    <table className={styles.referralTable}>
-                        <thead>
-                            <tr>
-                                <th>Plano</th>
-                                <th>Valor</th>
-                                <th>Comissão</th>
-                                <th>Data</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {affiliate.referrals.map((ref, i) => (
-                                <tr key={i}>
-                                    <td>{ref.plan}</td>
-                                    <td>{formatBRL(ref.amount)}</td>
-                                    <td style={{ color: 'var(--brand-primary)', fontWeight: 600 }}>
-                                        {formatBRL(ref.commission)}
-                                    </td>
-                                    <td>{ref.date?.toDate?.().toLocaleDateString('pt-BR') || '-'}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                ) : (
-                    <div className={styles.emptyReferrals}>
-                        <Users size={32} style={{ marginBottom: 8, opacity: 0.4 }} />
-                        <p>Nenhuma indicação ainda. Compartilhe seu link para começar!</p>
-                    </div>
-                )}
             </div>
         </div>
     );
