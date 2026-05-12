@@ -22,9 +22,9 @@
   --bg-glass: rgba(20, 20, 30, 0.8);
 
   /* Brand Colors */
-  --brand-primary: #00d4aa;
-  --brand-primary-hover: #00e6bb;
-  --brand-primary-muted: rgba(0, 212, 170, 0.15);
+  --brand-primary: #8c52ff;
+  --brand-primary-hover: #9e6dff;
+  --brand-primary-muted: rgba(140, 82, 255, 0.15);
   --brand-secondary: #6c5ce7;
   --brand-secondary-hover: #7d6ff0;
 
@@ -56,7 +56,7 @@
   --border-focus: var(--brand-primary);
 
   /* Status Colors */
-  --status-active: #00d4aa;
+  --status-active: #8c52ff;
   --status-warning: #ffa502;
   --status-error: #ff6b6b;
   --status-info: #3b82f6;
@@ -70,12 +70,12 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow-green: 0 0 20px rgba(0, 212, 170, 0.3);
+  --shadow-glow-green: 0 0 20px rgba(140, 82, 255, 0.3);
   --shadow-glow-purple: 0 0 20px rgba(108, 92, 231, 0.3);
   --shadow-glow-warm: 0 0 20px rgba(255, 159, 67, 0.3);
 
   /* Gradients */
-  --gradient-brand: linear-gradient(135deg, #00d4aa, #00b894);
+  --gradient-brand: linear-gradient(135deg, #8c52ff, #6c5ce7);
   --gradient-pro: linear-gradient(135deg, #6c5ce7, #a29bfe);
   --gradient-annual: linear-gradient(135deg, #ffa502, #fdcb6e);
   --gradient-danger: linear-gradient(135deg, #ff6b6b, #ee5a24);
@@ -287,13 +287,13 @@ ol {
 
 .btn-primary {
   background: var(--gradient-brand);
-  color: var(--text-on-brand);
+  color: #fff;
   box-shadow: var(--shadow-glow-green);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 0 30px rgba(0, 212, 170, 0.4);
+  box-shadow: 0 0 30px rgba(140, 82, 255, 0.4);
 }
 
 .btn-secondary {
@@ -439,8 +439,8 @@ ol {
 }
 
 .badge-scaling {
-  background: rgba(0, 212, 170, 0.15);
-  color: var(--accent-green);
+  background: rgba(140, 82, 255, 0.15);
+  color: var(--brand-primary);
 }
 
 .badge-updated {
@@ -449,7 +449,7 @@ ol {
 }
 
 .badge-active {
-  background: rgba(0, 212, 170, 0.15);
+  background: rgba(140, 82, 255, 0.15);
   color: var(--status-active);
 }
 

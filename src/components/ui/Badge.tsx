@@ -7,7 +7,7 @@ import styles from './Badge.module.css';
 
 // --- Badge Component ---
 interface BadgeProps {
-    variant: 'starter' | 'pro' | 'annual' | 'scaling' | 'updated' | 'active' | 'warning' | 'error';
+    variant: 'starter' | 'pro' | 'elite' | 'scaling' | 'updated' | 'active' | 'warning' | 'error';
     children: ReactNode;
     icon?: ReactNode;
 }
@@ -26,7 +26,7 @@ export function PlanBadge({ plan }: { plan: string }) {
     const labels: Record<string, string> = {
         starter: 'Starter',
         pro: 'Pro',
-        annual: 'Anual',
+        elite: 'Elite',
     };
 
     return (
@@ -43,7 +43,7 @@ interface UpgradeCtaProps {
 }
 
 export function UpgradeCta({ requiredPlan, onUpgrade }: UpgradeCtaProps) {
-    const planLabel = requiredPlan === 'pro' ? 'Pro' : 'Anual';
+    const planLabel = requiredPlan === 'pro' ? 'Pro' : 'Elite';
 
     return (
         <div className={styles.upgradeCta}>

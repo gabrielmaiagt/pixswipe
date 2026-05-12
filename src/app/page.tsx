@@ -19,6 +19,11 @@ import {
   Play,
 } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import Badge from '@/components/ui/Badge';
+import { ShinyButton } from '@/components/ui/shiny-button';
+import { PlasticButton } from '@/components/ui/plastic-button';
+import { MotionButton } from '@/components/ui/motion-button';
+import { ContainerScroll } from '@/components/ui/container-scroll-animation';
 import { useAuth } from '@/hooks/useAuth';
 import { getCheckoutUrl } from '@/lib/cakto';
 import styles from './landing.module.css';
@@ -67,16 +72,14 @@ export default function LandingPage() {
       {/* === Navbar === */}
       <nav className={styles.navbar}>
         <div className={styles.navLogo}>
-          <span>Pix</span> Swipe
+          <img src="/logo.png" alt="Vortex Swipe" style={{ height: '56px', width: 'auto' }} />
         </div>
         <div className={styles.navLinks}>
-          <Link href="/login">
-            <Button variant="ghost" size="sm">Entrar</Button>
+          <Link href="/login" style={{ textDecoration: 'none' }}>
+            <MotionButton label="Entrar" />
           </Link>
-          <Link href="/#precos">
-            <Button variant="primary" size="sm" icon={<Zap size={14} />}>
-              Assinar
-            </Button>
+          <Link href="/#precos" style={{ textDecoration: 'none' }}>
+            <PlasticButton text="Assinar" />
           </Link>
         </div>
       </nav>
@@ -94,38 +97,6 @@ export default function LandingPage() {
               Copie ofertas validadas e<br />
               <span>comece a vender hoje</span>
             </motion.h1>
-
-            <motion.div className={styles.heroBenefits} variants={fadeUp}>
-              <div className={styles.heroBenefit}>
-                <Check size={16} />
-                <span>Ofertas de X1 Validadas</span>
-              </div>
-              <div className={styles.heroBenefit}>
-                <Check size={16} />
-                <span>Criativos Escalados</span>
-              </div>
-              <div className={styles.heroBenefit}>
-                <Check size={16} />
-                <span>Funil de Vendas Completo</span>
-              </div>
-              <div className={styles.heroBenefit}>
-                <Check size={16} />
-                <span>Aulas Exclusivas De X1</span>
-              </div>
-            </motion.div>
-
-            <motion.div className={styles.heroCtas} variants={fadeUp}>
-              <Link href="/#precos">
-                <Button size="lg" icon={<ArrowRight size={18} />}>
-                  Começar Agora
-                </Button>
-              </Link>
-              <Link href="#como-funciona">
-                <Button variant="secondary" size="lg" icon={<Play size={18} />}>
-                  Ver Como Funciona
-                </Button>
-              </Link>
-            </motion.div>
           </div>
 
           <div className={styles.heroVisual}>
@@ -141,6 +112,29 @@ export default function LandingPage() {
               ></iframe>
             </motion.div>
           </div>
+
+          <motion.div className={styles.heroBenefits} variants={fadeUp}>
+            <div className={styles.heroBenefit}>
+              <span>Ofertas Validadas</span>
+            </div>
+            <div className={styles.heroBenefit}>
+              <span>Criativos Escalados</span>
+            </div>
+            <div className={styles.heroBenefit}>
+              <span>Funil de Vendas Completos</span>
+            </div>
+            <div className={styles.heroBenefit}>
+              <span>Comunidade Exclusiva</span>
+            </div>
+          </motion.div>
+
+          <motion.div className={styles.heroCtas} variants={fadeUp}>
+            <Link href="/#precos" style={{ textDecoration: 'none' }}>
+              <ShinyButton>
+                Começar Agora
+              </ShinyButton>
+            </Link>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -156,7 +150,7 @@ export default function LandingPage() {
             O que você recebe
           </motion.h2>
           <motion.p className={styles.sectionSubtitle} variants={fadeUp}>
-            Tudo que você precisa para rodar ofertas X1 lucrativas
+            Acesse o ecossistema completo que os top players escondem para escalar em múltiplos modelos de negócio.
           </motion.p>
 
           <div className={styles.featuresGrid}>
@@ -188,7 +182,7 @@ export default function LandingPage() {
             Como funciona
           </motion.h2>
           <motion.p className={styles.sectionSubtitle} variants={fadeUp}>
-            3 passos simples para começar a vender
+            3 passos simples para começar a vender ainda hoje!
           </motion.p>
 
           <div className={styles.stepsGrid}>
@@ -200,8 +194,37 @@ export default function LandingPage() {
               </motion.div>
             ))}
           </div>
+
+          <div style={{
+            marginTop: '3rem',
+            borderRadius: '24px',
+            overflow: 'hidden',
+            border: '1px solid rgba(255,255,255,0.10)',
+            boxShadow: '0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(140,82,255,0.1)',
+            background: '#1a1a25',
+            padding: '8px',
+            maxWidth: '900px',
+            margin: '3rem auto 0',
+          }}>
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+              alt="Dashboard"
+              style={{
+                width: '100%',
+                borderRadius: '18px',
+                display: 'block',
+                objectFit: 'cover',
+                maxHeight: '420px',
+                objectPosition: 'center',
+              }}
+              draggable={false}
+            />
+          </div>
         </motion.div>
       </section>
+
+
+
 
       {/* === Pricing === */}
       <section className={styles.pricing} id="precos">
@@ -215,14 +238,14 @@ export default function LandingPage() {
             Escolha seu plano
           </motion.h2>
           <motion.p className={styles.sectionSubtitle} variants={fadeUp}>
-            Comece a rodar ofertas validadas agora mesmo
+            Do X1 automático à escala global em dólar.
           </motion.p>
 
           <div className={styles.pricingGrid}>
             {PLANS.map((plan, i) => (
               <motion.div
                 key={i}
-                className={`${styles.pricingCard} ${plan.featured ? styles.pricingCardFeatured : ''}`}
+                className={`${styles.pricingCard} ${plan.featured ? styles.pricingCardFeatured : ''} ${plan.id === 'elite' ? styles.pricingCardElite : ''}`}
                 variants={fadeUp}
               >
                 <div className={styles.pricingHeader}>
@@ -275,7 +298,7 @@ export default function LandingPage() {
             Garantia <span>incondicional</span>
           </motion.h3>
           <motion.p className={styles.guaranteeText} variants={fadeUp}>
-            Teste o Pix Swipe por 7 dias. Se não gostar, devolvemos 100% do seu
+            Teste o Vortex Swipe por 7 dias. Se não gostar, devolvemos 100% do seu
             dinheiro — sem perguntas, sem burocracia. Você não tem nada a perder.
           </motion.p>
         </motion.div>
@@ -307,9 +330,13 @@ export default function LandingPage() {
                   &ldquo;{testimonial.text}&rdquo;
                 </p>
                 <div className={styles.testimonialAuthor}>
-                  <div className={styles.testimonialAvatar}>
-                    {testimonial.initials}
-                  </div>
+                  {testimonial.image ? (
+                    <img src={testimonial.image} alt={testimonial.name} className={styles.testimonialAvatar} />
+                  ) : (
+                    <div className={styles.testimonialAvatar}>
+                      {testimonial.initials}
+                    </div>
+                  )}
                   <div>
                     <div className={styles.testimonialName}>
                       {testimonial.name}
@@ -383,13 +410,13 @@ export default function LandingPage() {
           variants={stagger}
         >
           <motion.h2 variants={fadeUp}>
-            Pronto para começar a rodar ofertas X1?
+            Pronto para construir uma operação sólida?
           </motion.h2>
           <motion.p variants={fadeUp}>
-            Novos membros estão entrando toda semana. Não fique de fora.
+            Junte-se aos players que estão escalando com previsibilidade no Brasil e no mundo.
           </motion.p>
           <motion.div variants={fadeUp}>
-            <Button size="lg" icon={<Zap size={18} />} onClick={() => handleSubscribe('pro')}>
+            <Button size="lg" onClick={() => handleSubscribe('pro')}>
               Assinar agora
             </Button>
           </motion.div>
@@ -400,7 +427,7 @@ export default function LandingPage() {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <div className={styles.footerLogo}>
-            <span>Pix</span> Swipe
+            <img src="/logo.png" alt="Vortex Swipe" style={{ height: '48px', width: 'auto' }} />
           </div>
           <div className={styles.footerLinks}>
             <Link href="/termos">Termos de Uso</Link>
@@ -408,7 +435,7 @@ export default function LandingPage() {
             <Link href="/#precos">Planos</Link>
           </div>
           <p className={styles.footerCopy}>
-            © {new Date().getFullYear()} Pix Swipe. Todos os direitos reservados.
+            © {new Date().getFullYear()} Vortex Swipe. Todos os direitos reservados.
           </p>
         </div>
       </footer>
@@ -421,58 +448,53 @@ export default function LandingPage() {
 const FEATURES = [
   {
     icon: <Zap size={22} />,
-    title: 'Ofertas X1 prontas',
+    title: 'Swipe De Ofertas',
     description: 'Ofertas validadas com tudo pronto: criativos, copy e estratégia de tráfego.',
   },
   {
     icon: <Image size={22} />,
-    title: 'Criativos para baixar',
-    description: 'Imagens e vídeos prontos para subir direto nas suas campanhas.',
-  },
-  {
-    icon: <MessageSquare size={22} />,
-    title: 'Funil WhatsApp completo',
-    description: 'Sequência de mensagens testadas para converter no X1.',
+    title: 'Criativos Prontos',
+    description: 'Criativos que escalam, seja em imagem ou vídeo prontos para remodelar.',
   },
   {
     icon: <GraduationCap size={22} />,
     title: 'Aulas de implementação',
-    description: 'Vídeo-aulas explicando como rodar cada oferta passo a passo.',
+    description: 'Vídeo-aulas exclusivas explicando como rodar cada oferta passo a passo.',
   },
   {
     icon: <RefreshCw size={22} />,
     title: 'Atualizações semanais',
-    description: 'Novas ofertas e criativos atualizados toda semana.',
+    description: 'Novas ofertas, criativos atualizados toda semana e adicionados manualmente.',
   },
 ];
 
 const PREVIEW_OFFERS = [
   {
-    title: 'Oferta Emagrecimento — Chá Detox',
-    description: 'CPL médio: R$2,50 · Ticket: R$14,90',
+    title: 'SaaS Automação de WhatsApp',
+    description: 'CAC médio: R$15,00 · LTV: R$450,00',
   },
   {
-    title: 'Oferta Renda Extra — Mini Curso',
-    description: 'CPL médio: R$1,80 · Ticket: R$12,90',
+    title: 'Oferta Emagrecimento (Latam)',
+    description: 'CPA médio: $4.50 · Ticket: $27.00',
   },
   {
-    title: 'Oferta Relacionamento — Guia PDF',
-    description: 'CPL médio: R$3,20 · Ticket: R$9,90',
+    title: 'Funil Perpétuo — Renda Extra',
+    description: 'CPA médio: R$35,00 · Ticket: R$147,00',
   },
 ];
 
 const STEPS = [
   {
-    title: 'Assine o Pix Swipe',
-    description: 'Escolha o plano ideal e tenha acesso imediato à biblioteca completa.',
+    title: 'Assine o Vortex Swipe',
+    description: 'Escolha o plano ideal e tenha acesso imediato à bibliotecas completas de ofertas escaladas imediatamente.',
   },
   {
     title: 'Escolha uma oferta',
-    description: 'Navegue pelas ofertas, baixe os criativos e copie o funil do WhatsApp.',
+    description: 'Escolha uma oferta de sua preferencia, remodele criativos e funil.',
   },
   {
     title: 'Rode e fature',
-    description: 'Suba os anúncios, ative o funil e comece a receber no Pix.',
+    description: 'Suba os anúncios e comece faturar ainda hoje!',
   },
 ];
 
@@ -535,22 +557,25 @@ const PLANS = [
 
 const TESTIMONIALS = [
   {
-    text: 'Comecei do zero e em 2 semanas já estava recebendo Pix todo dia. As ofertas são muito bem estruturadas.',
-    name: 'Lucas M.',
-    initials: 'LM',
-    result: 'R$4.200 no primeiro mês',
+    text: 'Achei que ia encontrar só os mesmos funis cansados de X1. Quando vi a esteira de Micro SaaS e Latam, minha operação mudou de nível em semanas.',
+    name: 'Carlos Mendes',
+    initials: 'CM',
+    image: 'https://i.pravatar.cc/150?u=carlos',
+    result: 'Faturando em Dólar na Latam',
   },
   {
-    text: 'Eu já rodava X1 mas gastava horas montando funil. Com o Pix Swipe, é copiar e colar. Meu ROAS triplicou.',
-    name: 'Amanda R.',
+    text: 'A facilidade de pegar VSLs prontas e páginas de altíssima conversão cortou meu custo de equipe pela metade. O tráfego direto ficou muito mais fácil.',
+    name: 'Amanda Ribeiro',
     initials: 'AR',
-    result: 'ROAS de 3.5x em média',
+    image: 'https://i.pravatar.cc/150?u=amanda',
+    result: 'ROAS médio de 3.8x (Perpétuo)',
   },
   {
-    text: 'O melhor investimento que fiz no digital. As aulas são diretas e as ofertas já vêm prontas com tudo.',
-    name: 'Rafael S.',
-    initials: 'RS',
-    result: '12 vendas por dia em média',
+    text: 'Comecei pelo plano Starter no X1 para fazer caixa, reinvesti no Pro e agora já estou escalando minhas primeiras ofertas de Tráfego Direto.',
+    name: 'Thiago Silva',
+    initials: 'TS',
+    image: 'https://i.pravatar.cc/150?u=thiago',
+    result: 'Escalou do Zero ao Direto',
   },
 ];
 
@@ -560,23 +585,23 @@ const FAQS = [
     answer: 'Sim! Você pode cancelar a qualquer momento. Seu acesso continua ativo até o fim do período já pago.',
   },
   {
-    question: 'Funciona para iniciantes?',
-    answer: 'Sim! As aulas explicam todo o processo passo a passo, desde criar a conta de anúncios até configurar o funil no WhatsApp.',
+    question: 'Serve apenas para X1?',
+    answer: 'Não. Nossa plataforma se expandiu para oferecer a infraestrutura completa para Tráfego Direto, Micro SaaS e operações Globais (Latam), além do X1 tradicional.',
   },
   {
     question: 'Com que frequência saem novas ofertas?',
-    answer: 'Publicamos novas ofertas toda semana e atualizamos os criativos das ofertas existentes regularmente.',
+    answer: 'Publicamos novas ofertas, criativos e VSLs semanalmente, focando no que está funcionando agora no mercado.',
   },
   {
-    question: 'Preciso investir em tráfego pago?',
-    answer: 'Sim, as ofertas são feitas para rodar com anúncios no Facebook/Instagram. Recomendamos começar com pelo menos R$30/dia.',
+    question: 'Eu preciso saber espanhol para rodar na Latam?',
+    answer: 'Não! Nossas ofertas Latam já vêm traduzidas, validadas e com os criativos prontos para você apenas subir a campanha.',
   },
   {
-    question: 'As ofertas funcionam em todos os nichos?',
-    answer: 'Temos ofertas nos nichos de emagrecimento, renda extra, relacionamento, saúde e outros. A biblioteca é atualizada semanalmente.',
+    question: 'O que são as ofertas de Micro SaaS?',
+    answer: 'São pequenos softwares que resolvem problemas específicos e geram recorrência. Entregamos a estrutura para você vender essas soluções como afiliado ou parceiro de forma automatizada.',
   },
   {
-    question: 'Posso usar as mesmas ofertas que outros membros?',
-    answer: 'Sim! As ofertas são testadas para suportar múltiplos afiliados rodando ao mesmo tempo sem saturar.',
+    question: 'Vocês ensinam a subir as campanhas?',
+    answer: 'Sim! Temos treinamentos exclusivos dentro da plataforma mostrando a exata configuração de campanhas para cada modelo (X1, Direto, Latam, etc).',
   },
 ];

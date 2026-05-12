@@ -124,7 +124,7 @@ export default function AfiliadosPage() {
                     <div className={styles.recruitmentIcon}>
                         <DollarSign size={40} />
                     </div>
-                    <h3 className={styles.recruitmentTitle}>Seja um Parceiro Pix Swipe</h3>
+                    <h3 className={styles.recruitmentTitle}>Seja um Parceiro Vortex Swipe</h3>
                     <p className={styles.recruitmentText}>
                         Ganhe 30% de comissão por cada indicação. É simples: afilie-se na Cakto, coloque seu código no perfil e comece a lucrar.
                     </p>

@@ -93,7 +93,7 @@ export default function SupportPage() {
             toast.error('Suporte via WhatsApp indisponível no momento.');
             return;
         }
-        const text = encodeURIComponent(`Olá Suporte Pix Swipe! Preciso de ajuda. Me chamo ${userData?.name || 'Usuário'}.`);
+        const text = encodeURIComponent(`Olá Suporte Vortex Swipe! Preciso de ajuda. Me chamo ${userData?.name || 'Usuário'}.`);
         window.open(`https://wa.me/${supportWhatsapp}?text=${text}`, '_blank');
     };
 

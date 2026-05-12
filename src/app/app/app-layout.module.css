@@ -23,7 +23,7 @@
 }
 
 .sidebarLogo {
-    padding: 20px 20px 16px;
+    padding: 16px 12px;
     font-size: var(--font-xl);
     font-weight: 800;
     border-bottom: 1px solid var(--border-secondary);
@@ -173,6 +173,7 @@
 /* === Responsive === */
 @media (max-width: 768px) {
     .sidebar {
+        width: 280px;
         transform: translateX(-100%);
     }
 
@@ -182,6 +183,14 @@
 
     .mainContent {
         margin-left: 0;
+    }
+
+    .topBar {
+        padding: 12px 16px;
+    }
+
+    .pageContent {
+        padding: 16px;
     }
 
     .menuBtn {

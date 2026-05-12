@@ -6,7 +6,7 @@ import ServiceWorkerRegistration from '@/components/pwa/SWRegister';
 import InstallPrompt from '@/components/pwa/InstallPrompt';
 
 export const metadata: Metadata = {
-  title: 'Pix Swipe — Ofertas X1 Prontas para Rodar',
+  title: 'Vortex Swipe — Ofertas X1 Prontas para Rodar',
   description:
     'Acesse uma biblioteca de ofertas prontas para rodar no modelo X1. Criativos, funis de WhatsApp e aulas de implementação. Copie, cole e saia rodando.',
   keywords: [
@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     'Pix',
   ],
   openGraph: {
-    title: 'Pix Swipe — Ofertas X1 Prontas para Rodar',
+    title: 'Vortex Swipe — Ofertas X1 Prontas para Rodar',
     description:
       'Biblioteca de ofertas X1 com criativos, funis e aulas. Copie e saia rodando.',
-    siteName: 'Pix Swipe',
+    siteName: 'Vortex Swipe',
     type: 'website',
     locale: 'pt_BR',
   },
@@ -61,7 +61,7 @@ export default function RootLayout({
               },
               success: {
                 iconTheme: {
-                  primary: '#00d4aa',
+                  primary: '#8c52ff',
                   secondary: '#0a0a0f',
                 },
               },

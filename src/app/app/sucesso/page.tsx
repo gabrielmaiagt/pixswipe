@@ -13,7 +13,7 @@ export default function SuccessPage() {
                 </div>
                 <h1 style={{ fontSize: 'var(--font-2xl)', fontWeight: 800, marginBottom: 16 }}>Assinatura Confirmada!</h1>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: 40, lineHeight: 1.6 }}>
-                    Seu pagamento foi processado com sucesso. Bem-vindo(a) ao time de elite do Pix Swipe!
+                    Seu pagamento foi processado com sucesso. Bem-vindo(a) ao time de elite do Vortex Swipe!
                     Explore agora as ofertas validadas.
                 </p>
 

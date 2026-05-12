@@ -94,6 +94,9 @@ export default function FinancialDashboard({ isAdminView }: FinancialDashboardPr
                 setSelectedTrackId(items[0].id);
             }
             setLoading(false);
+        }, (error) => {
+            console.error('Tracking items snapshot error:', error);
+            setLoading(false);
         });
     }, [user, isAdminView]);
 
@@ -112,6 +115,8 @@ export default function FinancialDashboard({ isAdminView }: FinancialDashboardPr
 
         return onSnapshot(q, (snap) => {
             setEntries(snap.docs.map(d => ({ id: d.id, ...d.data() } as FinancialEntry)));
+        }, (error) => {
+            console.error('Financial entries snapshot error:', error);
         });
     }, [selectedTrackId]);
 

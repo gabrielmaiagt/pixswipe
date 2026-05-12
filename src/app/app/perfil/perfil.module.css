@@ -1,0 +1,296 @@
+.perfilContainer {
+    max-width: 800px;
+}
+
+.title {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.profileGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 24px;
+    align-items: start;
+}
+
+.formsColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sidebarColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.formCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.sectionHeader {
+    font-size: var(--font-lg);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.subscriptionCard {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cardGlow {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100,
+    height: 100,
+    background: var(--brand-primary);
+    opacity: 0.05,
+    border-radius: 50%;
+}
+
+.subscriptionLabel {
+    font-size: var(--font-md);
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.daysLeftContainer {
+    margin-bottom: 24px;
+}
+
+.daysLeftValue {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: var(--font-lg);
+}
+
+.expirationDate {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    margin-top: 4px;
+}
+
+.metricsCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.metricRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.metricLabel {
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+}
+
+.metricValue {
+    font-weight: 700;
+    color: var(--brand-primary);
+}
+
+.memberSince {
+    border-top: 1px solid var(--border-secondary);
+    padding-top: 12px;
+    margin-top: 4px;
+}
+
+.memberSinceLabel {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-bottom: 4px;
+}
+
+.memberSinceValue {
+    font-weight: 600;
+    font-size: var(--font-sm);
+}
+
+/* Modals */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modalContent {
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 800px;
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    border: 1px solid var(--border-secondary);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modalClose {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+}
+
+.modalHeader {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.modalTitle {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.modalSubtitle {
+    color: var(--text-secondary);
+}
+
+.plansGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.planCard {
+    background: transparent;
+    border: 1px solid var(--border-secondary);
+    border-radius: 20px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    textAlign: center;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.planCardFeatured {
+    background: var(--bg-elevated);
+    border: 2px solid var(--brand-primary);
+}
+
+.featuredLabel {
+    position: absolute;
+    top: -12px;
+    background: var(--brand-primary);
+    color: #000;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.planIcon {
+    margin-bottom: 12px;
+}
+
+.planName {
+    font-weight: 700;
+    font-size: var(--font-md);
+    margin-bottom: 4px;
+}
+
+.planSubtitle {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+    height: 32px;
+}
+
+.planPrice {
+    font-size: var(--font-lg);
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.pricePeriod {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    font-weight: 400;
+}
+
+.featuresList {
+    width: 100%;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.featureItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.featureText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .profileGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .plansGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .modalContent {
+        padding: 24px 16px;
+    }
+}

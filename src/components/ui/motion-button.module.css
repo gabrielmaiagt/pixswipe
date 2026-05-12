@@ -1,0 +1,67 @@
+.button {
+  background-color: transparent;
+  position: relative;
+  height: auto;
+  min-width: 120px;
+  cursor: pointer;
+  border-radius: 9999px;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-family: var(--font-family);
+  display: inline-block;
+}
+
+.circle {
+  background-color: var(--brand-primary);
+  margin: 0;
+  display: block;
+  height: 36px;
+  width: 36px;
+  overflow: hidden;
+  border-radius: 9999px;
+  transition: width 500ms;
+}
+
+.button:hover .circle {
+  width: 100%;
+}
+
+.iconWrapper {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0, -50%);
+  transition: transform 500ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover .iconWrapper {
+  transform: translate(0.3rem, -50%);
+}
+
+.icon {
+  color: var(--text-on-brand);
+  width: 18px;
+  height: 18px;
+}
+
+.text {
+  color: var(--text-primary);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: 12px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 500ms;
+}
+
+.button:hover .text {
+  color: var(--text-on-brand);
+}

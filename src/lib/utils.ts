@@ -131,7 +131,7 @@ export function slugify(text: string): string {
 export const PLAN_LABELS: Record<string, string> = {
     starter: 'Starter',
     pro: 'Pro',
-    annual: 'Anual',
+    elite: 'Elite',
 };
 
 /**
@@ -140,7 +140,7 @@ export const PLAN_LABELS: Record<string, string> = {
 export const PLAN_COLORS: Record<string, string> = {
     starter: 'badge-starter',
     pro: 'badge-pro',
-    annual: 'badge-annual',
+    elite: 'badge-elite',
 };
 
 /**

@@ -64,14 +64,20 @@ export default function OfertasPage() {
                 orderBy('createdAt', 'desc'),
             ];
 
+            // Security Filter: Only show offers allowed for user's plan (unless admin)
+            if (!userData?.role || userData.role !== 'admin') {
+                const userPlan = userData?.plan || 'free';
+                constraints.push(where('availableOnPlans', 'array-contains', userPlan));
+            }
+
             if (nicheFilter) {
-                constraints.splice(0, 0, where('niche', '==', nicheFilter));
+                constraints.push(where('niche', '==', nicheFilter));
             }
             if (featuredOnly) {
-                constraints.splice(0, 0, where('featured', '==', true));
+                constraints.push(where('featured', '==', true));
             }
             if (scalingOnly) {
-                constraints.splice(0, 0, where('scalingBadge', '==', true));
+                constraints.push(where('scalingBadge', '==', true));
             }
             if (afterDoc) {
                 constraints.push(startAfter(afterDoc));
@@ -80,7 +86,7 @@ export default function OfertasPage() {
 
             return query(collection(db, 'offers'), ...constraints);
         },
-        [nicheFilter, featuredOnly, scalingOnly]
+        [nicheFilter, featuredOnly, scalingOnly, userData]
     );
 
     // Fetch offers

@@ -175,7 +175,7 @@ export default function Onboarding({ uid, onComplete }: OnboardingProps) {
                         >
                             <div className={styles.onboardingHeader}>
                                 <h2>Qual seu objetivo principal?</h2>
-                                <p>O que você espera alcançar com o Pix Swipe?</p>
+                                <p>O que você espera alcançar com o Vortex Swipe?</p>
                             </div>
                             <div className={styles.optionsGrid}>
                                 {GOALS.map(g => (

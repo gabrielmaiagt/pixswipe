@@ -88,7 +88,7 @@ export default function CadastroPage() {
                 transition={{ duration: 0.4 }}
             >
                 <div className={styles.authLogo}>
-                    <span>Pix</span> Swipe
+                    <img src="/logo.png" alt="Vortex Swipe" style={{ height: '94px', width: 'auto' }} />
                 </div>
                 <p className={styles.authSubtitle}>Crie sua conta gratuita</p>
 

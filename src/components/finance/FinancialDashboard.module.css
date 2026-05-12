@@ -219,10 +219,12 @@
     width: 100%;
     max-width: 480px;
     overflow: hidden;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modalHeader {
-    padding: 24px;
+    padding: 20px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -240,4 +242,43 @@
 
 .actions button {
     flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .topBar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .selectGroup {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filterBar {
+        width: 100%;
+        overflow-x: auto;
+        padding: 4px;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+    
+    .kpiGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .kpiGrid {
+        grid-template-columns: 1fr;
+    }
 }

@@ -85,7 +85,7 @@
     padding: 12px 20px;
     background: var(--brand-primary-muted);
     color: var(--brand-primary);
-    border: 1px solid rgba(0, 212, 170, 0.2);
+    border: 1px solid rgba(140, 82, 255, 0.2);
     border-radius: var(--radius-md);
     font-size: var(--font-sm);
     font-weight: 600;
@@ -95,8 +95,8 @@
 }
 
 .heroCta:hover {
-    background: rgba(0, 212, 170, 0.2);
-    border-color: rgba(0, 212, 170, 0.4);
+    background: rgba(140, 82, 255, 0.2);
+    border-color: rgba(140, 82, 255, 0.4);
     color: var(--brand-primary-hover);
     transform: translateY(-1px);
 }
@@ -273,11 +273,21 @@
     }
 
     .heroTitle {
-        font-size: var(--font-2xl);
+        font-size: var(--font-xl);
+    }
+
+    .heroGreeting {
+        font-size: var(--font-xs);
+    }
+
+    .heroBadges {
+        flex-wrap: wrap;
+        gap: 6px;
     }
 
     .heroCta {
         width: 100%;
         justify-content: center;
+        margin-top: 10px;
     }
 }

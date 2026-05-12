@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, type FormEvent } from 'react';
-import { User, Lock, Save, Calendar, Zap, CreditCard, X } from 'lucide-react';
+import { User, Lock, Save, Calendar, Zap, CreditCard, X, Sparkles, Check } from 'lucide-react';
 import { doc, updateDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/hooks/useAuth';
@@ -11,6 +11,8 @@ import { Input } from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import { PlanBadge } from '@/components/ui/Badge';
 import toast from 'react-hot-toast';
+
+import styles from './perfil.module.css';
 
 export default function PerfilPage() {
     const { firebaseUser, userData } = useAuth();
@@ -46,7 +48,6 @@ export default function PerfilPage() {
 
     const daysRemaining = (() => {
         if (!userData?.currentPeriodEnd) return null;
-        // Handle both Firestore Timestamp and JS Date
         const end = typeof (userData.currentPeriodEnd as any).toDate === 'function'
             ? (userData.currentPeriodEnd as any).toDate()
             : new Date(userData.currentPeriodEnd as any);
@@ -113,39 +114,28 @@ export default function PerfilPage() {
     };
 
     return (
-        <div style={{ maxWidth: 800 }}>
-            <h1 style={{ fontSize: 'var(--font-2xl)', fontWeight: 800, marginBottom: 24 }}>
-                Meu Perfil
-            </h1>
+        <div className={styles.perfilContainer}>
+            <h1 className={styles.title}>Meu Perfil</h1>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 300px', gap: 24, alignItems: 'start' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                    {/* Profile form */}
-                    <form onSubmit={handleSaveProfile} style={{
-                        background: 'var(--bg-card)',
-                        border: '1px solid var(--border-secondary)',
-                        borderRadius: 'var(--radius-lg)',
-                        padding: 24,
-                    }}>
-                        <h3 style={{ fontSize: 'var(--font-lg)', fontWeight: 600, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div className={styles.profileGrid}>
+                <div className={styles.formsColumn}>
+                    <form onSubmit={handleSaveProfile} className={styles.formCard}>
+                        <h3 className={styles.sectionHeader}>
                             <User size={18} /> Dados pessoais
                         </h3>
-
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                        <div className={styles.formContent}>
                             <Input
                                 label="Nome completo"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
                             />
-
                             <Input
                                 label="E-mail"
                                 value={firebaseUser?.email || ''}
                                 disabled
                                 hint="O e-mail não pode ser alterado"
                             />
-
                             <Input
                                 label="Meu Código de Afiliado (Cakto)"
                                 value={affiliateCode}
@@ -153,25 +143,17 @@ export default function PerfilPage() {
                                 placeholder="Ex: ABC123XYZ"
                                 hint="Cole aqui o código que você pegou na Cakto para ativar seu link."
                             />
-
                             <Button type="submit" loading={saving} icon={<Save size={14} />}>
                                 Salvar alterações
                             </Button>
                         </div>
                     </form>
 
-                    {/* Password form */}
-                    <form onSubmit={handleChangePassword} style={{
-                        background: 'var(--bg-card)',
-                        border: '1px solid var(--border-secondary)',
-                        borderRadius: 'var(--radius-lg)',
-                        padding: 24,
-                    }}>
-                        <h3 style={{ fontSize: 'var(--font-lg)', fontWeight: 600, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <form onSubmit={handleChangePassword} className={styles.formCard}>
+                        <h3 className={styles.sectionHeader}>
                             <Lock size={18} /> Alterar senha
                         </h3>
-
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                        <div className={styles.formContent}>
                             <Input
                                 label="Nova senha"
                                 type="password"
@@ -180,7 +162,6 @@ export default function PerfilPage() {
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 required
                             />
-
                             <Input
                                 label="Confirmar nova senha"
                                 type="password"
@@ -189,7 +170,6 @@ export default function PerfilPage() {
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
                             />
-
                             <Button type="submit" variant="secondary" loading={changingPw} icon={<Lock size={14} />}>
                                 Alterar senha
                             </Button>
@@ -197,42 +177,20 @@ export default function PerfilPage() {
                     </form>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                    {/* Subscription Sidebar Card */}
-                    <div style={{
-                        background: 'linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%)',
-                        border: '1px solid var(--border-secondary)',
-                        borderRadius: 'var(--radius-lg)',
-                        padding: 24,
-                        position: 'relative',
-                        overflow: 'hidden'
-                    }}>
-                        <div style={{
-                            position: 'absolute',
-                            top: -20,
-                            right: -20,
-                            width: 100,
-                            height: 100,
-                            background: 'var(--brand-primary)',
-                            opacity: 0.05,
-                            borderRadius: '50%'
-                        }} />
-
-                        <h3 style={{ fontSize: 'var(--font-md)', fontWeight: 700, marginBottom: 16, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                            Assinatura ATIVA
-                        </h3>
-
+                <div className={styles.sidebarColumn}>
+                    <div className={styles.subscriptionCard}>
+                        <div className={styles.cardGlow} />
+                        <h3 className={styles.subscriptionLabel}>Assinatura ATIVA</h3>
                         <div style={{ marginBottom: 20 }}>
                             <PlanBadge plan={userData?.plan || 'starter'} />
                         </div>
-
                         {daysRemaining !== null && (
-                            <div style={{ marginBottom: 24 }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-primary)', fontWeight: 700, fontSize: 'var(--font-lg)' }}>
+                            <div className={styles.daysLeftContainer}>
+                                <div className={styles.daysLeftValue}>
                                     <Calendar size={18} style={{ color: 'var(--brand-primary)' }} />
                                     {daysRemaining} dias restantes
                                 </div>
-                                <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-tertiary)', marginTop: 4 }}>
+                                <div className={styles.expirationDate}>
                                     Expira em {userData?.currentPeriodEnd && typeof (userData.currentPeriodEnd as any).toDate === 'function'
                                         ? (userData.currentPeriodEnd as any).toDate().toLocaleDateString('pt-BR')
                                         : userData?.currentPeriodEnd
@@ -241,7 +199,6 @@ export default function PerfilPage() {
                                 </div>
                             </div>
                         )}
-
                         <Button
                             variant="primary"
                             fullWidth
@@ -252,26 +209,20 @@ export default function PerfilPage() {
                         </Button>
                     </div>
 
-                    {/* Simple Journey Metrics */}
-                    <div style={{
-                        background: 'var(--bg-card)',
-                        border: '1px solid var(--border-secondary)',
-                        borderRadius: 'var(--radius-lg)',
-                        padding: 24,
-                    }}>
+                    <div className={styles.metricsCard}>
                         <h3 style={{ fontSize: 'var(--font-md)', fontWeight: 700, marginBottom: 20 }}>Sua Jornada</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span style={{ color: 'var(--text-secondary)', fontSize: 'var(--font-sm)' }}>Ofertas Vistas</span>
-                                <span style={{ fontWeight: 700, color: 'var(--brand-primary)' }}>{userData?.metrics?.offersViewed || 0}</span>
+                            <div className={styles.metricRow}>
+                                <span className={styles.metricLabel}>Ofertas Vistas</span>
+                                <span className={styles.metricValue}>{userData?.metrics?.offersViewed || 0}</span>
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span style={{ color: 'var(--text-secondary)', fontSize: 'var(--font-sm)' }}>Aulas Feitas</span>
+                            <div className={styles.metricRow}>
+                                <span className={styles.metricLabel}>Aulas Feitas</span>
                                 <span style={{ fontWeight: 700, color: 'var(--brand-secondary)' }}>{userData?.metrics?.lessonsDone || 0}</span>
                             </div>
-                            <div style={{ borderTop: '1px solid var(--border-secondary)', paddingTop: 12, marginTop: 4 }}>
-                                <div style={{ fontSize: '11px', color: 'var(--text-tertiary)', marginBottom: 4 }}>MEMBRO DESDE</div>
-                                <div style={{ fontWeight: 600, fontSize: 'var(--font-sm)' }}>
+                            <div className={styles.memberSince}>
+                                <div className={styles.memberSinceLabel}>MEMBRO DESDE</div>
+                                <div className={styles.memberSinceValue}>
                                     {userData?.createdAt ? new Date(userData.createdAt.seconds * 1000).toLocaleDateString('pt-BR') : 'Recém-chegado'}
                                 </div>
                             </div>
@@ -280,96 +231,77 @@ export default function PerfilPage() {
                 </div>
             </div>
 
-            {/* Plan Management Modal */}
             {showPlanModal && (
-                <div style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'rgba(0,0,0,0.8)',
-                    backdropFilter: 'blur(8px)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 1000,
-                    padding: 20
-                }}>
-                    <div style={{
-                        background: 'var(--bg-card)',
-                        width: '100%',
-                        maxWidth: 700,
-                        borderRadius: 24,
-                        padding: 32,
-                        position: 'relative',
-                        border: '1px solid var(--border-secondary)'
-                    }}>
-                        <button
-                            onClick={() => setShowPlanModal(false)}
-                            style={{ position: 'absolute', top: 20, right: 20, background: 'none', border: 'none', color: 'var(--text-tertiary)', cursor: 'pointer' }}
-                        >
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modalContent}>
+                        <button onClick={() => setShowPlanModal(false)} className={styles.modalClose}>
                             <X size={24} />
                         </button>
-
-                        <div style={{ textAlign: 'center', marginBottom: 32 }}>
-                            <h2 style={{ fontSize: 'var(--font-2xl)', fontWeight: 800, marginBottom: 8 }}>Gerenciar Plano</h2>
-                            <p style={{ color: 'var(--text-secondary)' }}>Escolha o plano ideal para continuar sua jornada.</p>
+                        <div className={styles.modalHeader}>
+                            <h2 className={styles.modalTitle}>Gerenciar Plano</h2>
+                            <p className={styles.modalSubtitle}>Escolha o plano ideal para continuar sua jornada.</p>
                         </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, maxWidth: 500, margin: '0 auto' }}>
+                        <div className={styles.plansGrid}>
                             {[
-                                { id: 'starter', name: 'Starter', price: '67', icon: <CreditCard /> },
-                                { id: 'pro', name: 'Pro', price: '97', icon: <Zap />, featured: true },
+                                {
+                                    id: 'starter',
+                                    name: 'Starter',
+                                    price: '97',
+                                    icon: <CreditCard />,
+                                    subtitle: 'Para iniciantes, no x1 automático.',
+                                    features: ['Ofertas de X1 validadas', 'Criativos escalados', 'Funis prontos', 'Aulas Exclusivas De X1']
+                                },
+                                {
+                                    id: 'pro',
+                                    name: 'Pro',
+                                    price: '127',
+                                    icon: <Zap />,
+                                    featured: true,
+                                    subtitle: 'Para quem quer tráfego direto.',
+                                    features: ['Tudo do Starter', 'Ofertas Tráfego Direto', 'Ofertas White/Black/Hot', 'Suporte prioritário']
+                                },
+                                {
+                                    id: 'elite',
+                                    name: 'Elite',
+                                    price: '147',
+                                    icon: <Sparkles />,
+                                    subtitle: 'Para escalar em dólar globalmente.',
+                                    features: ['Tudo do Pro/Starter', 'Ofertas Latam (Global)', 'Ofertas de Micro SAAS', 'Networking VIP']
+                                },
                             ].map((plan) => (
-                                <div key={plan.id} style={{
-                                    background: plan.featured ? 'var(--bg-elevated)' : 'transparent',
-                                    border: plan.featured ? '2px solid var(--brand-primary)' : '1px solid var(--border-secondary)',
-                                    borderRadius: 20,
-                                    padding: 24,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    textAlign: 'center',
-                                    transition: 'all 0.2s ease',
-                                    position: 'relative'
-                                }}>
-                                    {plan.featured && (
-                                        <div style={{
-                                            position: 'absolute',
-                                            top: -12,
-                                            background: 'var(--brand-primary)',
-                                            color: '#000',
-                                            fontSize: '10px',
-                                            fontWeight: 800,
-                                            padding: '4px 12px',
-                                            borderRadius: 20
-                                        }}>
-                                            RECOMENDADO
-                                        </div>
-                                    )}
-                                    <div style={{ color: plan.id === 'pro' ? 'var(--brand-primary)' : 'var(--text-tertiary)', marginBottom: 12 }}>
+                                <div key={plan.id} className={`${styles.planCard} ${plan.featured ? styles.planCardFeatured : ''}`}>
+                                    {plan.featured && <div className={styles.featuredLabel}>RECOMENDADO</div>}
+                                    <div className={styles.planIcon} style={{ color: plan.id === 'pro' ? 'var(--brand-primary)' : plan.id === 'elite' ? 'var(--accent-orange)' : 'var(--text-tertiary)' }}>
                                         {plan.icon}
                                     </div>
-                                    <h4 style={{ fontWeight: 700, fontSize: 'var(--font-lg)', marginBottom: 8 }}>{plan.name}</h4>
-                                    <div style={{ fontSize: 'var(--font-xl)', fontWeight: 800, marginBottom: 20 }}>
+                                    <h4 className={styles.planName}>{plan.name}</h4>
+                                    <p className={styles.planSubtitle}>{plan.subtitle}</p>
+                                    <div className={styles.planPrice}>
                                         R${plan.price}
-                                        <span style={{ fontSize: 'var(--font-xs)', color: 'var(--text-tertiary)', fontWeight: 400 }}>/mês</span>
+                                        <span className={styles.pricePeriod}>/mês</span>
                                     </div>
-
+                                    <div className={styles.featuresList}>
+                                        {plan.features.map(f => (
+                                            <div key={f} className={styles.featureItem}>
+                                                <Check size={12} style={{ color: 'var(--brand-primary)', flexShrink: 0 }} />
+                                                <span className={styles.featureText}>{f}</span>
+                                            </div>
+                                        ))}
+                                    </div>
                                     <Button
                                         variant={userData?.plan === plan.id ? 'secondary' : plan.featured ? 'primary' : 'ghost'}
                                         size="sm"
                                         fullWidth
                                         disabled={userData?.plan === plan.id}
                                         onClick={() => handlePlanAction(plan.id)}
+                                        style={{ marginTop: 'auto' }}
                                     >
-                                        {userData?.plan === plan.id ? 'Plano Atual' : 'Selecionar'}
+                                        {userData?.plan === plan.id ? 'Atual' : 'Assinar'}
                                     </Button>
                                 </div>
                             ))}
                         </div>
-
                         <div style={{ marginTop: 32, textAlign: 'center', color: 'var(--text-tertiary)', fontSize: 'var(--font-xs)' }}>
                             Upgrade imediato. Downsell entra em vigor no próximo ciclo de faturamento.
                         </div>

@@ -31,13 +31,13 @@ const NAV_ITEMS = [
     { label: 'Ofertas', href: '/app/ofertas', icon: Search },
     { label: 'Aulas', href: '/app/aulas', icon: GraduationCap },
     { label: 'Salvos', href: '/app/salvos', icon: Bookmark },
-    { label: 'Afiliados', href: '/app/afiliados', icon: Users },
-    { label: 'Suporte', href: '/app/suporte', icon: Headphones },
-    { label: 'Financeiro', href: '/app/financeiro', icon: DollarSign },
 ];
 
 const PROFILE_ITEMS = [
     { label: 'Perfil', href: '/app/perfil', icon: User },
+    { label: 'Financeiro', href: '/app/financeiro', icon: DollarSign },
+    { label: 'Afiliados', href: '/app/afiliados', icon: Users },
+    { label: 'Suporte', href: '/app/suporte', icon: Headphones },
     { label: 'Notificações', href: '/app/notificacoes', icon: Bell },
 ];
 
@@ -70,7 +70,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                 className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarVisible : ''}`}
             >
                 <div className={styles.sidebarLogo}>
-                    <span>Pix</span> Swipe
+                    <img src="/logo.png" alt="Vortex Swipe" style={{ height: '64px', width: 'auto' }} />
                 </div>
 
                 <nav className={styles.sidebarNav}>

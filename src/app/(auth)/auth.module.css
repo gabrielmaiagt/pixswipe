@@ -16,7 +16,7 @@
     transform: translateX(-50%);
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, rgba(0, 212, 170, 0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(140, 82, 255, 0.06) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -35,7 +35,8 @@
     text-align: center;
     font-size: var(--font-2xl);
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: -10px;
+    margin-top: -15px;
 }
 
 .authLogo span {
@@ -122,8 +123,8 @@
 }
 
 .authSuccess {
-    background: rgba(0, 212, 170, 0.1);
-    border: 1px solid rgba(0, 212, 170, 0.2);
+    background: rgba(140, 82, 255, 0.1);
+    border: 1px solid rgba(140, 82, 255, 0.2);
     border-radius: var(--radius-md);
     padding: 10px 14px;
     font-size: var(--font-sm);

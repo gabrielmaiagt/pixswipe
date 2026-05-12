@@ -64,6 +64,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                     setUserData(null);
                 }
                 setLoading(false);
+            }, (error) => {
+                console.error('Auth snapshot error:', error);
+                setLoading(false);
             });
         });
 
