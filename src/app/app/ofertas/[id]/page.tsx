@@ -85,6 +85,8 @@ export default function OfferDetailPage({
 
     // Fetch offer and subcollections
     useEffect(() => {
+        if (!firebaseUser) return;
+
         async function fetchAll() {
             setLoading(true);
             try {

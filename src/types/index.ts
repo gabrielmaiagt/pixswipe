@@ -7,7 +7,7 @@ import { Timestamp } from 'firebase/firestore';
 
 // --- User ---
 export type UserRole = 'user' | 'admin';
-export type PlanType = 'starter' | 'pro' | 'elite' | 'annual';
+export type PlanType = 'starter' | 'pro' | 'elite';
 export type EntitlementStatus = 'active' | 'past_due' | 'canceled' | 'expired';
 
 export interface UserOnboarding {

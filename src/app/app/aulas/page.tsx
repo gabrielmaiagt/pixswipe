@@ -51,7 +51,10 @@ export default function AulasPage() {
                     setProgressMap(pMap);
                 }
             } catch (err) {
-                console.error('Error fetching modules:', err);
+                console.error('Error in fetchModules:', err);
+                if ((err as any).code === 'permission-denied') {
+                    console.error('Permission denied fetching modules or progress');
+                }
             } finally {
                 setLoading(false);
             }

@@ -16,6 +16,7 @@ export default function SettingsForm() {
         caktoRecruitmentUrl: '',
         checkoutUrlStarter: '',
         checkoutUrlPro: '',
+        checkoutUrlElite: '',
         supportWhatsapp: '',
     });
 
@@ -84,6 +85,13 @@ export default function SettingsForm() {
                         label="Checkout Plano Pro"
                         name="checkoutUrlPro"
                         value={form.checkoutUrlPro}
+                        onChange={handleChange}
+                        placeholder="https://cakto.com.br/c/..."
+                    />
+                    <Input
+                        label="Checkout Plano Elite"
+                        name="checkoutUrlElite"
+                        value={form.checkoutUrlElite}
                         onChange={handleChange}
                         placeholder="https://cakto.com.br/c/..."
                     />

@@ -17,7 +17,6 @@ import styles from './perfil.module.css';
 export default function PerfilPage() {
     const { firebaseUser, userData } = useAuth();
     const [name, setName] = useState(userData?.name || '');
-    const [affiliateCode, setAffiliateCode] = useState(userData?.affiliateCode || '');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [saving, setSaving] = useState(false);
@@ -28,7 +27,6 @@ export default function PerfilPage() {
     useEffect(() => {
         if (userData) {
             setName(userData.name || '');
-            setAffiliateCode(userData.affiliateCode || '');
         }
     }, [userData]);
 
@@ -65,7 +63,6 @@ export default function PerfilPage() {
         try {
             await updateDoc(doc(db, 'users', firebaseUser.uid), {
                 name,
-                affiliateCode: affiliateCode.trim().toUpperCase(),
                 updatedAt: serverTimestamp(),
             });
             toast.success('Perfil atualizado!');
@@ -135,13 +132,6 @@ export default function PerfilPage() {
                                 value={firebaseUser?.email || ''}
                                 disabled
                                 hint="O e-mail não pode ser alterado"
-                            />
-                            <Input
-                                label="Meu Código de Afiliado (Cakto)"
-                                value={affiliateCode}
-                                onChange={(e) => setAffiliateCode(e.target.value)}
-                                placeholder="Ex: ABC123XYZ"
-                                hint="Cole aqui o código que você pegou na Cakto para ativar seu link."
                             />
                             <Button type="submit" loading={saving} icon={<Save size={14} />}>
                                 Salvar alterações

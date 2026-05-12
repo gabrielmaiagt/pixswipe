@@ -52,7 +52,7 @@ export default function OfferForm({ initialData, offerId, isEditing }: OfferForm
         tags: initialData?.tags?.join(', ') || '',
         featured: initialData?.featured || false,
         scalingBadge: initialData?.scalingBadge || false,
-        availableOnPlans: initialData?.availableOnPlans || ['starter', 'pro', 'annual'],
+        availableOnPlans: initialData?.availableOnPlans || ['starter', 'pro', 'elite'],
         referenceCpl: initialData?.referenceCpl || 0,
         referenceRoas: initialData?.referenceRoas || 0,
         creativeStorageType: (initialData?.creativeStorageType as CreativeStorageType) || 'drive',
@@ -141,43 +141,45 @@ export default function OfferForm({ initialData, offerId, isEditing }: OfferForm
 
         try {
             const hasSummary = form.promise || form.mechanism || form.audience || form.objections;
+            const ticketValue = typeof form.ticket === 'string' ? parseFloat(form.ticket) : form.ticket;
+
+            if (isNaN(ticketValue)) {
+                throw new Error('O ticket deve ser um número válido.');
+            }
 
             const offerData = {
                 title: form.title,
                 niche: form.niche,
-                ticket: form.ticket,
+                ticket: ticketValue,
                 status: form.status as OfferStatus,
                 offerType: form.offerType as OfferType,
-                ...(form.offerLabel ? { offerLabel: form.offerLabel as OfferLabel } : {}),
-                ...(hasSummary ? {
-                    summary: {
-                        promise: form.promise,
-                        mechanism: form.mechanism,
-                        audience: form.audience,
-                        objections: form.objections,
-                    }
-                } : {}),
+                offerLabel: form.offerLabel as OfferLabel || '',
+                summary: {
+                    promise: form.promise || '',
+                    mechanism: form.mechanism || '',
+                    audience: form.audience || '',
+                    objections: form.objections || '',
+                },
                 tags: form.tags.split(',').map((t) => t.trim()).filter((t) => t),
-                featured: form.featured,
-                scalingBadge: form.scalingBadge,
-                availableOnPlans: form.availableOnPlans as PlanType[],
+                featured: !!form.featured,
+                scalingBadge: !!form.scalingBadge,
+                availableOnPlans: (form.availableOnPlans || []) as PlanType[],
                 creativeStorageType: form.creativeStorageType as CreativeStorageType,
-                ...(form.thumbnailUrl ? { thumbnailUrl: form.thumbnailUrl } : {}),
-                ...(form.adLibraryUrl ? { adLibraryUrl: form.adLibraryUrl } : {}),
-                ...(form.checkoutUrl ? { checkoutUrl: form.checkoutUrl } : {}),
-                ...(isTrafegoDireto && form.siteUrl ? { siteUrl: form.siteUrl } : {}),
-                ...(isX1 && form.funnelNumber ? { funnelNumber: form.funnelNumber } : {}),
-                ...(isX1 ? { funnelVideoUrls: funnelVideos } : {}),
+                thumbnailUrl: form.thumbnailUrl || '',
+                adLibraryUrl: form.adLibraryUrl || '',
+                checkoutUrl: form.checkoutUrl || '',
+                siteUrl: isTrafegoDireto ? (form.siteUrl || '') : '',
+                funnelNumber: isX1 ? (form.funnelNumber || '') : '',
+                funnelVideoUrls: isX1 ? funnelVideos : [],
                 updatedAt: serverTimestamp(),
             };
-
 
             if (isEditing && offerId) {
                 await updateDoc(doc(db, 'offers', offerId), offerData as any);
                 toast.success('Oferta atualizada com sucesso!');
             } else {
-                const newDocRef = doc(db, 'offers', offerId || Math.random().toString(36).substring(7));
-                await setDoc(newDocRef, {
+                const newId = offerId || Math.random().toString(36).substring(7);
+                await setDoc(doc(db, 'offers', newId), {
                     ...offerData,
                     createdAt: serverTimestamp(),
                     views: 0,
@@ -189,9 +191,9 @@ export default function OfferForm({ initialData, offerId, isEditing }: OfferForm
 
             router.push('/admin/ofertas');
             router.refresh();
-        } catch (err) {
+        } catch (err: any) {
             console.error('Save offer error:', err);
-            toast.error('Erro ao salvar oferta');
+            toast.error('Erro ao salvar: ' + (err.message || 'Erro desconhecido'));
         } finally {
             setLoading(false);
         }
@@ -583,7 +585,7 @@ export default function OfferForm({ initialData, offerId, isEditing }: OfferForm
                 <div style={{ marginTop: 16 }}>
                     <label className={styles.sectionTitle} style={{ fontSize: 'var(--font-sm)' }}>Disponível nos Planos:</label>
                     <div className={styles.checkboxGroup}>
-                        {(['starter', 'pro', 'annual'] as PlanType[]).map((plan) => (
+                        {(['starter', 'pro', 'elite'] as PlanType[]).map((plan) => (
                             <label key={plan} className={styles.checkboxLabel}>
                                 <input
                                     type="checkbox"

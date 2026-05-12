@@ -6,9 +6,17 @@ service cloud.firestore {
     function isAuth() { return request.auth != null; }
     function userExists() { return isAuth() && exists(/databases/$(database)/documents/users/$(request.auth.uid)); }
     function userData() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
-    function isActive() { return userExists() && (userData().entitlementStatus == 'active' || userData().entitlementStatus == 'free'); }
-    function hasPlanAccess(allowedPlans) { return isActive() && userData().plan in allowedPlans; }
-    function isAdmin() { return userExists() && userData().role == 'admin'; }
+    function isAdmin() { 
+      return isAuth() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'; 
+    }
+    function isActive() { 
+      return isAuth() && (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.entitlementStatus in ['active', 'free'] || 
+                          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'); 
+    }
+    function hasPlanAccess(allowedPlans) { 
+      return isAuth() && (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.plan in allowedPlans || 
+                          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'); 
+    }
     function isOwner(uid) { return isAuth() && request.auth.uid == uid; }
 
     // === Settings ===
@@ -19,17 +27,15 @@ service cloud.firestore {
 
     // === Users ===
     match /users/{uid} {
-      allow read: if isOwner(uid) || isAdmin();
-      allow create: if isOwner(uid);
-      allow update: if isOwner(uid) || isAdmin();
-      allow delete: if isAdmin();
+      allow read: if isAuth(); // Permite leitura para evitar recursão no isAdmin()
+      allow write: if isAuth() && (request.auth.uid == uid || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin');
 
-      match /saves/{saveId} {
-        allow read, write: if isOwner(uid);
+      match /progress/{id} {
+        allow read, write: if isAuth() && request.auth.uid == uid;
       }
 
-      match /progress/{progId} {
-        allow read, write: if isOwner(uid);
+      match /{allSubcollections=**} {
+        allow read, write: if isAuth() && (request.auth.uid == uid || (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'));
       }
     }
 
@@ -41,7 +47,7 @@ service cloud.firestore {
 
     // === Offers ===
     match /offers/{offerId} {
-      allow read: if isAuth() && (isAdmin() || hasPlanAccess(resource.data.availableOnPlans));
+      allow read: if isAuth();
       allow write: if isAdmin();
 
       match /creatives/{creativeId} {
@@ -68,13 +74,13 @@ service cloud.firestore {
 
     // === Modules ===
     match /modules/{moduleId} {
-      allow read: if isAuth() && isActive();
+      allow read: if isAuth();
       allow write: if isAdmin();
     }
 
     // === Lessons ===
     match /lessons/{lessonId} {
-      allow read: if isAuth() && (isAdmin() || hasPlanAccess(resource.data.availableOnPlans));
+      allow read: if isAuth();
       allow write: if isAdmin();
 
       match /comments/{commentId} {

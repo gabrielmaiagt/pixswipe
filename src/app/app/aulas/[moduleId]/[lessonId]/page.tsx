@@ -23,7 +23,7 @@ export default function LessonPlayerPage({
     params: Promise<{ moduleId: string; lessonId: string }>;
 }) {
     const { moduleId, lessonId } = use(params);
-    const { firebaseUser } = useAuth();
+    const { firebaseUser, userData } = useAuth();
     const [lesson, setLesson] = useState<Lesson | null>(null);
     const [progress, setProgress] = useState<LessonProgress | null>(null);
     const [isSaved, setIsSaved] = useState(false);
@@ -32,6 +32,8 @@ export default function LessonPlayerPage({
     const saveIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
+        if (!firebaseUser) return; // Espera o usuário estar autenticado
+
         async function fetchLesson() {
             try {
                 const snap = await getDoc(doc(db, 'lessons', lessonId));
@@ -39,23 +41,21 @@ export default function LessonPlayerPage({
                     setLesson({ id: snap.id, ...snap.data() } as Lesson);
                 }
 
-                if (firebaseUser) {
-                    // Progress
-                    const progSnap = await getDoc(
-                        doc(db, 'users', firebaseUser.uid, 'progress', lessonId)
-                    );
-                    if (progSnap.exists()) {
-                        setProgress(progSnap.data() as LessonProgress);
-                    }
-
-                    // Saved
-                    const savedSnap = await getDoc(
-                        doc(db, 'users', firebaseUser.uid, 'savedLessons', lessonId)
-                    );
-                    setIsSaved(savedSnap.exists());
+                // Progress
+                const progSnap = await getDoc(
+                    doc(db, 'users', firebaseUser.uid, 'progress', lessonId)
+                );
+                if (progSnap.exists()) {
+                    setProgress(progSnap.data() as LessonProgress);
                 }
+
+                // Saved
+                const savedSnap = await getDoc(
+                    doc(db, 'users', firebaseUser.uid, 'savedLessons', lessonId)
+                );
+                setIsSaved(savedSnap.exists());
             } catch (err) {
-                console.error('Error:', err);
+                console.error('Error fetching lesson data:', err);
             } finally {
                 setLoading(false);
             }
@@ -118,6 +118,17 @@ export default function LessonPlayerPage({
         return `${m}:${s.toString().padStart(2, '0')}`;
     }
 
+    // Helper to format YouTube URLs for embed
+    const getEmbedUrl = (url: string) => {
+        if (url.includes('youtube.com/watch?v=')) {
+            return url.replace('watch?v=', 'embed/');
+        }
+        if (url.includes('youtu.be/')) {
+            return url.replace('youtu.be/', 'youtube.com/embed/');
+        }
+        return url;
+    };
+
     if (loading) {
         return (
             <div className={styles.playerPage}>
@@ -145,8 +156,9 @@ export default function LessonPlayerPage({
         lesson.videoUrl.includes('vimeo') ||
         lesson.videoUrl.includes('embed');
 
+    const embedUrl = isEmbed ? getEmbedUrl(lesson.videoUrl) : '';
+
     // Plan Restriction Check
-    const { userData } = useAuth();
     const hasPlanAccess = userData && (
         userData.role === 'admin' ||
         lesson.availableOnPlans.includes(userData.plan)
@@ -183,7 +195,7 @@ export default function LessonPlayerPage({
             <div className={styles.videoWrap}>
                 {isEmbed ? (
                     <iframe
-                        src={lesson.videoUrl}
+                        src={embedUrl}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     />

@@ -37,7 +37,7 @@ export default function LessonForm({ initialData, lessonId, isEditing }: LessonF
         order: initialData?.order || 0,
         moduleId: initialData?.moduleId || '',
         status: (initialData?.status as LessonStatus) || 'draft',
-        availableOnPlans: initialData?.availableOnPlans || ['starter', 'pro', 'annual'],
+        availableOnPlans: initialData?.availableOnPlans || ['starter', 'pro', 'elite'],
     });
 
     useEffect(() => {
@@ -241,7 +241,7 @@ export default function LessonForm({ initialData, lessonId, isEditing }: LessonF
                 <div style={{ marginTop: 16 }}>
                     <label className={styles.sectionTitle} style={{ fontSize: 'var(--font-sm)' }}>Disponível nos Planos:</label>
                     <div className={styles.checkboxGroup}>
-                        {(['starter', 'pro', 'annual'] as PlanType[]).map((plan) => (
+                        {(['starter', 'pro', 'elite'] as PlanType[]).map((plan) => (
                             <label key={plan} className={styles.checkboxLabel}>
                                 <input
                                     type="checkbox"

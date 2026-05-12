@@ -285,7 +285,7 @@ export default function EditOfferPage() {
                 }
             `}</style>
 
-            <OfferForm initialData={offer} offerId={offer.id} isEditing />
+            <OfferForm key={offer.id} initialData={offer} offerId={offer.id} isEditing />
 
             {/* ── Sync History ── */}
             <div style={{ marginTop: 40, borderTop: '1px solid var(--border-secondary)', paddingTop: 32 }}>
