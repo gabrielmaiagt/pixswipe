@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   Zap,
-  Image,
+  ImageIcon,
   MessageSquare,
   GraduationCap,
   RefreshCw,
@@ -453,7 +453,7 @@ const FEATURES = [
     description: 'Ofertas validadas com tudo pronto: criativos, copy e estratégia de tráfego.',
   },
   {
-    icon: <Image size={22} />,
+    icon: <ImageIcon size={22} />,
     title: 'Criativos Prontos',
     description: 'Criativos que escalam, seja em imagem ou vídeo prontos para remodelar.',
   },

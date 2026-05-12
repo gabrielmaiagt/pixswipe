@@ -22,6 +22,7 @@ import {
 import { useAuth } from '@/hooks/useAuth';
 import { signOut } from '@/lib/auth';
 import { PlanBadge } from '@/components/ui/Badge';
+import Image from 'next/image';
 import logoImg from '../../../public/logo.png';
 import NotificationBell from '@/components/layout/NotificationBell';
 import Paywall from '@/components/auth/Paywall';
