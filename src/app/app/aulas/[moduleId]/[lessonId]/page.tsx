@@ -42,18 +42,20 @@ export default function LessonPlayerPage({
                 }
 
                 // Progress
-                const progSnap = await getDoc(
-                    doc(db, 'users', firebaseUser.uid, 'progress', lessonId)
-                );
-                if (progSnap.exists()) {
-                    setProgress(progSnap.data() as LessonProgress);
-                }
+                if (firebaseUser) {
+                    const progSnap = await getDoc(
+                        doc(db, 'users', firebaseUser.uid, 'progress', lessonId)
+                    );
+                    if (progSnap.exists()) {
+                        setProgress(progSnap.data() as LessonProgress);
+                    }
 
-                // Saved
-                const savedSnap = await getDoc(
-                    doc(db, 'users', firebaseUser.uid, 'savedLessons', lessonId)
-                );
-                setIsSaved(savedSnap.exists());
+                    // Saved
+                    const savedSnap = await getDoc(
+                        doc(db, 'users', firebaseUser.uid, 'savedLessons', lessonId)
+                    );
+                    setIsSaved(savedSnap.exists());
+                }
             } catch (err) {
                 console.error('Error fetching lesson data:', err);
             } finally {
