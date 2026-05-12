@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import logoImg from '../../../public/logo.png';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { UserPlus } from 'lucide-react';
@@ -88,7 +90,7 @@ export default function CadastroPage() {
                 transition={{ duration: 0.4 }}
             >
                 <div className={styles.authLogo}>
-                    <img src="/logo.png" alt="Vortex Swipe" style={{ height: '94px', width: 'auto' }} />
+                    <Image src={logoImg} alt="Vortex Swipe" height={94} priority />
                 </div>
                 <p className={styles.authSubtitle}>Crie sua conta gratuita</p>
 

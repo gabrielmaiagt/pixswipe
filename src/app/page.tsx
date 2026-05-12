@@ -19,6 +19,8 @@ import {
   Play,
 } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import Image from 'next/image';
+import logoImg from '../../public/logo.png';
 import { ShinyButton } from '@/components/ui/shiny-button';
 import { PlasticButton } from '@/components/ui/plastic-button';
 import { MotionButton } from '@/components/ui/motion-button';
@@ -71,7 +73,7 @@ export default function LandingPage() {
       {/* === Navbar === */}
       <nav className={styles.navbar}>
         <div className={styles.navLogo}>
-          <img src="/logo.png" alt="Vortex Swipe" style={{ height: '56px', width: 'auto' }} />
+          <Image src={logoImg} alt="Vortex Swipe" height={56} priority />
         </div>
         <div className={styles.navLinks}>
           <Link href="/login" style={{ textDecoration: 'none' }}>
@@ -426,7 +428,7 @@ export default function LandingPage() {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <div className={styles.footerLogo}>
-            <img src="/logo.png" alt="Vortex Swipe" style={{ height: '48px', width: 'auto' }} />
+            <Image src={logoImg} alt="Vortex Swipe" height={48} />
           </div>
           <div className={styles.footerLinks}>
             <Link href="/termos">Termos de Uso</Link>

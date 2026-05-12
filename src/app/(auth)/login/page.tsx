@@ -2,7 +2,9 @@
 
 import { useState, type FormEvent } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import logoImg from '../../../public/logo.png';
 import { motion } from 'framer-motion';
 import { LogIn } from 'lucide-react';
 import { signIn } from '@/lib/auth';
@@ -48,7 +50,7 @@ export default function LoginPage() {
                 transition={{ duration: 0.4 }}
             >
                 <div className={styles.authLogo}>
-                    <img src="/logo.png" alt="Vortex Swipe" style={{ height: '94px', width: 'auto' }} />
+                    <Image src={logoImg} alt="Vortex Swipe" height={94} priority />
                 </div>
                 <p className={styles.authSubtitle}>Acesse sua conta</p>
 

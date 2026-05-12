@@ -22,6 +22,7 @@ import {
 import { useAuth } from '@/hooks/useAuth';
 import { signOut } from '@/lib/auth';
 import { PlanBadge } from '@/components/ui/Badge';
+import logoImg from '../../../public/logo.png';
 import NotificationBell from '@/components/layout/NotificationBell';
 import Paywall from '@/components/auth/Paywall';
 import styles from './app-layout.module.css';
@@ -70,7 +71,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                 className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarVisible : ''}`}
             >
                 <div className={styles.sidebarLogo}>
-                    <img src="/logo.png" alt="Vortex Swipe" style={{ height: '64px', width: 'auto' }} />
+                    <Image src={logoImg} alt="Vortex Swipe" height={64} priority />
                 </div>
 
                 <nav className={styles.sidebarNav}>
