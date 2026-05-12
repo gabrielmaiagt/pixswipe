@@ -19,7 +19,6 @@ import {
   Play,
 } from 'lucide-react';
 import Button from '@/components/ui/Button';
-import Badge from '@/components/ui/Badge';
 import { ShinyButton } from '@/components/ui/shiny-button';
 import { PlasticButton } from '@/components/ui/plastic-button';
 import { MotionButton } from '@/components/ui/motion-button';
